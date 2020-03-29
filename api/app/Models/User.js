@@ -1,9 +1,5 @@
 'use strict'
 
-/** @type {import('@adonisjs/framework/src/Hash')} */
-const Hash = use('Hash')
-
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
 class User extends Model {
@@ -11,14 +7,13 @@ class User extends Model {
     super.boot()
 
     /**
-     * A hook to hash the user password before saving
+     * A hook to bash the user password before saving
      * it to the database.
+     *
+     * Look at `app/Models/Hooks/User.js` file to
+     * check the hashPassword method
      */
-    this.addHook('beforeSave', async (userInstance) => {
-      if (userInstance.dirty.password) {
-        userInstance.password = await Hash.make(userInstance.password)
-      }
-    })
+    this.addHook('beforeCreate', 'User.hashPassword')
   }
 
   /**
