@@ -20,7 +20,7 @@ const occupations = [null, 'student', 'teacher', 'doctor', 'nurse', 'developer']
 
 Factory.blueprint('App/Models/Letter', (faker) => {
   return {
-    title: faker.sentence({words: 10 }),
+    title: faker.sentence({words: 5 + Math.floor(Math.random()*8) }).replace(/\.$/,''),
     text: `<div><h2>${faker.pickone(['Hello', 'Hi', 'Dear'])} ${faker.name()},</h2></div><div><p>This is why you should consider my <b>open letter</b>.</p><p>${faker.paragraph()}</p><p>${faker.paragraph()}</p><p>${faker.paragraph()}</p></div>`,
   }
 })

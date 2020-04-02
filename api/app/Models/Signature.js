@@ -23,6 +23,10 @@ class Signature extends Model {
     return ['id','letter_id', 'token'];
   }
 
+  getName(name) {
+    return name || "anonymous";
+  }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or

@@ -19,3 +19,9 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 
 Route.get('letters', 'LetterController.index')
+Route.get('letters/:slug', 'LetterController.get')
+Route.post('letters/create', 'LetterController.create')
+
+// TODO: refactor to signatures/create
+Route.post('letters/:slug/sign', 'LetterController.sign')
+Route.post('signatures/confirm', 'SignatureController.confirm')
