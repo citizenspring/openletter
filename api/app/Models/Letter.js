@@ -19,8 +19,12 @@ class Letter extends Model {
     })
   }
 
+  static get hidden() {
+    return ['updated_at'];
+  }
+
   signatures() {
-      return this.hasMany('App/Models/Signature')
+      return this.hasMany('App/Models/Signature', 'id', 'letter_id');
     }
 }
 

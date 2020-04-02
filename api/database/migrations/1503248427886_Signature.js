@@ -13,7 +13,7 @@ class TokensSchema extends Schema {
       table.string('occupation', 64).nullable()
       table.string('organization', 64).nullable()
       table.string('token', 64).nullable().unique().index()
-      table.boolean('is_verified').defaultTo(false)
+      table.boolean('is_verified').index().defaultTo(false)
       table.timestamps()
     })
   }
