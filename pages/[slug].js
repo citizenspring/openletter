@@ -69,8 +69,9 @@ class Letter extends Component {
         body:    JSON.stringify(signature),
         headers: { 'Content-Type': 'application/json' },
     });
-    console.log(">>> res", res);
-    // this.setState({ status: 'signature_sent' });
+    const json = await res.json();
+    console.log(">>> res", json);
+    this.setState({ status: 'signature_sent' });
   }
 
   render() {
