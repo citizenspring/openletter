@@ -4,7 +4,7 @@
   "description": "Description ",
   "main": "index.js",
   "scripts": {
-    "build": "concurrently -s first --kill-others \"npm run api:dev\" \"next build\"",
+    "build": "concurrently -s first --kill-others \"npm run api\" \"next build\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "api": "cd api && npm run start",
     "api:dev": "cd api && adonis serve --dev",
