@@ -4,10 +4,17 @@
   "description": "Description ",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "concurrently \"npm run api:dev\" \"next build\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api": "cd api && adonis serve",
+    "api:dev": "cd api && adonis serve --dev",
+    "api:install": "cd api && npm install",
+    "www": "npm run start",
+    "www:dev": "npm run dev",
+    "www:install": "npm install",
+    "dev": "concurrently \"npm run api:dev\" \"next\"",
+    "start": "concurrently \"npm run api\" \"next start\"",
+    "install": "concurrently \"npm run api:install\" \"npm run www:install\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +27,7 @@
   },
   "homepage": "https://github.com/AllForClimate/openletter#readme",
   "dependencies": {
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "next": "^9.3.2",
     "node-fetch": "^2.6.0",
