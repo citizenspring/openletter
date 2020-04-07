@@ -6,7 +6,7 @@
   "scripts": {
     "build": "concurrently -s first --kill-others \"npm run api:dev\" \"next build\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "cd api && adonis serve",
+    "api": "cd api && npm run start",
     "api:dev": "cd api && adonis serve --dev",
     "api:install": "cd api && npm install",
     "www": "npm run start",
