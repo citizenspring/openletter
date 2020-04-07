@@ -45,7 +45,7 @@ class LetterController {
   }
 
   async sign({request}) {
-    const signatureData = request.only(['name', 'occupation', 'city']);
+    const signatureData = request.only(['name', 'occupation', 'city', 'organization']);
     console.log(">>> signatureData", signatureData);
     console.log(">>> fetching letter", request.params.slug);
     const letter = await Letter.findBy('slug', request.params.slug);

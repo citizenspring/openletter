@@ -82,6 +82,9 @@ export default class SignatureForm extends Component {
             </Box>
           </Flex>
           <Box my={1} width={1}>
+            <Input name="organization" onChange={this.handleChange} />
+          </Box>
+          <Box my={1} width={1}>
             <Input type="email" name="email" onChange={this.handleChange} required />
           </Box>
         </Flex>
