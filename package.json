@@ -14,7 +14,7 @@
     "www:install": "npm install",
     "dev": "concurrently \"npm run api:dev\" \"next\"",
     "start": "concurrently \"npm run api\" \"next start\"",
-    "install": "concurrently \"npm run api:install\" \"npm run www:install\""
+    "install": "concurrently -s first --kill-others \"npm run api:install\" \"npm run api\" \"next build\""
   },
   "repository": {
     "type": "git",
