@@ -38,7 +38,7 @@ const StyledButton = styled.button`
 `;
 
 export default ({signatures}) => {
-  
+
   if (!signatures || signatures.length === 0) {
     return (<div>Be the first to sign this letter</div>)
   }
@@ -47,7 +47,7 @@ export default ({signatures}) => {
      <ol>
       {signatures.map((signature, i) => (
         <li key={i}>
-        {signature.name}, {signature.occupation}, {signature.city}
+        {signature.name}, {signature.occupation}, {signature.organization && `${signature.organization}, `}{signature.city}
         </li>
       ))}
      </ol>
