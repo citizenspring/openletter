@@ -1,0 +1,2 @@
+release: ENV_SILENT=true && cd api && node ace migration:run — force
+web: ENV_SILENT=true npm run start
