@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components'
 import { typography, space } from 'styled-system';
 import LetterForm from '../components/LetterForm';
+import Faq from '../components/LetterForm-Faq';
 import Notification from '../components/Notification';
 import Router from 'next/router';
 
@@ -85,7 +86,7 @@ class CreateLetterPage extends Component {
           <Box
             width={[1, 1 / 3]}
             p={3}>
-            <h2>FAQ</h2>
+              <Faq />
           </Box>
         </Flex>
         <Footer />

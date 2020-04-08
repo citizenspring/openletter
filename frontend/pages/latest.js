@@ -1,14 +1,23 @@
 import React from 'react'
 import Link from 'next/link'
 import fetch from 'node-fetch'
-import Faq from '../components/Faq'
 import Footer from '../components/Footer'
 
 function Index({ letters }) {
   return (
     <div>
+      <h1>Latest open letters</h1>
+      <p>OpenLetter currently holds {letters.length} open letters</p>
+      <ul>
+      {letters.map(letter => (
+        <li>
+          <Link href={letter.slug}>
+            <a>{letter.title}</a>
+          </Link>
+        </li>
+      ))}
+      </ul>
       <Footer />
-      <Faq />
     </div>
   )
 }

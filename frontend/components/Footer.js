@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import styled from 'styled-components';
+
+const FooterText = styled.div`
+  font-size: 11pt;
+`;
 
 export default () => (
   <div>
@@ -6,9 +11,9 @@ export default () => (
       <div>
         <img src="/images/openletter-logo.png" width="64" />
       </div>
-      <div>
+      <FooterText>
         <Link href={`/create`}>Create an open letter</Link><br />and co-sign it
-    </div>
+      </FooterText>
     </center>
   </div>
 );
