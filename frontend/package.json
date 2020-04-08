@@ -4,17 +4,11 @@
   "description": "Description ",
   "main": "index.js",
   "scripts": {
-    "build": "concurrently -s first --kill-others \"npm run api\" \"next build\"",
+    "build": "next build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "cd api && ENV_SILENT=true npm run start",
-    "api:dev": "cd api && adonis serve --dev",
-    "api:install": "cd api && npm install",
-    "www": "npm run start",
-    "www:dev": "npm run dev",
-    "www:install": "npm install",
-    "dev": "concurrently \"npm run api:dev\" \"next\"",
-    "start": "concurrently \"npm run api\" \"next start\"",
-    "install": "npm run api:install && npm run build"
+    "dev": "next",
+    "start": "next start",
+    "install": "npm run build"
   },
   "repository": {
     "type": "git",

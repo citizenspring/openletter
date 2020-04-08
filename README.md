@@ -12,3 +12,18 @@ We need to make it easier to create such open letters. The number of people sign
 ## Demo
 
 ![](https://d.pr/free/i/BILgdt+)
+
+
+## Deployment
+
+### API
+
+We are using Heroku to host the API using a Postgres database. Since heroku expects a git tree, make sure you only push the `api/`sub directory.
+
+`git subtree push --prefix api heroku master`
+
+### Frontend
+
+We use Zeit's now.
+
+`cd frontend && now``
