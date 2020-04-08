@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": ["openletter.earth", "www.openletter.earth"],
   "env": {
     "API_URL": "https://openletter-earth.herokuapp.com"
   },
