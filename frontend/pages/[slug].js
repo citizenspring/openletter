@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
 import Footer from '../components/Footer';

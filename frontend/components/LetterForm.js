@@ -37,7 +37,7 @@ const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <StyledInput type={type || 'text'} id={name} placeholder={placeholder || name} onChange={e => onChange(name, e.target.value)} {...rest} />
 );
 
-export default class SignatureForm extends Component {
+export default class LetterForm extends Component {
 
   constructor(props) {
     super(props);
@@ -50,6 +50,10 @@ export default class SignatureForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.titleInput.focus(); 
   }
 
   handleChange(fieldname, value) {
@@ -68,7 +72,7 @@ export default class SignatureForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Box my={1} width={1}>
-          <TitleInput type="text" id="title" placeholder="Title" onChange={e => this.handleChange('title', e.target.value)} />
+          <TitleInput type="text" id="title" placeholder="Title" onChange={e => this.handleChange('title', e.target.value)} ref={(input) => { this.titleInput = input; }} />
         </Box>
         <Box my={1} width={1}>
           <StyledTextarea name="text" onChange={e => this.handleChange('text', e.target.value)} required />

@@ -12,7 +12,7 @@ export default () => (
         <img src="/images/openletter-logo.png" width="64" />
       </div>
       <FooterText>
-        <Link href={`/create`}>Create an open letter</Link><br />and co-sign it
+        <Link href={`/create`}><a>Create an open letter</a></Link><br />and co-sign it
       </FooterText>
     </center>
   </div>

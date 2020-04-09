@@ -15,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Baskerville";
     src: url("fonts/Baskerville.eot"); /* IE9*/
     src: url("fonts/Baskerville.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/Baskerville.woff2") format("woff2"), /* chrome、firefox */
     url("fonts/Baskerville.woff") format("woff"), /* chrome、firefox */
     url("fonts/Baskerville.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
     url("fonts/Baskerville.svg#Baskerville") format("svg"); /* iOS 4.1- */
@@ -25,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "SignPainter";
     src: url("fonts/SignPainter.eot"); /* IE9*/
     src: url("fonts/SignPainter.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("fonts/SignPainter.woff2") format("woff2"), /* chrome、firefox */
     url("fonts/SignPainter.woff") format("woff"), /* chrome、firefox */
     url("fonts/SignPainter.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
     url("fonts/SignPainter.svg#SignPainter") format("svg"); /* iOS 4.1- */
