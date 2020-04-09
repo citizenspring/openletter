@@ -23,6 +23,10 @@ class Letter extends Model {
     return ['updated_at'];
   }
 
+  getText(text) {
+    return (text || "").replace(/\n/g, '<br />');
+  }
+
   signatures() {
       return this.hasMany('App/Models/Signature', 'id', 'letter_id');
     }

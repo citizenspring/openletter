@@ -3,6 +3,7 @@ const Mail = use('Mail')
 const Database = use('Database')
 const Letter = use('App/Models/Letter')
 const Signature = use('App/Models/Signature');
+const sanitizeHtml = use('sanitize-html');
 
 class LetterController {
   async index() {
@@ -33,6 +34,9 @@ class LetterController {
 
   async create({request}) {
     const letterData = request.only(['title', 'text']);
+    letterData.text = sanitizeHtml(letterData.text, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+    });
     console.log(">>> letterData", letterData);
     let letter;
     try {
