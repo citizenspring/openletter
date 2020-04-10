@@ -43,11 +43,22 @@ export default ({signatures}) => {
     return (<div>Be the first to sign this letter</div>)
   }
 
+  const printSignature = (signature) => {
+    const fields = ['name', 'occupation', 'organization', 'city'];
+    const res = [];
+    fields.map(field => {
+      if (signature[field]) {
+        res.push(signature[field].trim());
+      }
+    })
+    return res.join(', ');
+  }
+
    return (
      <ol>
       {signatures.map((signature, i) => (
         <li key={i}>
-        {signature.name}, {signature.occupation}, {signature.organization && `${signature.organization}, `}{signature.city}
+          {printSignature(signature)}
         </li>
       ))}
      </ol>

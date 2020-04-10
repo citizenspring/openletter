@@ -33,6 +33,13 @@ const StyledButton = styled.button`
   width: 100%;
 `;
 
+const Error = styled.div`
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 18px;
+`;
+
 const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <StyledInput type={type || 'text'} id={name} placeholder={placeholder || name} onChange={e => onChange(name, e.target.value)} {...rest} />
 );
@@ -67,6 +74,7 @@ export default class SignatureForm extends Component {
   }
 
   render() {
+    const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex flexWrap='wrap'>
@@ -91,6 +99,9 @@ export default class SignatureForm extends Component {
         <Box my={1} width={1}>
           <StyledButton>Sign This Letter</StyledButton>
         </Box>
+        {error && (
+          <Error>{error.message}</Error>
+        )}
       </form>
     );
   }

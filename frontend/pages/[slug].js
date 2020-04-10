@@ -69,8 +69,12 @@ class Letter extends Component {
         headers: { 'Content-Type': 'application/json' },
     });
     const json = await res.json();
-    console.log(">>> res", json);
-    this.setState({ status: 'signature_sent' });
+    if (json.error) {
+      this.setState({ status: 'error', error: json.error });
+
+    } else {
+      this.setState({ status: 'signature_sent' });
+    }
   }
 
   render() {
@@ -109,7 +113,7 @@ class Letter extends Component {
                 signatures
           </BigNumberLabel>
             </Box>
-            {[null, 'created'].includes(status) && <SignatureForm onSubmit={(signature => this.submitSignature(signature))} />}
+            {[null, 'created', 'error'].includes(status) && <SignatureForm error={this.state.error} onSubmit={(signature => this.submitSignature(signature))} />}
             {status === 'signature_sent' && (
               <SignatureEmailSent />
             )}

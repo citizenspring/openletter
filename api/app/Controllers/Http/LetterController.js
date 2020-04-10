@@ -1,4 +1,5 @@
 'use strict'
+const crypto = use('crypto')
 const Mail = use('Mail')
 const Database = use('Database')
 const Letter = use('App/Models/Letter')
@@ -49,17 +50,25 @@ class LetterController {
   }
 
   async sign({request}) {
+
     const signatureData = request.only(['name', 'occupation', 'city', 'organization']);
-    console.log(">>> signatureData", signatureData);
-    console.log(">>> fetching letter", request.params.slug);
+
     const letter = await Letter.findBy('slug', request.params.slug);
+
+    // We create the token based on the letter.id and request.body.email to make sure we can only have one signature per email address (without having to actually record the email address in our database)
+    const tokenData = `${letter.id}-${request.body.email}-${process.env.APP_KEY}`;
+    signatureData.token = crypto.createHash('md5').update(tokenData).digest("hex");
+
     let signature;
-    // console.log(">>> letter", letter);
+
     try {
       signature = await letter.signatures().create(signatureData);
-      console.log(">>> signature created, token", signature.token);
     } catch (e) {
-      console.error("error", e);
+      if (e.constraint === 'signatures_token_unique') {
+        return { error: { code: 400, message: 'you already signed this open letter'}};
+      } else {
+        console.error("error", e);
+      }
     }
 
     const emailData = {
@@ -68,7 +77,7 @@ class LetterController {
       env: process.env
     };
     emailData.signature.token = signature.token;
-    console.log(">>> emailData", request.body.email, emailData);
+
     try {
       await Mail.send('emails.confirm_signature', emailData, (message) => {
         message
