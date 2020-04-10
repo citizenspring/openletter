@@ -126,27 +126,9 @@ class Letter extends Component {
   };
 }
 
-export async function getStaticPaths() {
-  const apiCall = `${process.env.API_URL}/letters`;
-  console.log(">>> calling api", apiCall)
-  const res = await fetch(apiCall);
-  try {
-    const letters = await res.json();
-    const paths = [];
-    letters.map(l => paths.push({ params: { slug: l.slug } }));
-    return {
-      paths,
-      fallback: true,
-    }
-  } catch (e) {
-    console.error("Unable to parse JSON returned by the API", e);
-  }
-}
-
-export async function getStaticProps({params}) {
+export async function getServerSideProps({ params}) {
   const props = {};
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  console.log(">>> calling api", apiCall)
   const res = await fetch(apiCall);
   try {
     const response = await res.json();
@@ -155,10 +137,28 @@ export async function getStaticProps({params}) {
     } else {
       props.letter = response;
     }
-    return { props };
+    return {props};
   } catch (e) {
     console.error("Unable to parse JSON returned by the API", e);
   }
-}
+}  
+
+// export async function getStaticPaths() {
+//   const apiCall = `${process.env.API_URL}/letters`;
+//   console.log(">>> calling api", apiCall)
+//   const res = await fetch(apiCall);
+//   try {
+//     const letters = await res.json();
+//     const paths = [];
+//     letters.map(l => paths.push({ params: { slug: l.slug } }));
+//     return {
+//       paths,
+//       fallback: true,
+//     }
+//   } catch (e) {
+//     console.error("Unable to parse JSON returned by the API", e);
+//   }
+// }
+
 
 export default Letter;
