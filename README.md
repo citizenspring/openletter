@@ -22,6 +22,8 @@ We are using Heroku to host the API using a Postgres database. Since heroku expe
 
 `git subtree push --prefix api heroku master`
 
+(or to force push if ever needed: ```git push heroku `git subtree split --prefix api master`:master --force```)
+
 ### Frontend
 
 We use Zeit's now.
