@@ -17,6 +17,8 @@ const Page = styled.div`
 
 const Title = styled.h1`
   font-size: 50px;
+  ${typography}
+  line-height: 1.2;
   color: ${({ theme }) => theme.colors.primary};
 `;
 
@@ -99,7 +101,7 @@ class Letter extends Component {
           <Box
             width={[1, 2 / 3]}
             p={3}>
-            <Title>{letter.title}</Title>
+            <Title fontSize={[2,2,3]}>{letter.title}</Title>
             <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
           </Box>
           <Box
@@ -127,6 +129,7 @@ class Letter extends Component {
 }
 
 export async function getServerSideProps({ params}) {
+
   const props = {};
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
   const res = await fetch(apiCall);
