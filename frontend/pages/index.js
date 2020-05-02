@@ -12,7 +12,7 @@ const Page = styled.div`
   margin: 0 auto;
 `;
 
-function Index({ letters }) {
+function Index() {
   return (
     <Page>
       <Footer />
@@ -41,21 +41,6 @@ function Index({ letters }) {
       <Faq />
     </Page>
   )
-}
-
-export async function getServerSideProps() {
-  const apiCall = `${process.env.API_URL}/letters`;
-  const res = await fetch(apiCall);
-  try {
-    const letters = await res.json();
-    return {
-      props: {
-        letters: letters,
-      },
-    }
-  } catch (e) {
-    console.error("Unable to parse JSON returned by the API", e);
-  }
 }
 
 export default Index
