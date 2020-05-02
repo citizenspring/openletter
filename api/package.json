@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
+    "accept-language-parser": "^1.5.0",
     "pg": "^7.18.2",
     "sanitize-html": "^1.23.0",
     "slugify": "^1.4.0",

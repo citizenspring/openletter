@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+  </head>
+  <body>
+    <h2>👋 {{ signature.name }}</h2>
+<p>
+  Hartelijk dank om deze open brief te ondertekenen. (<a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>). Bevestig je handtekening door op onderstaande knop te klikken.
+</p>
+
+<p>
+  <center>
+    <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/confirm_signature?token={{signature.token}}" style="text-decoration: none;display:inline-block;width:220px;font-size: 12pt; font-family: Arial; background: #111; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box;">
+      Bevestig handtekening
+    </a>
+  </center>
+</p>
+
+<h3>Over je privacy 🔏</h3>
+<p>We nemen je privacy ernstig. Daarom <b>houden we geen persoonlijke gegevens bij op onze server</b>. Dat betekent dat we zelfs je e-mailadres niet bijhouden. We hebben geen cookies en geen andere spoorzoekers. 
+</p>
+<p>
+  Als je de software die jouw privacy respecteert, graag wil steunen, overweeg dan om te doneren via <a href="https://opencollective.com/openletter/donate"></a>. Hartelijk dank 🙏
+</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+  </head>
+  <body>
+    <h2>👋 {{ signature.name }}</h2>
+<p>
+  Merci de co-signer cette lettre ouverte (<a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>). Pour confirmer votre signature, veuillez cliquer sur le bouton ci-dessous.
+</p>
+
+<p>
+  <center>
+    <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/confirm_signature?token={{signature.token}}" style="text-decoration: none;display:inline-block;width:220px;font-size: 12pt; font-family: Arial; background: #111; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box;">
+      Confirmer votre signature
+    </a>
+  </center>
+</p>
+
+<h3>A propos du respect de la vie privée 🔏</h3>
+<p>
+  Nous prenons le respect de votre vie privée très au sérieux. C'est pourquoi <b>on n'enregistre aucune donnée personnelle sur nos serveurs</b>. Cela signifie que nous ne sauvegardons pas votre adresse email.
+  Nous n'utilisons aucun cookie ou autres trackers.
+</p>
+<p>
+  Si vous aimez ce genre d'outils qui respectent votre vie privée, merci de supporter notre travail en faisant <a href="https://opencollective.com/openletter/donate">une donation à notre collectif</a>. Merci 🙏
+</p>
+</body>
+</html>

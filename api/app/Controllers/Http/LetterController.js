@@ -5,6 +5,7 @@ const Database = use('Database')
 const Letter = use('App/Models/Letter')
 const Signature = use('App/Models/Signature');
 const sanitizeHtml = use('sanitize-html');
+const acceptLanguageParser = use('accept-language-parser');
 
 class LetterController {
   async index() {
@@ -78,13 +79,22 @@ class LetterController {
       env: process.env
     };
     emailData.signature.token = signature.token;
+    const locale = acceptLanguageParser.pick(['en', 'fr', 'nl'], request.headers()['accept-language'], { loose: true }) || 'en';
+
+    const subject = {
+      en: 'ACTION REQUIRED: Please confirm your signature on this open letter',
+      nl: 'ACTIE VEREIST: Bevestig uw handtekening onder deze open brief',
+      fr: 'ACTION REQUISE: Veuillez confirmer votre signature sur cette lettre ouverte'
+    }
+
+    console.log(">>> send email confirmation for locale", locale);
 
     try {
-      await Mail.send('emails.confirm_signature', emailData, (message) => {
+      await Mail.send(`emails.${locale}.confirm_signature`, emailData, (message) => {
         message
           .to(request.body.email)
           .from('support@openletter.earth')
-          .subject('ACTION REQUIRED: Please confirm your signature on this open letter')
+          .subject(subject[locale])
       })
     } catch (e) {
       console.error("error", e);
