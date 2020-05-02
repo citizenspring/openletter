@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/AllForClimate/openletter#readme",
   "dependencies": {
+    "accept-language-parser": "^1.5.0",
     "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "next": "^9.3.2",

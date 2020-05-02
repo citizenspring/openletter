@@ -1,6 +1,7 @@
 import App from 'next/app'
 import React from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { IntlContext, getLocaleFromHeaders } from '../lib/i18n';
 
 const theme = {
   colors: {
@@ -36,14 +37,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default class MyApp extends App {
+class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, locale, messages } = this.props
     return (
+      <IntlContext.Provider value={{ locale, messages }}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
+      </IntlContext.Provider>
     )
   }
 }
+
+MyApp.getInitialProps = async (appContext) => {
+  const i18n = getLocaleFromHeaders(appContext.ctx.req && appContext.ctx.req.headers);
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps, ...i18n };
+}
+
+export default MyApp;

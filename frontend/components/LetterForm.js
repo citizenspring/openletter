@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox/styled-components'
 import styled from 'styled-components'
+import { withIntl } from "../lib/i18n";
 
 const TitleInput = styled.input`
   border: 1px dotted grey;
@@ -37,7 +38,7 @@ const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <StyledInput type={type || 'text'} id={name} placeholder={placeholder || name} onChange={e => onChange(name, e.target.value)} {...rest} />
 );
 
-export default class LetterForm extends Component {
+class LetterForm extends Component {
 
   constructor(props) {
     super(props);
@@ -69,16 +70,19 @@ export default class LetterForm extends Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <Box my={1} width={1}>
-          <TitleInput type="text" id="title" placeholder="Title" onChange={e => this.handleChange('title', e.target.value)} ref={(input) => { this.titleInput = input; }} />
+          <TitleInput type="text" id="title" placeholder={t("create.title")} onChange={e => this.handleChange('title', e.target.value)} ref={(input) => { this.titleInput = input; }} />
         </Box>
         <Box my={1} width={1}>
           <StyledTextarea name="text" onChange={e => this.handleChange('text', e.target.value)} required />
         </Box>
-        <StyledButton>Publish this Open Letter</StyledButton>
+        <StyledButton>{t("create.publish")}</StyledButton>
       </form>
     );
   }
 }
+
+export default withIntl(LetterForm);

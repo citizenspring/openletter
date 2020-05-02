@@ -1,6 +1,7 @@
 import { Flex, Box } from 'reflexbox/styled-components'
 import styled from 'styled-components'
 import { space } from 'styled-system'
+import { withIntl } from '../lib/i18n';
 
 const NotificationBox = styled.div`
   border-top: 4px solid black;
@@ -13,7 +14,7 @@ const H2 = styled.h2`
   font-size: 18pt;
 `;
 
-export default () => (
+export default withIntl(({t}) => (
   <NotificationBox my={4} py={4}>
     <Box mx={1}>
 
@@ -22,12 +23,12 @@ export default () => (
           <img src="/images/email-icon.png" width={64} />
         </Box>
         <Box>
-          <H2>Almost done!</H2>
+          <H2>{t('notification.sent')}</H2>
         </Box>
       </Flex>
       <Box>
-        Just click on the link in the email that we sent you to confirm your signature.
+      {t('notification.sent.info')}
       </Box>
     </Box>
   </NotificationBox>
-)
+));

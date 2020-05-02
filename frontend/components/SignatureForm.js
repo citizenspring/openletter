@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox/styled-components'
 import styled from 'styled-components'
+import { withIntl } from '../lib/i18n';
 
 const SignatureInput = styled.input`
   border: 1px dotted grey;
@@ -44,7 +45,7 @@ const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <StyledInput type={type || 'text'} id={name} placeholder={placeholder || name} onChange={e => onChange(name, e.target.value)} {...rest} />
 );
 
-export default class SignatureForm extends Component {
+class SignatureForm extends Component {
 
   constructor(props) {
     super(props);
@@ -74,30 +75,30 @@ export default class SignatureForm extends Component {
   }
 
   render() {
-    const { error } = this.props;
+    const { error, t } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex flexWrap='wrap'>
           <Box my={1} width={1}>
-            <SignatureInput type="text" id="name" placeholder="Your name" onChange={e => this.handleChange('name', e.target.value)} />
+            <SignatureInput type="text" id="name" placeholder={t('sign.name')} onChange={e => this.handleChange('name', e.target.value)} />
           </Box>
           <Flex my={1}>
             <Box width={1 / 2} mr={1}>
-              <Input name="occupation" onChange={this.handleChange} />
+              <Input name="occupation" placeholder={t('sign.occupation')} onChange={this.handleChange} />
             </Box>
             <Box width={1 / 2}>
-              <Input name="city" onChange={this.handleChange} />
+              <Input name="city" placeholder={t('sign.city')} onChange={this.handleChange} />
             </Box>
           </Flex>
           <Box my={1} width={1}>
-            <Input name="organization" onChange={this.handleChange} />
+            <Input name="organization" placeholder={t('sign.organization')} onChange={this.handleChange} />
           </Box>
           <Box my={1} width={1}>
-            <Input type="email" name="email" onChange={this.handleChange} required />
+            <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
           </Box>
         </Flex>
         <Box my={1} width={1}>
-          <StyledButton>Sign This Letter</StyledButton>
+          <StyledButton>{t('sign.button')}</StyledButton>
         </Box>
         {error && (
           <Error>{error.message}</Error>
@@ -106,3 +107,5 @@ export default class SignatureForm extends Component {
     );
   }
 }
+
+export default withIntl(SignatureForm);

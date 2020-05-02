@@ -9,6 +9,7 @@ import LetterForm from '../components/LetterForm';
 import Faq from '../components/LetterForm-Faq';
 import Notification from '../components/Notification';
 import Router from 'next/router';
+import { withIntl } from '../lib/i18n';
 
 const Page = styled.div`
   max-width: 960px;
@@ -71,11 +72,12 @@ class CreateLetterPage extends Component {
 
   render() {
     const { status } = this.state;
+    const { t } = this.props;
 
     return (
       <Page>
         {status === 'confirmed' && (
-          <Notification icon="signed" title="Signed!" message="Share this open letter and get more people to sign it." />
+          <Notification icon="signed" title={t('signed')} message={t('signed.share')} />
         )}
         <Flex flexWrap='wrap'>
           <Box
@@ -95,4 +97,4 @@ class CreateLetterPage extends Component {
   };
 }
 
-export default CreateLetterPage;
+export default withIntl(CreateLetterPage);

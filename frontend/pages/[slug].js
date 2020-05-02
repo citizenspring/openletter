@@ -9,6 +9,7 @@ import SignatureForm from '../components/SignatureForm';
 import Notification from '../components/Notification';
 import SignatureEmailSent from '../components/SignatureEmailSent';
 import Signatures from '../components/Signatures';
+import { withIntl } from '../lib/i18n';
 
 const Page = styled.div`
   max-width: 960px;
@@ -62,13 +63,13 @@ class Letter extends Component {
   }
 
   async submitSignature(signature) {
-    console.log(">>> submitting ", signature);
+    console.log(">>> submitting ", signature, 'headers', this.props.headers);
     const apiCall = `${process.env.API_URL}/letters/${this.props.letter.slug}/sign`;
 
     const res = await fetch(apiCall, {
         method: 'post',
         body:    JSON.stringify(signature),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'accept-language': this.props.headers['accept-language'] },
     });
     const json = await res.json();
     if (json.error) {
@@ -80,7 +81,7 @@ class Letter extends Component {
   }
 
   render() {
-    const { letter, error } = this.props;
+    const { letter, error, t } = this.props;
     const { status } = this.state;
 
     if (error) {
@@ -92,10 +93,10 @@ class Letter extends Component {
     return (
       <Page>
         {status === 'created' && (
-          <Notification icon="signed" title="Published!" message="Sign it and then get others to co-sign it with you." />
+          <Notification icon="signed" title={t('notification.published')} message={t('notification.published.info')} />
         )}
         {status === 'confirmed' && (
-          <Notification icon="signed" title="Signed!" message="Share this open letter and get more people to sign it." />
+          <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
         )}
         <Flex flexWrap='wrap'>
           <Box
@@ -128,11 +129,12 @@ class Letter extends Component {
   };
 }
 
-export async function getServerSideProps({ params}) {
+export async function getServerSideProps({ params, req }) {
 
-  const props = {};
+  const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
   const res = await fetch(apiCall);
+
   try {
     const response = await res.json();
     if (response.error) {
@@ -144,24 +146,6 @@ export async function getServerSideProps({ params}) {
   } catch (e) {
     console.error("Unable to parse JSON returned by the API", e);
   }
-}  
+}
 
-// export async function getStaticPaths() {
-//   const apiCall = `${process.env.API_URL}/letters`;
-//   console.log(">>> calling api", apiCall)
-//   const res = await fetch(apiCall);
-//   try {
-//     const letters = await res.json();
-//     const paths = [];
-//     letters.map(l => paths.push({ params: { slug: l.slug } }));
-//     return {
-//       paths,
-//       fallback: true,
-//     }
-//   } catch (e) {
-//     console.error("Unable to parse JSON returned by the API", e);
-//   }
-// }
-
-
-export default Letter;
+export default withIntl(Letter);
