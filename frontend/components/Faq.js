@@ -35,7 +35,7 @@ export default withIntl(({t}) => (
     <A><a href="https://opencollective.com/openletter/conversations">{t('faq.q6.response')}</a></A>
 
     <Q>{t('faq.q7')}</Q>
-    <A>{t('faq.q7.response')}. <a href="https://opencollective.com/openletter">{t('makedonation')}</a></A>
+    <A>{t('faq.q7.response')} <a href="https://opencollective.com/openletter">{t('link.ourcollective')}.</a></A>
 
   </div>
 ));
