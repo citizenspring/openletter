@@ -22,6 +22,7 @@ class LetterController {
       .whereSlug(ctx.params.slug)
       .with('signatures', (builder) => {
         builder.where('is_verified', true)
+        builder.orderBy('id', 'asc')
       })
       .limit(1)
       .fetch();
