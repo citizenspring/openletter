@@ -17,9 +17,7 @@ Object.keys(locales).forEach(locale => {
 });
 
 export const getLocaleFromHeaders = (headers) => {
-  console.log(">>> getLocaleFromHeaders from ", headers);
   const language = parser.pick(['en', 'fr', 'nl'], headers && headers['accept-language'], { loose: true }) || defaultLanguage;
-  console.log(">>> language picked", language);
   const response = {
     locale: language,
     messages: locales[language]
@@ -32,11 +30,6 @@ export const IntlContext = React.createContext();
 const t = (key, messages) => messages && messages[key] || `[no message for key '${key}']`;
 
 export const withIntl = ComposedComponent => class extends React.Component {
-
-  constructor(props) {
-    super(props);
-    console.log(">>> withIntl this.props", this.props);
-  }
 
   render() {
     return (
