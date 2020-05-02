@@ -40,7 +40,7 @@ class ConfirmSignaturePage extends Component {
   
   async confirmSignature() {
     const { token } = this.props.router.query;
-    console.log(">>> confirming ", token);
+    console.log(">>> confirming signature with token", token);
     await sleep(500);
     const apiCall = `${process.env.API_URL}/signatures/confirm`;
     const resAction = await fetch(apiCall, {
@@ -49,9 +49,10 @@ class ConfirmSignaturePage extends Component {
       headers: { 'Content-Type': 'application/json' },
     });
     const resActionJSON = await resAction.json();
-    console.log(">>> signature", resActionJSON);
     this.setState({ status: 'signature_confirmed' });
-    Router.replace(`/${this.props.letter.slug}`);
+    if (Router.router) {
+      Router.replace(`/${this.props.letter.slug}`);
+    }
   }
   
   redirect() {
