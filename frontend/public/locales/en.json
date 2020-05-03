@@ -50,5 +50,6 @@
   "notification.sent.info": "Just click on the link in the email that we sent you to confirm your signature.",
   "notification.signing": "Signing",
   "notification.pleasewait": "Please wait",
-  "error.alreadysigned": "you already signed this open letter"
+  "error.alreadysigned": "you already signed this open letter",
+  "error.letter.notfound": "No letter found"
 }

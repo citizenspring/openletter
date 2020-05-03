@@ -19,26 +19,10 @@ class ConfirmSignaturePage extends Component {
 
   constructor(props) {
     super(props);
-    console.log(">>> constructor", props.router.query);
     this.state = { status: null };
-
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
-  static async getInitialProps({query}) {
-    const apiCall = `${process.env.API_URL}/letters/${query.slug}`;
-    console.log(">>> apiCall", apiCall)
-    const res = await fetch(apiCall);
-    console.log(">>> query", query);
-
-    try {
-      const letter = await res.json();
-      return { letter };
-    } catch (e) {
-      console.error("Unable to parse JSON returned by the API", e);
-    }
-  }
-  
   async confirmSignature() {
     const { token } = this.props.router.query;
     console.log(">>> confirming signature with token", token, "letter to sign", this.props.letter);
@@ -65,7 +49,7 @@ class ConfirmSignaturePage extends Component {
     const { letter, t } = this.props;
     const { status } = this.state;
     if (!letter) {
-      return (<Page><Notification title="No letter found" /></Page>);
+      return (<Page><Notification title={t('error.letter.notfound')} /></Page>);
     }
 
     return (
@@ -81,5 +65,17 @@ class ConfirmSignaturePage extends Component {
   };
 }
 
+export async function getServerSideProps({ params, req }) {
+  const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
+  console.log(">>> apiCall", apiCall)
+  const res = await fetch(apiCall);
 
-export default withRouter(withIntl(ConfirmSignaturePage));
+  try {
+    const letter = await res.json();
+    return { props: { letter } };
+  } catch (e) {
+    console.error("Unable to parse JSON returned by the API", e);
+  }
+}
+
+export default withIntl(withRouter(ConfirmSignaturePage));

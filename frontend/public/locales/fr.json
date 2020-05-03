@@ -50,5 +50,6 @@
   "notification.sent.info": "Veuillez juste cliquer sur le lien dans l'email que nous venons de vous envoyer pour confirmer votre signature.",
   "notification.signing": "Signature en cours",
   "notification.pleasewait": "Veuillez patienter",
-  "error.alreadysigned": "vous avez déjà signé cette lettre ouverte"
+  "error.alreadysigned": "vous avez déjà signé cette lettre ouverte",
+  "error.letter.notfound": "Aucune lettre trouvée"
 }

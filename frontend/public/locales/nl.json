@@ -50,5 +50,6 @@
   "notification.sent.info": "Klik gewoon op de link in de e-mail die we je hebben gestuurd om je handtekening te bevestigen.",
   "notification.signing": "Ondertekening",
   "notification.pleasewait": "Wacht alsjeblieft",
-  "error.alreadysigned": "je heeft deze open brief al ondertekend"
+  "error.alreadysigned": "je heeft deze open brief al ondertekend",
+  "error.letter.notfound": "Geen brief gevonden"
 }
