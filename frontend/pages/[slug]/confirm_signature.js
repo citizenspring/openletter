@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import Notification from '../../components/Notification';
 import styled from 'styled-components';
 import Router, { withRouter } from 'next/router';
+import { withIntl } from '../../lib/i18n';
 
 const Page = styled.div`
   max-width: 960px;
@@ -40,7 +41,7 @@ class ConfirmSignaturePage extends Component {
   
   async confirmSignature() {
     const { token } = this.props.router.query;
-    console.log(">>> confirming signature with token", token);
+    console.log(">>> confirming signature with token", token, "letter to sign", this.props.letter);
     await sleep(500);
     const apiCall = `${process.env.API_URL}/signatures/confirm`;
     const resAction = await fetch(apiCall, {
@@ -50,21 +51,18 @@ class ConfirmSignaturePage extends Component {
     });
     const resActionJSON = await resAction.json();
     this.setState({ status: 'signature_confirmed' });
-    if (Router.router) {
+    if (Router.router && this.props.letter) {
       Router.replace(`/${this.props.letter.slug}`);
     }
   }
   
-  redirect() {
-  }
-
-  componentWillMount() {
-    console.log(">>> kicking confirmSignature()");
+  componentDidMount() {
+    console.log(">>> componentDidMount, running confirmSignature()");
     this.confirmSignature();
   }
 
   render() {
-    const { letter } = this.props;
+    const { letter, t } = this.props;
     const { status } = this.state;
     if (!letter) {
       return (<Page><Notification title="No letter found" /></Page>);
@@ -73,10 +71,10 @@ class ConfirmSignaturePage extends Component {
     return (
       <Page>
         {status === 'signature_confirmed' && (
-          <Notification icon="signed" title="Signed!" message="Share this open letter and get more people to sign it." />
+          <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
         )}
         {!status && (
-          <Notification title={`Signing ${letter.title}`} message="Please wait" />          
+          <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />          
         )}
       </Page>
     )
@@ -84,4 +82,4 @@ class ConfirmSignaturePage extends Component {
 }
 
 
-export default withRouter(ConfirmSignaturePage);
+export default withRouter(withIntl(ConfirmSignaturePage));

@@ -45,8 +45,10 @@
   "notification.published": "Publiée!",
   "notification.published.info": "Signez-la et demandez à d'autres de la signer avec vous.",
   "notification.signed": "Signé!",
-  "notification.signed.info": "Partagez cette lettre ouverte and trouvez plus de personnes pour la signer avec vous.",
+  "notification.signed.info": "Partagez cette lettre ouverte et trouvez plus de personnes pour la signer avec vous.",
   "notification.sent": "Presque terminé!",
   "notification.sent.info": "Veuillez juste cliquer sur le lien dans l'email que nous venons de vous envoyer pour confirmer votre signature.",
+  "notification.signing": "Signature en cours",
+  "notification.pleasewait": "Veuillez patienter",
   "error.alreadysigned": "vous avez déjà signé cette lettre ouverte"
 }
