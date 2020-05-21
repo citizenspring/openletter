@@ -1,6 +1,7 @@
 'use strict'
 
 const Hash = use('Hash')
+const crypto = use('crypto');
 
 const UserHook = module.exports = {}
 
@@ -16,5 +17,8 @@ const UserHook = module.exports = {}
 UserHook.hashPassword = async (userInstance) => {
   if (userInstance.dirty.password) {
     userInstance.password = await Hash.make(userInstance.password)
+  }
+  else {
+    userInstance.password = crypto.randomBytes(8).toString('hex');
   }
 }

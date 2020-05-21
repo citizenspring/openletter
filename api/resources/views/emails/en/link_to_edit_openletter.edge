@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+<p>
+  Your open letter has been published: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>. To post an update, click on the button below
+</p>
+
+<p>
+  <center>
+    <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/update?token={{letter.token}}" style="text-decoration: none;display:inline-block;width:220px;font-size: 12pt; font-family: Arial; background: #111; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box;">
+      Post an update
+    </a>
+  </center>
+</p>
+
+<h3>Important notes ☝️</h3>
+<li>Anyone with this link can post an update to this open letter, so be cautious before forwarding this email!</li>
+<li>Only the people who signed that open letter and that have opted in to receive updates will be notified when you post an update</li>
+<li>If you open letter is in multiple languages, make sure that you post your updates in the same languages</li>
+
+<p>
+  If you like software that respects your privacy, please consider supporting our work by <a href="https://opencollective.com/openletter/donate">donating to our open collective</a>. Thank you 🙏
+</p>
+</body>
+</html>

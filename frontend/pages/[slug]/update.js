@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components'
 import { typography, space } from 'styled-system';
-import LetterForm from '../components/LetterForm';
-import Faq from '../components/LetterForm-Faq';
-import Notification from '../components/Notification';
+import LetterForm from '../../components/LetterForm';
+import Faq from '../../components/LetterForm-Faq';
+import Notification from '../../components/Notification';
 import Router from 'next/router';
-import { withIntl } from '../lib/i18n';
+import { withIntl } from '../../lib/i18n';
 
 const Page = styled.div`
   max-width: 960px;
@@ -17,7 +17,7 @@ const Page = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 50px;
+  font-size: 30px;
   color: ${({ theme }) => theme.colors.primary};
 `;
 
@@ -48,7 +48,7 @@ class CreateLetterPage extends Component {
     super(props);
     this.state = { status: null };
 
-    this.createLetter = this.createLetter.bind(this);
+    this.createUpdate = this.createUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -57,9 +57,13 @@ class CreateLetterPage extends Component {
     }
   }
 
-  async createLetter(formData) {
+  async createUpdate(formData) {
+    formData.parent_letter_id = this.props.parentLetter.id;
+    if (this.props.token) {
+      formData.token = this.props.token;
+    }
     console.log(">>> submitting ", formData);
-    const apiCall = `${process.env.API_URL}/letters/create`;
+    const apiCall = `${process.env.API_URL}/letters/update`;
 
     const res = await fetch(apiCall, {
         method: 'post',
@@ -69,7 +73,7 @@ class CreateLetterPage extends Component {
     try {
       const json = await res.json();
       console.log(">>> json", json);
-      Router.push(`/${json.slug}`);
+      Router.push(`/${this.props.parentLetter.slug}`);
     } catch (e) {
       console.error(">>> unable to parse JSON", e);
     }
@@ -77,18 +81,18 @@ class CreateLetterPage extends Component {
 
   render() {
     const { status } = this.state;
-    const { t } = this.props;
+    const { t, parentLetter} = this.props;
 
     return (
       <Page>
-        {status === 'confirmed' && (
-          <Notification icon="signed" title={t('signed')} message={t('signed.share')} />
-        )}
+        <Title>
+          Posting an update to {' '}<Link href={`/${parentLetter.slug}`}><a>{parentLetter.title}</a></Link>
+        </Title>
         <Flex flexWrap='wrap'>
           <Box
             width={[1, 2 / 3]}
             p={3}>
-            {status === null && <LetterForm onSubmit={(letters => this.createLetter({letters}))} />}
+            {status === null && <LetterForm parentLetter={parentLetter} onSubmit={(letters => this.createUpdate({letters}))} />}
           </Box>
           <Box
             width={[1, 1 / 3]}
@@ -100,6 +104,24 @@ class CreateLetterPage extends Component {
       </Page>
     )
   };
+}
+
+export async function getServerSideProps({ params, req, query }) {
+  const props = { headers: req.headers };
+  const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
+  const res = await fetch(apiCall);
+  try {
+    const response = await res.json();
+    if (response.error) {
+      props.error = response.error;
+    } else {
+      props.parentLetter = response;
+      props.token = query.token;
+    }
+    return {props};
+  } catch (e) {
+    console.error("Unable to parse JSON returned by the API", e);
+  }
 }
 
 export default withIntl(CreateLetterPage);

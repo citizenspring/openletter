@@ -10,8 +10,10 @@ class Slugify {
 
     Model.addHook('beforeCreate', function (modelInstance) {
       // create slug
-      const slugid = crypto.randomBytes(8).toString('hex').substr(0,4) + crypto.randomBytes(8).toString('hex').substr(0,4);
-      modelInstance.slug = `${slugify(modelInstance.title, {lower: true, remove: /[*+~.()'"!:@#\.,]/g })}-${slugid}`;
+      if (!modelInstance.slug) {
+        const slugid = crypto.randomBytes(8).toString('hex').substr(0,4) + crypto.randomBytes(8).toString('hex').substr(0,4);
+        modelInstance.slug = `${slugify(modelInstance.title, {lower: true, remove: /[*+~.()'"!:@#\.,]/g })}-${slugid}`;
+      }
     })
 
     Model.queryMacro('whereSlug', function (value) {

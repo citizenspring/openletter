@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components'
 import NumberFormat from 'react-number-format';
 import { typography, space } from 'styled-system';
-import SignatureForm from '../components/SignatureForm';
-import Notification from '../components/Notification';
-import SignatureEmailSent from '../components/SignatureEmailSent';
-import Signatures from '../components/Signatures';
-import LocaleSelector from '../components/LocaleSelector';
-import { withIntl } from '../lib/i18n';
+import SignatureForm from '../../components/SignatureForm';
+import Notification from '../../components/Notification';
+import SignatureEmailSent from '../../components/SignatureEmailSent';
+import Signatures from '../../components/Signatures';
+import LocaleSelector from '../../components/LocaleSelector';
+import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
 
 const Page = styled.div`
@@ -90,6 +90,7 @@ class Letter extends Component {
   render() {
     const { letter, error, t } = this.props;
     const { status } = this.state;
+
     if (error) {
       return (<Page><Notification title="No letter found" /></Page>);
     } else if (!letter) {
@@ -112,13 +113,6 @@ class Letter extends Component {
             <strong>{moment(letter.createdAt).format('DD MMMM YYYY')}</strong>
             <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
             <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
-            {letter.updates.length > 0 && letter.updates.map(update => (
-              <Box my={5}>
-                <strong>Update {moment(update.createdAt).format('DD MMMM YYYY')}</strong>
-                <H2>{update.title}</H2>
-                <Text dangerouslySetInnerHTML={{ __html: update.text }} />
-              </Box>
-            ))}
           </Box>
           {letter.type === 'letter' && (
             <Box
@@ -149,7 +143,7 @@ class Letter extends Component {
 export async function getServerSideProps({ params, req }) {
 
   const props = { headers: req.headers };
-  const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
+  const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}`;
   const res = await fetch(apiCall);
 
   try {

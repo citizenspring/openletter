@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Flex, Box } from 'reflexbox/styled-components'
 import styled from 'styled-components'
 import { withIntl } from '../lib/i18n';
+import { Label, Checkbox } from '@rebass/forms'
+import { letterSpacing } from 'styled-system';
 
 const SignatureInput = styled.input`
   border: 1px dotted grey;
@@ -54,7 +56,8 @@ class SignatureForm extends Component {
         name: null,
         occupation: null,
         city: null,
-        email: null
+        email: null,
+        share_email: false
       }
     }
 
@@ -75,7 +78,7 @@ class SignatureForm extends Component {
   }
 
   render() {
-    const { error, t } = this.props;
+    const { error, t, letter } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex flexWrap='wrap'>
@@ -96,6 +99,20 @@ class SignatureForm extends Component {
           <Box my={1} width={1}>
             <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
           </Box>
+          {letter.user_id && (
+            <Box>
+              <Label>
+                <Box mr={[0,3,2]}>
+                  <Checkbox
+                    id='share_email'
+                    name='share_email'
+                    onChange={e => this.handleChange('share_email', e.target.checked)}
+                  />
+                </Box>
+                  {t('sign.share_email')}
+              </Label>
+            </Box>
+          )}
         </Flex>
         <Box my={1} width={1}>
           <StyledButton>{t('sign.button')}</StyledButton>

@@ -17,14 +17,21 @@ class LetterSeeder {
 
   async run () {
 
-    const letter = await Factory
+    const users = await Factory
+        .model('App/Models/User')
+        .createMany(2);
+
+    const letters = await Factory
         .model('App/Models/Letter')
-        .createMany(20);
-
-    const signature = await Factory
-      .model('App/Models/Signature')
-      .createMany(1000);
-
+        .makeMany(5);
+        
+    await Promise.all(letters.map(async (l, i) => {
+      if (i < users.length) {
+        l.user_id = users[i].id;
+      }
+      await l.save();
+      await Factory.model('App/Models/Signature').createMany(100, { letter_id: l.id });
+    }));
   }
 }
 

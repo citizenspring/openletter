@@ -41,7 +41,6 @@ class ConfirmSignaturePage extends Component {
   }
   
   componentDidMount() {
-    console.log(">>> componentDidMount, running confirmSignature()");
     this.confirmSignature();
   }
 
