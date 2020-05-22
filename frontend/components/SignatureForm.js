@@ -102,7 +102,7 @@ class SignatureForm extends Component {
           {letter.user_id && (
             <Box>
               <Label>
-                <Box mr={[0,3,2]}>
+                <Box mr={[2,3,3]}>
                   <Checkbox
                     id='share_email'
                     name='share_email'

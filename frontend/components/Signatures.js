@@ -18,10 +18,13 @@ export default withIntl(({signatures, t}) => {
     return res.join(', ');
   }
 
-   return (
-     <ol>
-      {signatures.map((signature, i) => (
-        <li key={i}>
+  // we first copy the array otherwise we keep on reversing the array multiple times
+  const sortedSignatures= signatures.slice().reverse();
+
+  return (
+     <ol reversed>
+      {sortedSignatures.map((signature, i) => (
+        <li key={`signature-${i}`}>
           {printSignature(signature)}
         </li>
       ))}

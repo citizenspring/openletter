@@ -32,7 +32,7 @@ class LetterController {
 
     const request = ctx.request.only(['locale']);
     const locale = request.locale || acceptLanguageParser.pick(['en', 'fr', 'nl'], ctx.request.headers()['accept-language'], { loose: true }) || 'en';
-
+    console.log("GET", ctx.params.slug, locale);
     let res;
     if (resultSet.rows.length > 1) {
       const letters = resultSet.rows;
@@ -46,6 +46,10 @@ class LetterController {
         locales.push(letter.locale);
         if (letter.locale === locale)
           index = i;
+      });
+
+      signatures.sort((a, b) => {
+        return (a.created_at < b.created_at) ? -1 : 1;
       });
 
       res = letters[index].toJSON();
