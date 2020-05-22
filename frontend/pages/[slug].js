@@ -106,7 +106,7 @@ class Letter extends Component {
           <title>{letter.title}</title>
           <link rel="shortcut icon" href="/images/openletter-icon.png" />
           { letter.image && <meta name="twitter:image" content={letter.image} />}
-          { letter.image && <meta name="og:image" content={letter.image} />}
+          { letter.image && <meta property="og:image" content={letter.image} />}
         </Head>
         <Page>
           {status === 'created' && (
