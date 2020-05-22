@@ -105,6 +105,8 @@ class Letter extends Component {
         <Head>
           <title>{letter.title}</title>
           <link rel="shortcut icon" href="/images/openletter-icon.png" />
+          { letter.image && <meta name="twitter:image" content={letter.image} />}
+          { letter.image && <meta name="og:image" content={letter.image} />}
         </Head>
         <Page>
           {status === 'created' && (
@@ -162,7 +164,7 @@ export async function getServerSideProps({ params, req }) {
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  const res = await fetch(apiCall);
+  const res = await fetch(apiCall, { headers: req.headers });
 
   try {
     const response = await res.json();

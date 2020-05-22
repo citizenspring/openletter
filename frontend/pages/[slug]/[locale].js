@@ -158,7 +158,7 @@ export async function getServerSideProps({ params, req }) {
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}`;
-  const res = await fetch(apiCall);
+  const res = await fetch(apiCall, { headers: req.headers });
 
   try {
     const response = await res.json();

@@ -31,23 +31,23 @@ class LetterController {
       .fetch();
 
     const request = ctx.request.only(['locale']);
-    const locale = request.locale || 'en';
+    const locale = request.locale || acceptLanguageParser.pick(['en', 'fr', 'nl'], ctx.request.headers()['accept-language'], { loose: true }) || 'en';
+
     let res;
     if (resultSet.rows.length > 1) {
       const letters = resultSet.rows;
-      console.log(">>> letters", letters.length);
+
       let index = 0;
       const signatures = [];
       const locales = [];
       letters.map((l, i) => {
         const letter = l.toJSON();
-        console.log(">>> letter", letter);
         letter.signatures.map(s => signatures.push(s));
         locales.push(letter.locale);
         if (letter.locale === locale)
           index = i;
       });
-      console.log(">>> signatures", signatures, "index", index);
+
       res = letters[index].toJSON();
       res.signatures = signatures;
       res.locales = locales;
@@ -55,7 +55,6 @@ class LetterController {
       if (res.updates) {
         res.updates = res.updates.filter(u => u.locale === locale);
       }
-      console.log(">>> return", res);
       return res;
     }
 
