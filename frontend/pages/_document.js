@@ -31,9 +31,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link rel="shortcut icon" href="/images/openletter-icon.png" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

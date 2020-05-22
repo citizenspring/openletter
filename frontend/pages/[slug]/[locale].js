@@ -12,6 +12,7 @@ import Signatures from '../../components/Signatures';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
+import Head from 'next/head'
 
 const Page = styled.div`
   max-width: 960px;
@@ -48,6 +49,10 @@ const BigNumberLabel = styled.div`
   margin-top: -14px;
   ${space}
   ${typography}
+`;
+
+const IMG = styled.img`
+  max-width: 100%;
 `;
 
 
@@ -98,44 +103,53 @@ class Letter extends Component {
     }
 
     return (
-      <Page>
-        {status === 'created' && (
-          <Notification icon="signed" title={t('notification.published')} message={t('notification.published.info')} />
-        )}
-        {status === 'confirmed' && (
-          <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
-        )}
-        <Flex flexWrap='wrap'>
-          <Box
-            width={[1, 2 / 3]}
-            p={3}>
-            <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
-            <strong>{moment(letter.createdAt).format('DD MMMM YYYY')}</strong>
-            <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
-            <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
-          </Box>
-          {letter.type === 'letter' && (
-            <Box
-              width={[1, 1 / 3]}
-              p={3}>
-              <Box mx={1}>
-                <BigNumber fontSize={[2, 3, 4]}>
-                  <NumberFormat value={letter.signatures.length} displayType={'text'} thousandSeparator={true} />
-                </BigNumber>
-                <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
-                  signatures
-          </BigNumberLabel>
-              </Box>
-              {[null, 'created', 'error'].includes(status) && <SignatureForm letter={letter} error={this.state.error} onSubmit={(signature => this.submitSignature(signature))} />}
-              {status === 'signature_sent' && (
-                <SignatureEmailSent />
-              )}
-              <Signatures signatures={letter.signatures} />
-            </Box>
+      <div>
+        <Head>
+          <title>{letter.title}</title>
+          <link rel="shortcut icon" href="/images/openletter-icon.png" />
+          {letter.image && <meta name="twitter:image" content={letter.image} />}
+          {letter.image && <meta name="og:image" content={letter.image} />}
+        </Head>
+        <Page>
+          {status === 'created' && (
+            <Notification icon="signed" title={t('notification.published')} message={t('notification.published.info')} />
           )}
-        </Flex>
-        <Footer />
-      </Page>
+          {status === 'confirmed' && (
+            <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
+          )}
+          <Flex flexWrap='wrap'>
+            <Box
+              width={[1, 2 / 3]}
+              p={3}>
+              <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
+              <strong>{moment(letter.createdAt).format('DD MMMM YYYY')}</strong>
+              <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
+              {letter.image && <IMG src={letter.image} />}
+              <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
+            </Box>
+            {letter.type === 'letter' && (
+              <Box
+                width={[1, 1 / 3]}
+                p={3}>
+                <Box mx={1}>
+                  <BigNumber fontSize={[2, 3, 4]}>
+                    <NumberFormat value={letter.signatures.length} displayType={'text'} thousandSeparator={true} />
+                  </BigNumber>
+                  <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
+                    signatures
+          </BigNumberLabel>
+                </Box>
+                {[null, 'created', 'error'].includes(status) && <SignatureForm letter={letter} error={this.state.error} onSubmit={(signature => this.submitSignature(signature))} />}
+                {status === 'signature_sent' && (
+                  <SignatureEmailSent />
+                )}
+                <Signatures signatures={letter.signatures} />
+              </Box>
+            )}
+          </Flex>
+          <Footer />
+        </Page>
+      </div>
     )
   };
 }

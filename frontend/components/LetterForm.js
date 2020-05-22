@@ -75,7 +75,8 @@ class LetterForm extends Component {
         {
           locale: props.locale,
           title: null,
-          text: null
+          text: null,
+          image: null
         }
       ]
     }
@@ -156,6 +157,11 @@ class LetterForm extends Component {
             <Box my={1} width={1}>
               <TitleInput type="text" id="title" placeholder={t("create.title")} value={form.title} onChange={e => this.handleChange('title', e.target.value, index)} ref={(input) => { this.firstTitleInput = this.firstTitleInput || input; }} />
             </Box>
+            {index === 0 && (
+              <Box my={1} width={1}>
+                <StyledInput type="url" id="url" placeholder={t("create.image")} onChange={e => this.handleChange('image', e.target.value)} />
+              </Box>
+            )}
             <Box my={1} width={1}>
               <StyledTextarea name="text" onChange={e => this.handleChange('text', e.target.value, index)} required />
             </Box>

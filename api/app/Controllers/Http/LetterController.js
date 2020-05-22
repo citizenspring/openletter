@@ -86,7 +86,10 @@ class LetterController {
 
     let letters;
     try {
-      letters = await Letter.createWithLocales(formData.letters, { user_id: user && user.id });
+      letters = await Letter.createWithLocales(formData.letters, {
+        image: formData.letters[0].image,
+        user_id: user && user.id
+      });
     } catch (e) {
       console.error("error", e);
     }

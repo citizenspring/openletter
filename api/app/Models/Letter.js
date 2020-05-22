@@ -107,6 +107,7 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
       }),
       locale: letter.locale,
+      image: letter.image,
       slug
     };
     if (!sanitizedValues.text) {

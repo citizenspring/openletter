@@ -26,6 +26,7 @@
   "faq.q7.response": "You can contribute to our project on ",
   "link.ourcollective": "our collective",
   "create.title": "Title",
+  "create.image": "Image URL (optional)",
   "create.addLanguage": "Add another language",
   "create.removeLanguage": "remove language",
   "create.admin_info.description": "If you want to be able to submit an update to this open letter, please provide us with your email address. We will ask signatories if they would like to opt in for those updates.",
