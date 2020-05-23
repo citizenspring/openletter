@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 
 const StyledSelect = styled.select`
 @media screen and (max-width: 767px) {
-  input, select, textarea {
+  font-size: 16px;
+  &:focus {
     font-size: 16px;
   }
 }
