@@ -106,8 +106,13 @@ class Letter extends Component {
           <title>{letter.title}</title>
           <link rel="shortcut icon" href="/images/openletter-icon.png" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-          { letter.image && <meta name="twitter:image" content={letter.image} />}
-          { letter.image && <meta property="og:image" content={letter.image} />}
+          { letter.image && (
+            <>
+              <meta name='twitter:card' content='summary_large_image' />
+              <meta name="twitter:image" content={letter.image} />
+              <meta property="og:image" content={letter.image} />
+            </>
+          )}
         </Head>
         <Page>
           {status === 'created' && (
@@ -161,14 +166,16 @@ class Letter extends Component {
   };
 }
 
-export async function getServerSideProps({ params, req }) {
+export async function getServerSideProps({ params, req, res }) {
+  res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
+  res.setHeader('Vary', 'Accept-Language');
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  const res = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] }});
+  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] }});
 
   try {
-    const response = await res.json();
+    const response = await result.json();
     if (response.error) {
       props.error = response.error;
     } else {
