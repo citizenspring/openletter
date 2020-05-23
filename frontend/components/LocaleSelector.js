@@ -4,6 +4,14 @@ import { withIntl } from '../lib/i18n';
 import availableLocales from '../constants/locales';
 import { useRouter } from 'next/router'
 
+const StyledSelect = styled.select`
+@media screen and (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+`;
+
 export default withIntl(({ t, slug, currentLocale, locales }) => {
   if (!locales || locales.length === 1) {
     return <div />;
@@ -17,7 +25,7 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
 
   return (
     <div>
-      <select onChange={handleChange}>
+      <StyledSelect onChange={handleChange}>
         {locales.map(l => {
           const selected = (l === currentLocale);
           return (
@@ -25,7 +33,7 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
           );
         }
         )}
-      </select>
+      </StyledSelect>
     </div>
   );
 }
