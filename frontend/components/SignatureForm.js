@@ -82,10 +82,10 @@ class SignatureForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex flexWrap='wrap'>
-          <Box my={1} width={1}>
+          <Box my={[1/2, 1, 1]} width={1}>
             <SignatureInput type="text" id="name" placeholder={t('sign.name')} onChange={e => this.handleChange('name', e.target.value)} />
           </Box>
-          <Flex my={1}>
+          <Flex my={[1/2, 1, 1]}>
             <Box width={1 / 2} mr={1}>
               <Input name="occupation" placeholder={t('sign.occupation')} onChange={this.handleChange} />
             </Box>
@@ -93,16 +93,16 @@ class SignatureForm extends Component {
               <Input name="city" placeholder={t('sign.city')} onChange={this.handleChange} />
             </Box>
           </Flex>
-          <Box my={1} width={1}>
+          <Box my={[1/2, 1, 1]} width={1}>
             <Input name="organization" placeholder={t('sign.organization')} onChange={this.handleChange} />
           </Box>
-          <Box my={1} width={1}>
+          <Box my={[1/2, 1, 1]} width={1}>
             <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
           </Box>
           {letter.user_id && (
-            <Box>
+            <Box my={1}>
               <Label>
-                <Box mr={[2,3,3]}>
+                <Box mt={1} mr={[2,3,3]}>
                   <Checkbox
                     id='share_email'
                     name='share_email'
@@ -114,7 +114,7 @@ class SignatureForm extends Component {
             </Box>
           )}
         </Flex>
-        <Box my={1} width={1}>
+        <Box my={2} width={1}>
           <StyledButton>{t('sign.button')}</StyledButton>
         </Box>
         {error && (
