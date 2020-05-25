@@ -298,8 +298,7 @@ class LetterController {
         console.error("error", e);
         attempt++;
         console.log(">>> new attempt in 10mn");
-        setTimeout(sendEmail, 1000 * 30);
-        // setTimeout(sendEmail, 1000 * 60 * 10);
+        setTimeout(sendEmail, 1000 * 60 * 10);
       }
     };
 
