@@ -226,7 +226,8 @@ class LetterController {
     }
     delete signatureData.share_email;
 
-    let signature;
+    let signature,
+      attempt = 0;
     console.log(">>> Signature.create", signatureData);
     try {
       signature = await letter.signatures().create(signatureData);
@@ -262,21 +263,47 @@ class LetterController {
 
     console.log(">>> send email confirmation for locale", locale);
 
-    try {
-      await Mail.send(
-        `emails.${locale}.confirm_signature`,
-        emailData,
-        (message) => {
-          message
-            .to(request.body.email)
-            .from("support@openletter.earth")
-            .subject(subject[locale]);
-        }
+    const sendEmail = async () => {
+      console.log(
+        ">>> send email confirmation for locale",
+        locale,
+        "attempt",
+        attempt
       );
-    } catch (e) {
-      console.error("error", e);
-    }
-    console.log(">>> email sent");
+      try {
+        if (attempt > 10) {
+          console.error(
+            ">>> too many attempts to send email to ",
+            request.body.email
+          );
+          return;
+        }
+        await Mail.send(
+          `emails.${locale}.confirm_signature`,
+          emailData,
+          (message) => {
+            message
+              .to(request.body.email)
+              .from("support@openletter.earth")
+              .subject(subject[locale]);
+          }
+        );
+        console.log(">>> email sent");
+        // if successful, we remove the email from database if the user didn't subscribe for updates
+        if (!signature.share_email) {
+          signature.email = null;
+          signature.save();
+        }
+      } catch (e) {
+        console.error("error", e);
+        attempt++;
+        console.log(">>> new attempt in 10mn");
+        setTimeout(sendEmail, 1000 * 30);
+        // setTimeout(sendEmail, 1000 * 60 * 10);
+      }
+    };
+
+    await sendEmail();
     return true;
   }
 }
