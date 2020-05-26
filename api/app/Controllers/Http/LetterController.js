@@ -150,11 +150,7 @@ class LetterController {
       updates.map(async (localeUpdate) => {
         const subscribers = subscribersByLocale[localeUpdate.locale];
         const emailData = { update: localeUpdate.toJSON(), parentLetter: localeUpdate.toJSON().parentLetter.toJSON() };
-        console.log(
-          `>>> sending ${localeUpdate.locale} update to ${subscribers.length} subscribers`,
-          subscribers,
-          emailData,
-        );
+        console.log(`>>> sending ${localeUpdate.locale} update to ${subscribers.length} subscribers`, subscribers);
 
         await Promise.all(
           subscribers.map(async (email) => {

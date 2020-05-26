@@ -64,9 +64,8 @@ class Letter extends Model {
     let length = 0;
     const subscribersByLocale = {};
     letters.map((l, i) => {
-      const letter = l.toJSON();
       subscribersByLocale[l.locale] = [];
-      letter.signatures.map((s) => {
+      l.getRelated('signatures').rows.map((s) => {
         subscribersByLocale[l.locale].push(s.email);
         length++;
       });

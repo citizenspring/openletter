@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "openletter",
   "env": {
     "API_URL": "https://openletter-earth.herokuapp.com"
   },
