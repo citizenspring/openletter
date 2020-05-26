@@ -140,39 +140,41 @@ class LetterController {
 
     let updates;
     try {
-      updates = await Letter.createWithLocales(formData.letters, {
-        parent_letter_id: parentLetter.id,
-        user_id: parentLetter.user_id,
-      });
+      updates = await Letter.createUpdate(parentLetter, formData.letters);
     } catch (e) {
       console.error('error', e);
     }
 
     const subscribersByLocale = await parentLetter.getSubscribersByLocale();
     await Promise.all(
-      updates.map(async (letter) => {
-        const subscribers = subscribersByLocale[letter.locale];
-        const emailData = {
-          letter: letter.toJSON(),
-          parentLetter: parentLetter.toJSON(),
-        };
-        console.log('>>> sending', letter.locale, 'to', subscribers.length, 'subscribers', subscribers, emailData);
+      updates.map(async (localeUpdate) => {
+        const subscribers = subscribersByLocale[localeUpdate.locale];
+        const emailData = { update: localeUpdate.toJSON(), parentLetter: localeUpdate.toJSON().parentLetter.toJSON() };
+        console.log(
+          `>>> sending ${localeUpdate.locale} update to ${subscribers.length} subscribers`,
+          subscribers,
+          emailData,
+        );
 
-        subscribers.map(async (email) => {
-          try {
-            await Mail.send(`emails.update`, emailData, (message) => {
-              message.to(email).from('support@openletter.earth').subject(letter.title);
-            });
-          } catch (e) {
-            console.error('error', e);
-          }
+        await Promise.all(
+          subscribers.map(async (email) => {
+            try {
+              await Mail.send(`emails.update`, emailData, (message) => {
+                message.to(email).from('support@openletter.earth').subject(localeUpdate.title);
+              });
+            } catch (e) {
+              console.error('error', e);
+            }
 
-          console.log('>>> email sent');
-        });
+            console.log('>>> email sent');
+          }),
+        );
       }),
     );
-
-    return updates[0].toJSON();
+    const res = updates[0].toJSON();
+    res.locales = updates.map((u) => u.locale);
+    res.type = 'update';
+    return res;
   }
 
   async sign({ request }) {
@@ -233,7 +235,7 @@ class LetterController {
         });
         console.log('>>> email sent');
         // if successful, we remove the email from database if the user didn't subscribe for updates
-        if (!signature.share_email) {
+        if (!request.body.share_email) {
           signature.email = null;
           signature.save();
         }
@@ -246,7 +248,7 @@ class LetterController {
     };
 
     await sendEmail();
-    return true;
+    return signature.toJSON();
   }
 }
 

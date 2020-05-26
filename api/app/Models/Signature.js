@@ -9,7 +9,7 @@ class Signature extends Model {
   }
 
   static get hidden() {
-    return ['id', 'letter_id', 'token'];
+    return ['email', 'token'];
   }
 
   getName(name) {

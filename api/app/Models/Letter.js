@@ -32,7 +32,10 @@ class Letter extends Model {
     return (text || '').replace(/\n/g, '<br />');
   }
 
-  async getAllLocales() {}
+  async getLocales() {
+    const resultSet = await Letter.query().whereSlug(this.slug).fetch();
+    return resultSet.rows;
+  }
 
   async getSubscribers() {
     const resultSet = await Signature.query()
@@ -88,6 +91,31 @@ class Letter extends Model {
     return this.hasMany('App/Models/Signature', 'id', 'letter_id');
   }
 }
+
+/**
+ * Create an update to an open letter with different locales
+ * Each locale version's parent relates to the parent letter with the same locale
+ * @POST array of letters
+ */
+Letter.createUpdate = async (parentLetter, letters) => {
+  const locales = await parentLetter.getLocales();
+  const updates = [];
+  await Promise.all(
+    locales.map(async (localeParentLetter) => {
+      const localeLetterUpdate = letters.find((l) => l.locale === localeParentLetter.locale);
+      if (!localeLetterUpdate) {
+        console.info('No update found for locale', localeParentLetter.locale, 'skipping');
+        return;
+      }
+      localeLetterUpdate.user_id = parentLetter.user_id;
+      localeLetterUpdate.parent_letter_id = localeParentLetter.id;
+      const update = await Letter.create(localeLetterUpdate);
+      update.parentLetter = localeParentLetter;
+      updates.push(update);
+    }),
+  );
+  return updates;
+};
 
 Letter.createWithLocales = async (letters, defaultValues = {}) => {
   const slugid =
