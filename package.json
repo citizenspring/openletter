@@ -1,0 +1,28 @@
+{
+  "name": "openletter",
+  "version": "1.1.0",
+  "description": "The fullstack application boilerplate for Adonisjs",
+  "scripts": {
+    "start:frontend": "cd frontend && next",
+    "start:api": "cd api && adonis serve",
+    "dev:frontend": "cd frontend && next dev",
+    "dev:api": "cd api && adonis serve --dev",
+    "deploy:api": "git subtree push --prefix api heroku master",
+    "deploy:frontend": "cd frontend && now",
+    "postinstall": "cd api && npm install && cd ../frontend && npm install",
+    "test": "cd api && node ace test",
+    "prettier:frontend": "prettier \"*.@(js|json|md)\" \"frontend/@(components|lib|pages|scripts|server|test)/**/*.@(js|json|md)\"",
+    "prettier:api": "prettier \"*.@(js|json|md)\" \"api/@(app|test)/**/*.@(js|json|md)\"",
+    "prettier": "npm run prettier:frontend && npm run prettier:api",
+    "prettier:check": "npm run prettier:frontend -- --check && npm run prettier:api -- --check",
+    "prettier:write": "npm run prettier:frontend -- --write && npm run prettier:api -- --write",
+    "db:copy:prod": "./api/scripts/dbdump-from-heroku.sh openletter-earth"
+  },
+  "author": "Xavier Damman <@xdamman>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "prettier": "^2.0.5"
+  },
+  "devDependencies": {}
+}

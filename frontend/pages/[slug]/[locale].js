@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
 import Footer from '../../components/Footer';
-import { Flex, Box } from 'reflexbox/styled-components'
+import { Flex, Box } from 'reflexbox/styled-components';
 import NumberFormat from 'react-number-format';
 import { typography, space } from 'styled-system';
 import SignatureForm from '../../components/SignatureForm';
@@ -12,7 +12,7 @@ import Signatures from '../../components/Signatures';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
-import Head from 'next/head'
+import Head from 'next/head';
 
 const Page = styled.div`
   max-width: 960px;
@@ -55,9 +55,7 @@ const IMG = styled.img`
   max-width: 100%;
 `;
 
-
 class Letter extends Component {
-
   constructor(props) {
     super(props);
     this.state = { status: null };
@@ -75,7 +73,7 @@ class Letter extends Component {
   }
 
   async submitSignature(signature) {
-    console.log(">>> submitting ", signature, 'headers', this.props.headers);
+    console.log('>>> submitting ', signature, 'headers', this.props.headers);
     const apiCall = `${process.env.API_URL}/letters/${this.props.letter.slug}/${this.props.letter.locale}/sign`;
 
     const res = await fetch(apiCall, {
@@ -86,7 +84,6 @@ class Letter extends Component {
     const json = await res.json();
     if (json.error) {
       this.setState({ status: 'error', error: json.error });
-
     } else {
       this.setState({ status: 'signature_sent' });
     }
@@ -97,9 +94,17 @@ class Letter extends Component {
     const { status } = this.state;
 
     if (error) {
-      return (<Page><Notification title="No letter found" /></Page>);
+      return (
+        <Page>
+          <Notification title="No letter found" />
+        </Page>
+      );
     } else if (!letter) {
-      return (<Page><Notification title="Loading..." /></Page>);
+      return (
+        <Page>
+          <Notification title="Loading..." />
+        </Page>
+      );
     }
 
     return (
@@ -113,15 +118,17 @@ class Letter extends Component {
         </Head>
         <Page>
           {status === 'created' && (
-            <Notification icon="signed" title={t('notification.published')} message={t('notification.published.info')} />
+            <Notification
+              icon="signed"
+              title={t('notification.published')}
+              message={t('notification.published.info')}
+            />
           )}
           {status === 'confirmed' && (
             <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
           )}
-          <Flex flexWrap='wrap'>
-            <Box
-              width={[1, 2 / 3]}
-              p={3}>
+          <Flex flexWrap="wrap">
+            <Box width={[1, 2 / 3]} p={3}>
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
               <strong>{moment(letter.createdAt).format('DD MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
@@ -129,21 +136,23 @@ class Letter extends Component {
               <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
             </Box>
             {letter.type === 'letter' && (
-              <Box
-                width={[1, 1 / 3]}
-                p={3}>
+              <Box width={[1, 1 / 3]} p={3}>
                 <Box mx={1}>
                   <BigNumber fontSize={[2, 3, 4]}>
                     <NumberFormat value={letter.signatures.length} displayType={'text'} thousandSeparator={true} />
                   </BigNumber>
                   <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
                     signatures
-          </BigNumberLabel>
+                  </BigNumberLabel>
                 </Box>
-                {[null, 'created', 'error'].includes(status) && <SignatureForm letter={letter} error={this.state.error} onSubmit={(signature => this.submitSignature(signature))} />}
-                {status === 'signature_sent' && (
-                  <SignatureEmailSent />
+                {[null, 'created', 'error'].includes(status) && (
+                  <SignatureForm
+                    letter={letter}
+                    error={this.state.error}
+                    onSubmit={(signature) => this.submitSignature(signature)}
+                  />
                 )}
+                {status === 'signature_sent' && <SignatureEmailSent />}
                 <Signatures signatures={letter.signatures} />
               </Box>
             )}
@@ -151,8 +160,8 @@ class Letter extends Component {
           <Footer />
         </Page>
       </div>
-    )
-  };
+    );
+  }
 }
 
 export async function getServerSideProps({ params, req, res }) {
@@ -161,7 +170,7 @@ export async function getServerSideProps({ params, req, res }) {
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}`;
-  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] }});
+  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] } });
 
   try {
     const response = await result.json();
@@ -172,7 +181,7 @@ export async function getServerSideProps({ params, req, res }) {
     }
     return { props };
   } catch (e) {
-    console.error("Unable to parse JSON returned by the API", e);
+    console.error('Unable to parse JSON returned by the API', e);
   }
 }
 

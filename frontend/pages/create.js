@@ -3,7 +3,7 @@ import Link from 'next/link';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
-import { Flex, Box } from 'reflexbox/styled-components'
+import { Flex, Box } from 'reflexbox/styled-components';
 import { typography, space } from 'styled-system';
 import LetterForm from '../components/LetterForm';
 import Faq from '../components/LetterForm-Faq';
@@ -41,9 +41,7 @@ const BigNumberLabel = styled.div`
   ${typography}
 `;
 
-
 class CreateLetterPage extends Component {
-
   constructor(props) {
     super(props);
     this.state = { status: null };
@@ -53,25 +51,25 @@ class CreateLetterPage extends Component {
 
   componentDidMount() {
     if (document.referrer.match(/\/confirm_signature\?token=/)) {
-      this.setState({status: 'confirmed'});
+      this.setState({ status: 'confirmed' });
     }
   }
 
   async createLetter(formData) {
-    console.log(">>> submitting ", formData);
+    console.log('>>> submitting ', formData);
     const apiCall = `${process.env.API_URL}/letters/create`;
 
     const res = await fetch(apiCall, {
-        method: 'post',
-        body:    JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' },
+      method: 'post',
+      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/json' },
     });
     try {
       const json = await res.json();
-      console.log(">>> json", json);
+      console.log('>>> json', json);
       Router.push(`/${json.slug}`);
     } catch (e) {
-      console.error(">>> unable to parse JSON", e);
+      console.error('>>> unable to parse JSON', e);
     }
   }
 
@@ -81,25 +79,19 @@ class CreateLetterPage extends Component {
 
     return (
       <Page>
-        {status === 'confirmed' && (
-          <Notification icon="signed" title={t('signed')} message={t('signed.share')} />
-        )}
-        <Flex flexWrap='wrap'>
-          <Box
-            width={[1, 2 / 3]}
-            p={3}>
-            {status === null && <LetterForm onSubmit={(letters => this.createLetter({letters}))} />}
+        {status === 'confirmed' && <Notification icon="signed" title={t('signed')} message={t('signed.share')} />}
+        <Flex flexWrap="wrap">
+          <Box width={[1, 2 / 3]} p={3}>
+            {status === null && <LetterForm onSubmit={(letters) => this.createLetter({ letters })} />}
           </Box>
-          <Box
-            width={[1, 1 / 3]}
-            p={3}>
-              <Faq />
+          <Box width={[1, 1 / 3]} p={3}>
+            <Faq />
           </Box>
         </Flex>
         <Footer />
       </Page>
-    )
-  };
+    );
+  }
 }
 
 export default withIntl(CreateLetterPage);

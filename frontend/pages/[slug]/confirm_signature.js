@@ -12,11 +12,10 @@ const Page = styled.div`
 `;
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 class ConfirmSignaturePage extends Component {
-
   constructor(props) {
     super(props);
     this.state = { status: null };
@@ -25,7 +24,7 @@ class ConfirmSignaturePage extends Component {
 
   async confirmSignature() {
     const { token } = this.props.router.query;
-    console.log(">>> confirming signature with token", token, "letter to sign", this.props.letter);
+    console.log('>>> confirming signature with token', token, 'letter to sign', this.props.letter);
     await sleep(500);
     const apiCall = `${process.env.API_URL}/signatures/confirm`;
     const resAction = await fetch(apiCall, {
@@ -39,7 +38,7 @@ class ConfirmSignaturePage extends Component {
       Router.replace(`/${this.props.letter.slug}`);
     }
   }
-  
+
   componentDidMount() {
     this.confirmSignature();
   }
@@ -48,7 +47,11 @@ class ConfirmSignaturePage extends Component {
     const { letter, t } = this.props;
     const { status } = this.state;
     if (!letter) {
-      return (<Page><Notification title={t('error.letter.notfound')} /></Page>);
+      return (
+        <Page>
+          <Notification title={t('error.letter.notfound')} />
+        </Page>
+      );
     }
 
     return (
@@ -57,23 +60,23 @@ class ConfirmSignaturePage extends Component {
           <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
         )}
         {!status && (
-          <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />          
+          <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />
         )}
       </Page>
-    )
-  };
+    );
+  }
 }
 
 export async function getServerSideProps({ params, req }) {
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  console.log(">>> apiCall", apiCall)
+  console.log('>>> apiCall', apiCall);
   const res = await fetch(apiCall);
 
   try {
     const letter = await res.json();
     return { props: { letter } };
   } catch (e) {
-    console.error("Unable to parse JSON returned by the API", e);
+    console.error('Unable to parse JSON returned by the API', e);
   }
 }
 

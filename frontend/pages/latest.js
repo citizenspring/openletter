@@ -1,7 +1,7 @@
-import React from 'react'
-import Link from 'next/link'
-import fetch from 'node-fetch'
-import Footer from '../components/Footer'
+import React from 'react';
+import Link from 'next/link';
+import fetch from 'node-fetch';
+import Footer from '../components/Footer';
 
 function Index({ letters }) {
   return (
@@ -9,17 +9,17 @@ function Index({ letters }) {
       <h1>Latest open letters</h1>
       <p>OpenLetter currently holds {letters.length} open letters</p>
       <ul>
-      {letters.map(letter => (
-        <li>
-          <Link href={letter.slug}>
-            <a>{letter.title}</a>
-          </Link>
-        </li>
-      ))}
+        {letters.map((letter) => (
+          <li>
+            <Link href={letter.slug}>
+              <a>{letter.title}</a>
+            </Link>
+          </li>
+        ))}
       </ul>
       <Footer />
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps() {
@@ -31,10 +31,10 @@ export async function getServerSideProps() {
       props: {
         letters: letters,
       },
-    }
+    };
   } catch (e) {
-    console.error("Unable to parse JSON returned by the API", e);
+    console.error('Unable to parse JSON returned by the API', e);
   }
 }
 
-export default Index
+export default Index;

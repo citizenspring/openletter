@@ -13,7 +13,7 @@ const A = styled.div`
   color: #555;
 `;
 
-export default withIntl(({t}) => (
+export default withIntl(({ t }) => (
   <div>
     <h2>{t('faq')}</h2>
     <Q>{t('create.faq.q1')}</Q>
@@ -24,6 +24,5 @@ export default withIntl(({t}) => (
 
     <Q>{t('create.faq.q3')}</Q>
     <A>{t('create.faq.q3.response')}</A>
-
   </div>
 ));

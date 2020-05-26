@@ -1,19 +1,19 @@
-'use strict'
+'use strict';
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('Model');
 
 class Signature extends Model {
-  static boot () {
+  static boot() {
     super.boot();
   }
 
   static get hidden() {
-    return ['id','letter_id', 'token'];
+    return ['id', 'letter_id', 'token'];
   }
 
   getName(name) {
-    return name || "anonymous";
+    return name || 'anonymous';
   }
 
   /**
@@ -26,9 +26,9 @@ class Signature extends Model {
    *
    * @return {Object}
    */
-  tokens () {
-    return this.hasMany('App/Models/Token')
+  tokens() {
+    return this.hasMany('App/Models/Token');
   }
 }
 
-module.exports = Signature
+module.exports = Signature;

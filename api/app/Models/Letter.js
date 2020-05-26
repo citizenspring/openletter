@@ -1,29 +1,27 @@
-'use strict'
+'use strict';
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('Model');
 const crypto = use('crypto');
 const sanitizeHtml = use('sanitize-html');
 const slugify = use('slugify');
-const Signature = use('App/Models/Signature')
+const Signature = use('App/Models/Signature');
 
 class Letter extends Model {
-
   static boot() {
-    super.boot()
-    this.addTrait('Slugify')
+    super.boot();
+    this.addTrait('Slugify');
     /**
      * A hook to hash the signature password before saving
      * it to the database.
      */
     this.addHook('beforeSave', async (letterInstance) => {
       if (letterInstance.dirty.password) {
-        letterInstance.password = await Hash.make(letterInstance.password)
+        letterInstance.password = await Hash.make(letterInstance.password);
       }
       const tokenData = `${letterInstance.slug}-${letterInstance.user_id}-${process.env.APP_KEY}`;
-      letterInstance.token = crypto.createHash('md5').update(tokenData).digest("hex");
-  
-    })
+      letterInstance.token = crypto.createHash('md5').update(tokenData).digest('hex');
+    });
   }
 
   static get hidden() {
@@ -31,16 +29,13 @@ class Letter extends Model {
   }
 
   getText(text) {
-    return (text || "").replace(/\n/g, '<br />');
+    return (text || '').replace(/\n/g, '<br />');
   }
 
-  async getAllLocales() {
-
-  }
+  async getAllLocales() {}
 
   async getSubscribers() {
-    const resultSet = await Signature
-      .query()
+    const resultSet = await Signature.query()
       .select(['email'])
       .where('letter_id', this.id)
       .where('is_verified', true)
@@ -48,17 +43,16 @@ class Letter extends Model {
       .fetch();
 
     const subscribers = [];
-    resultSet.rows.map(r => subscribers.push(r.email));
+    resultSet.rows.map((r) => subscribers.push(r.email));
     return subscribers;
   }
 
   async getSubscribersByLocale() {
-    const resultSet = await Letter
-      .query()
+    const resultSet = await Letter.query()
       .whereSlug(this.slug)
       .with('signatures', (builder) => {
-        builder.where('is_verified', true)
-        builder.whereNotNull('email')
+        builder.where('is_verified', true);
+        builder.whereNotNull('email');
       })
       .with('user')
       .fetch();
@@ -69,7 +63,7 @@ class Letter extends Model {
     letters.map((l, i) => {
       const letter = l.toJSON();
       subscribersByLocale[l.locale] = [];
-      letter.signatures.map(s => {
+      letter.signatures.map((s) => {
         subscribersByLocale[l.locale].push(s.email);
         length++;
       });
@@ -85,7 +79,7 @@ class Letter extends Model {
   parentLetter() {
     return this.hasOne('App/Models/Letter', 'parent_letter_id', 'id');
   }
-  
+
   updates() {
     return this.hasMany('App/Models/Letter', 'id', 'parent_letter_id');
   }
@@ -95,33 +89,31 @@ class Letter extends Model {
   }
 }
 
-
 Letter.createWithLocales = async (letters, defaultValues = {}) => {
-  const slugid = crypto.randomBytes(8).toString('hex').substr(0, 4) + crypto.randomBytes(8).toString('hex').substr(0, 4);
+  const slugid =
+    crypto.randomBytes(8).toString('hex').substr(0, 4) + crypto.randomBytes(8).toString('hex').substr(0, 4);
   const slug = `${slugify(letters[0].title, { lower: true, remove: /[*+~.()'"!:@#\.,]/g })}-${slugid}`;
   const sanitizedLetters = [];
-  letters.map(letter => {
+  letters.map((letter) => {
     const sanitizedValues = {
       title: letter.title,
       text: sanitizeHtml(letter.text, {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
       }),
       locale: letter.locale,
       image: letter.image,
-      slug
+      slug,
     };
     if (!sanitizedValues.text) {
-      console.log(">>> empty text for locale", letter.locale, "skipping");
+      console.log('>>> empty text for locale', letter.locale, 'skipping');
       return;
     }
-    Object.keys(defaultValues).map(key => {
+    Object.keys(defaultValues).map((key) => {
       sanitizedValues[key] = sanitizedValues[key] || defaultValues[key];
     });
-    sanitizedLetters.push(sanitizedValues)
+    sanitizedLetters.push(sanitizedValues);
   });
   return await Letter.createMany(sanitizedLetters);
-}
+};
 
-
-
-module.exports = Letter
+module.exports = Letter;

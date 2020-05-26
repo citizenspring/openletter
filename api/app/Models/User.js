@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
-const Model = use('Model')
+const Model = use('Model');
 
 class User extends Model {
-  static boot () {
-    super.boot()
+  static boot() {
+    super.boot();
 
     /**
      * A hook to bash the user password before saving
@@ -13,7 +13,7 @@ class User extends Model {
      * Look at `app/Models/Hooks/User.js` file to
      * check the hashPassword method
      */
-    this.addHook('beforeCreate', 'User.hashPassword')
+    this.addHook('beforeCreate', 'User.hashPassword');
   }
 
   static get visible() {
@@ -30,14 +30,13 @@ class User extends Model {
    *
    * @return {Object}
    */
-  tokens () {
-    return this.hasMany('App/Models/Token')
+  tokens() {
+    return this.hasMany('App/Models/Token');
   }
 
   letters() {
     return this.hasMany('App/Models/Letter', 'id', 'user_id');
   }
-
 }
 
-module.exports = User
+module.exports = User;
