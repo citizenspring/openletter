@@ -130,10 +130,11 @@ class Letter extends Component {
           <Flex flexWrap="wrap">
             <Box width={[1, 2 / 3]} p={3}>
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
-              <strong>{moment(letter.created_at).format('DD MMMM YYYY')}</strong>
+              <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
               {letter.image && <IMG src={letter.image} />}
               <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
+              <Updates updates={letter.updates} />
             </Box>
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>

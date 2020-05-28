@@ -35,6 +35,7 @@
   "create.faq.q2.response": "Une lettre ouverte est une bonne façon de demander quelque chose à votre entreprise, organisation, institution, ville, gouvernement. Assurez-vous qu'elle soit signée par des personnes qui sont relevantes par rapport à votre demande.",
   "create.faq.q3": "Est-ce que je peux limiter qui peut la signer ?",
   "create.faq.q3.response": "Non. C'est pour cela qu'on recommande de la partager soigneusement dans un premier temps auprès des bonnes personnes. Ainsi, ces personnes auront la possibilité d'être les premières à être les co-signataires.",
+  "letter.update": "Mise à jour",
   "footer.create": "Créer une lettre ouverte",
   "footer.andsignit": "et la co-signer",
   "sign.name": "Votre nom",

@@ -6,6 +6,7 @@ import { Flex, Box } from 'reflexbox/styled-components';
 import NumberFormat from 'react-number-format';
 import { typography, space } from 'styled-system';
 import SignatureForm from '../components/SignatureForm';
+import Updates from '../components/Updates';
 import Notification from '../components/Notification';
 import SignatureEmailSent from '../components/SignatureEmailSent';
 import Signatures from '../components/Signatures';
@@ -25,10 +26,6 @@ const Title = styled.h1`
   ${typography}
   line-height: 1.2;
   color: black;
-`;
-
-const H2 = styled.h2`
-  margin-top: 0px;
 `;
 
 const Text = styled.div`
@@ -134,18 +131,11 @@ class Letter extends Component {
           <Flex flexWrap="wrap">
             <Box width={[1, 2 / 3]} p={3}>
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
-              <strong>{moment(letter.created_at).format('DD MMMM YYYY')}</strong>
+              <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
               {letter.image && <IMG src={letter.image} />}
               <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
-              {letter.updates.length > 0 &&
-                letter.updates.map((update) => (
-                  <Box my={5}>
-                    <strong>Update {moment(update.created_at).format('DD MMMM YYYY')}</strong>
-                    <H2>{update.title}</H2>
-                    <Text dangerouslySetInnerHTML={{ __html: update.text }} />
-                  </Box>
-                ))}
+              <Updates updates={letter.updates} />
             </Box>
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>

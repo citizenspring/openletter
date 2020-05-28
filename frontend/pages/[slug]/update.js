@@ -16,9 +16,15 @@ const Page = styled.div`
   margin: 0 auto;
 `;
 
-const Title = styled.h1`
-  font-size: 30px;
-  color: ${({ theme }) => theme.colors.primary};
+const TopBanner = styled.div`
+  font-size: 16px;
+  background: black;
+  color: white;
+  padding: 10px;
+  margin: -10px -10px 10px -10px;
+  & a {
+    color: white;
+  }
 `;
 
 const Text = styled.div`
@@ -82,25 +88,27 @@ class CreateLetterPage extends Component {
     const { t, parentLetter } = this.props;
 
     return (
-      <Page>
-        <Title>
+      <>
+        <TopBanner>
           Posting an update to{' '}
           <Link href={`/${parentLetter.slug}`}>
             <a>{parentLetter.title}</a>
           </Link>
-        </Title>
-        <Flex flexWrap="wrap">
-          <Box width={[1, 2 / 3]} p={3}>
-            {status === null && (
-              <LetterForm parentLetter={parentLetter} onSubmit={(letters) => this.createUpdate({ letters })} />
-            )}
-          </Box>
-          <Box width={[1, 1 / 3]} p={3}>
-            <Faq />
-          </Box>
-        </Flex>
-        <Footer />
-      </Page>
+        </TopBanner>
+        <Page>
+          <Flex flexWrap="wrap">
+            <Box width={[1, 2 / 3]} p={3}>
+              {status === null && (
+                <LetterForm parentLetter={parentLetter} onSubmit={(letters) => this.createUpdate({ letters })} />
+              )}
+            </Box>
+            <Box width={[1, 1 / 3]} p={3}>
+              <Faq />
+            </Box>
+          </Flex>
+          <Footer />
+        </Page>
+      </>
     );
   }
 }
