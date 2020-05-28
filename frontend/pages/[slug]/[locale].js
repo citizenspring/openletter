@@ -9,6 +9,7 @@ import SignatureForm from '../../components/SignatureForm';
 import Notification from '../../components/Notification';
 import SignatureEmailSent from '../../components/SignatureEmailSent';
 import Signatures from '../../components/Signatures';
+import Updates from '../../components/Updates';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
