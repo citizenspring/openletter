@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "next build",
+    "build:langs": "sync-i18n --files 'public/locales/*.json' --primary en --space 2",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "start": "next start",
@@ -37,6 +38,7 @@
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "i18next-json-sync": "^2.3.1"
   }
 }
