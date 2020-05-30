@@ -9,6 +9,7 @@ import SignatureForm from '../../components/SignatureForm';
 import Notification from '../../components/Notification';
 import SignatureEmailSent from '../../components/SignatureEmailSent';
 import Signatures from '../../components/Signatures';
+import SignaturesCount from '../../components/SignaturesCount';
 import Updates from '../../components/Updates';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
@@ -139,14 +140,7 @@ class Letter extends Component {
             </Box>
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>
-                <Box mx={1}>
-                  <BigNumber fontSize={[2, 3, 4]}>
-                    <NumberFormat value={letter.signatures.length} displayType={'text'} thousandSeparator={true} />
-                  </BigNumber>
-                  <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
-                    signatures
-                  </BigNumberLabel>
-                </Box>
+                <SignaturesCount signatures={letter.signatures} />
                 {[null, 'created', 'error'].includes(status) && (
                   <SignatureForm
                     letter={letter}

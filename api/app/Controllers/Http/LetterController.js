@@ -1,9 +1,13 @@
 'use strict';
 const crypto = use('crypto');
-const Mail = use('Mail');
 const Letter = use('App/Models/Letter');
+const Signature = use('App/Models/Signature');
 const User = use('App/Models/User');
 const acceptLanguageParser = use('accept-language-parser');
+const Logger = use('Logger');
+Logger.level = 'info';
+
+const { sendEmail } = use('App/Libs/email');
 
 class LetterController {
   async index() {
@@ -15,11 +19,26 @@ class LetterController {
       .fetch();
   }
 
+  async featured({ request }) {
+    const params = request.only(['locale']);
+    const locale =
+      params.locale ||
+      acceptLanguageParser.pick(['en', 'fr', 'nl'], request.headers()['accept-language'], { loose: true }) ||
+      'en';
+    console.log('GET', '/letters/featured', locale);
+    return await Letter.query()
+      .where('locale', locale)
+      .whereNotNull('featured_at')
+      .setHidden(['text', 'updated_at'])
+      .orderBy('id', 'desc')
+      .limit(10)
+      .fetch();
+  }
+
   async get(ctx) {
     const resultSet = await Letter.query()
       .whereSlug(ctx.params.slug)
       .with('signatures', (builder) => {
-        builder.where('is_verified', true);
         builder.orderBy('id', 'asc');
       })
       .with('parentLetter', (builder) => {
@@ -113,8 +132,8 @@ class LetterController {
       console.log('>>> send email confirmation for locale', locale);
 
       try {
-        await Mail.send(`emails.${locale}.link_to_edit_openletter`, { letter: letters[0] }, (message) => {
-          message.to(formData.letters[0].email).from('support@openletter.earth').subject(subject[locale]);
+        await sendEmail(formData.letters[0].email, subject[locale], `emails.${locale}.link_to_edit_openletter`, {
+          letter: letters[0],
         });
       } catch (e) {
         console.error('error', e);
@@ -155,9 +174,7 @@ class LetterController {
         await Promise.all(
           subscribers.map(async (email) => {
             try {
-              await Mail.send(`emails.update`, emailData, (message) => {
-                message.to(email).from('support@openletter.earth').subject(localeUpdate.title);
-              });
+              await sendEmail(email, localeUpdate.title, 'emails.update', emailData);
             } catch (e) {
               console.error('error', e);
             }
@@ -189,16 +206,22 @@ class LetterController {
     }
     delete signatureData.share_email;
 
-    let signature,
-      attempt = 0;
+    let signature;
     console.log('>>> Signature.create', signatureData);
     try {
       signature = await letter.signatures().create(signatureData);
     } catch (e) {
       if (e.constraint === 'signatures_token_unique') {
-        return {
-          error: { code: 400, message: 'you already signed this open letter' },
-        };
+        signature = await Signature.query().where('token', signatureData.token).first();
+        if (!signature || signature.is_verified) {
+          return {
+            error: { code: 400, message: 'you already signed this open letter' },
+          };
+        } else {
+          // we update the signature and continue to send a new email confirmation
+          signature.merge(signatureData);
+          await signature.save();
+        }
       } else {
         console.error('error', e);
       }
@@ -219,31 +242,14 @@ class LetterController {
       fr: 'ACTION REQUISE: Veuillez confirmer votre signature sur cette lettre ouverte',
     };
 
-    const sendEmail = async () => {
-      console.log('>>> send email confirmation for locale', locale, 'attempt', attempt);
-      try {
-        if (attempt > 10) {
-          console.error('>>> too many attempts to send email to ', request.body.email);
-          return;
-        }
-        await Mail.send(`emails.${locale}.confirm_signature`, emailData, (message) => {
-          message.to(request.body.email).from('support@openletter.earth').subject(subject[locale]);
-        });
-        console.log('>>> email sent');
-        // if successful, we remove the email from database if the user didn't subscribe for updates
-        if (!request.body.share_email) {
-          signature.email = null;
-          signature.save();
-        }
-      } catch (e) {
-        console.error('error', e);
-        attempt++;
-        console.log('>>> new attempt in 10mn');
-        setTimeout(sendEmail, 1000 * 60 * 10);
-      }
-    };
+    console.log('>>> send email confirmation for locale', locale);
 
-    await sendEmail();
+    await sendEmail(request.body.email, subject[locale], `emails.${locale}.confirm_signature`, emailData);
+    // if successful, we remove the email from database if the user didn't subscribe for updates
+    if (!request.body.share_email) {
+      signature.email = null;
+      signature.save();
+    }
     return signature.toJSON();
   }
 }

@@ -15,11 +15,23 @@ const Page = styled.div`
 
 export class Index extends React.Component {
   render() {
-    const { t, locale } = this.props;
-    console.log('>>> rendering Index page with props', this.props);
+    const { t, locale, featuredLetters } = this.props;
     return (
       <Page>
         <Footer />
+        <Box width={1}>
+          <h2>{t('home.featured')}</h2>
+          <ul>
+            {featuredLetters.map((letter) => (
+              <li>
+                <Link href={`/${letter.slug}`}>
+                  <a>{letter.title}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Box>
+
         <Flex flexWrap="wrap">
           <Box width={[1, 1 / 2, 1 / 2]}>
             <h2>{t('home.howitworks')}</h2>
@@ -48,6 +60,27 @@ export class Index extends React.Component {
         <Faq />
       </Page>
     );
+  }
+}
+
+export async function getServerSideProps({ params, req, res }) {
+  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+  res.setHeader('Vary', 'Accept-Language');
+
+  const props = { headers: req.headers };
+  const apiCall = `${process.env.API_URL}/letters/featured`;
+  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] } });
+
+  try {
+    const response = await result.json();
+    if (response.error) {
+      props.error = response.error;
+    } else {
+      props.featuredLetters = response;
+    }
+    return { props };
+  } catch (e) {
+    console.error('Unable to parse JSON returned by the API', e);
   }
 }
 

@@ -1,4 +1,5 @@
 {
+  "home.featured": "Featured",
   "home.howitworks": "How it works",
   "home.howitworks.1": "Create a letter",
   "home.howitworks.2": "Sign it",
@@ -42,6 +43,8 @@
   "letter.update": "Update",
   "footer.create": "Create an open letter",
   "footer.andsignit": "and co-sign it",
+  "letter.signatures.unverified": "unverified",
+  "letter.signatures.unverified.tooltip": "Unverified signatures appear in grey. Please make sure to confirm your signature by clicking on the link in the confirmation email. If you haven't received it, you can sign the letter again. Make sure to check your spam folder.",
   "sign.name": "Your name",
   "sign.occupation": "occupation",
   "sign.city": "city",
@@ -50,6 +53,7 @@
   "sign.share_email": "Send me an email to keep me posted of the results of this open letter",
   "sign.button": "Sign This Letter",
   "signatures.first": "Be the first to sign this letter",
+  "signature.unverified.tooltip": "Email address hasn't been confirmed yet. Please confirm from the email you have received or sign this letter again to receive a new confirmation email.",
   "notification.published": "Published!",
   "notification.published.info": "Sign it and then get others to co-sign it with you.",
   "notification.signed": "Signed!",

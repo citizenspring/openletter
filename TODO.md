@@ -1,3 +1,7 @@
+- [ ] Force page generation after confirming signature 
+- [ ] Show verified and non verified signatures
+- [ ] Show breakdown per city / occupation
+- [ ] Ask for country / zip code
 - [ ] Share daily email to author with new signatures
 - [ ] Enable author to post an update / response
 - [ ] Allow people to unsubscribe from updates
