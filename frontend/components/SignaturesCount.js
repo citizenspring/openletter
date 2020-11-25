@@ -5,8 +5,8 @@ import { typography, space } from 'styled-system';
 import { Flex, Box } from 'rebass';
 import NumberFormat from 'react-number-format';
 
-const Unverified = styled.span`
-  color: #ddd;
+const Verified = styled.span`
+  color: #444;
   cursor: pointer;
   font-size: 12pt;
 `;
@@ -62,10 +62,12 @@ export default withIntl(({ signatures, t }) => {
     signatures: {
       verified: 0,
       unverified: 0,
+      total: 0,
     },
   };
 
   signatures.map((s) => {
+    stats.signatures.total++;
     if (s.is_verified) {
       stats.signatures.verified++;
     } else {
@@ -77,19 +79,18 @@ export default withIntl(({ signatures, t }) => {
     <div>
       <Box mx={1}>
         <BigNumber fontSize={[2, 3, 4]}>
-          <NumberFormat value={stats.signatures.verified} displayType={'text'} thousandSeparator={true} />
+          <NumberFormat value={stats.signatures.total} displayType={'text'} thousandSeparator={true} />
         </BigNumber>
         <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
           signatures
         </BigNumberLabel>
         <Box>
-          <Unverified>
+          <Verified>
             <Tooltip tooltip={t('letter.signatures.unverified.tooltip')}>
-              +
-              <NumberFormat value={stats.signatures.unverified} displayType={'text'} thousandSeparator={true} />
-              {` ${t('letter.signatures.unverified')}`}
+              <NumberFormat value={stats.signatures.verified} displayType={'text'} thousandSeparator={true} />
+              {` ${t('letter.signatures.verified')}`}
             </Tooltip>
-          </Unverified>
+          </Verified>
         </Box>
       </Box>
     </div>

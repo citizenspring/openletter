@@ -116,7 +116,7 @@ class LetterForm extends Component {
   addLanguage() {
     const { form } = this.state;
     form.push({
-      locale: null,
+      locale: 'en',
       title: null,
       text: null,
     });

@@ -43,6 +43,7 @@
   "home.privacy.1": "Sign with your name or anonymously",
   "home.privacy.2": "By default, we don't record your email address in our database",
   "home.privacy.3": "No cookies, no tracking",
+  "letter.signatures.verified": "verified",
   "letter.signatures.unverified": "unverified",
   "letter.signatures.unverified.tooltip": "Unverified signatures appear in grey. Please make sure to confirm your signature by clicking on the link in the confirmation email. If you haven't received it, you can sign the letter again. Make sure to check your spam folder.",
   "letter.update": "Update",

@@ -13,7 +13,7 @@ const H2 = styled.h2`
   font-size: 18pt;
 `;
 
-export default ({ icon, title, message }) => (
+const Notification = ({ icon, title, message }) => (
   <NotificationBox my={4} py={4}>
     <Box mx={2}>
       <Flex flexWrap="wrap" alignItems="center">
@@ -28,3 +28,5 @@ export default ({ icon, title, message }) => (
     </Box>
   </NotificationBox>
 );
+
+export default Notification;

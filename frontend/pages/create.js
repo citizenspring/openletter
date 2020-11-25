@@ -57,6 +57,7 @@ class CreateLetterPage extends Component {
 
   async createLetter(formData) {
     console.log('>>> submitting ', formData);
+
     const apiCall = `${process.env.API_URL}/letters/create`;
 
     const res = await fetch(apiCall, {
