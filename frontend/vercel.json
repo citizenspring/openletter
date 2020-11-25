@@ -1,0 +1,10 @@
+{
+  "env": {
+    "API_URL": "https://openletter-earth.herokuapp.com"
+  },
+  "build": {
+    "env": {
+      "API_URL": "https://openletter-earth.herokuapp.com"
+    }
+  }
+}
