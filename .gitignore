@@ -1,5 +1,6 @@
 .DS_Store
 api/dbdumps/
+dbdumps/
 
 # Logs
 logs

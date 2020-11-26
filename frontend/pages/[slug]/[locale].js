@@ -162,11 +162,10 @@ class Letter extends Component {
 
 export async function getServerSideProps({ params, req, res }) {
   res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
-  res.setHeader('Vary', 'Accept-Language');
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}`;
-  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] } });
+  const result = await fetch(apiCall);
 
   try {
     const response = await result.json();

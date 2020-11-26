@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Flex, Box } from 'rebass';
 
 const Unverified = styled.span`
-  color: #ddd;
+  color: #888;
   cursor: pointer;
 `;
 

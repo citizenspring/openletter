@@ -144,8 +144,9 @@ class Letter extends Component {
 }
 
 export async function getServerSideProps({ params, req, res }) {
-  res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
-  res.setHeader('Vary', 'Accept-Language');
+  // we cannot cache otherwise the locale shown will be the last one cached
+  // res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
+  // res.setHeader('Vary', 'Accept-Language');
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
@@ -158,6 +159,15 @@ export async function getServerSideProps({ params, req, res }) {
     } else {
       props.letter = response;
     }
+
+    // if there are multiples locales, we make sure we redirect to the right locale url
+    if (response.locales.length > 1) {
+      return { redirect: { destination: `/${response.slug}/${response.locale}` } };
+    }
+
+    // if there is only one locale, it's safe to cache
+    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
+
     return { props };
   } catch (e) {
     console.error('Unable to parse JSON returned by the API', e);

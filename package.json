@@ -3,9 +3,9 @@
   "version": "1.1.0",
   "description": "The fullstack application boilerplate for Adonisjs",
   "scripts": {
-    "start:frontend": "cd frontend && next",
+    "start:frontend": "cd frontend && npx next",
     "start:api": "cd api && adonis serve",
-    "frontend:dev": "cd frontend && next dev",
+    "frontend:dev": "cd frontend && npx next dev",
     "api:dev": "cd api && adonis serve --dev",
     "deploy:api": "git subtree push --prefix api heroku master",
     "deploy:frontend": "cd frontend && vercel",

@@ -85,12 +85,14 @@ export default withIntl(({ signatures, t }) => {
           signatures
         </BigNumberLabel>
         <Box>
-          <Verified>
-            <Tooltip tooltip={t('letter.signatures.unverified.tooltip')}>
-              <NumberFormat value={stats.signatures.verified} displayType={'text'} thousandSeparator={true} />
-              {` ${t('letter.signatures.verified')}`}
-            </Tooltip>
-          </Verified>
+          {stats.signatures.total != stats.signatures.verified && (
+            <Verified>
+              <Tooltip tooltip={t('letter.signatures.unverified.tooltip')}>
+                <NumberFormat value={stats.signatures.verified} displayType={'text'} thousandSeparator={true} />
+                {` ${t('letter.signatures.verified')}`}
+              </Tooltip>
+            </Verified>
+          )}
         </Box>
       </Box>
     </div>
