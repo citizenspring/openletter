@@ -134,6 +134,7 @@ class LetterController {
       try {
         await sendEmail(formData.letters[0].email, subject[locale], `emails.${locale}.link_to_edit_openletter`, {
           letter: letters[0],
+          env: process.env,
         });
       } catch (e) {
         console.error('error', e);
@@ -168,7 +169,11 @@ class LetterController {
     await Promise.all(
       updates.map(async (localeUpdate) => {
         const subscribers = subscribersByLocale[localeUpdate.locale];
-        const emailData = { update: localeUpdate.toJSON(), parentLetter: localeUpdate.toJSON().parentLetter.toJSON() };
+        const emailData = {
+          update: localeUpdate.toJSON(),
+          parentLetter: localeUpdate.toJSON().parentLetter.toJSON(),
+          env: process.env,
+        };
         console.log(`>>> sending ${localeUpdate.locale} update to ${subscribers.length} subscribers`, subscribers);
 
         await Promise.all(
@@ -198,8 +203,9 @@ class LetterController {
       .where('locale', request.params.locale)
       .first();
 
-    // We create the token based on the letter.id and request.body.email to make sure we can only have one signature per email address (without having to actually record the email address in our database)
-    const tokenData = `${letter.id}-${request.body.email}-${process.env.APP_KEY}`;
+    // We create the token based on the letter.slug and request.body.email to make sure we can only have one signature per email address per letter (without having to actually record the email address in our database)
+    const tokenData = `${letter.slug}-${request.body.email}-${process.env.APP_KEY}`;
+
     signatureData.token = crypto.createHash('md5').update(tokenData).digest('hex');
     if (signatureData.share_email) {
       signatureData.email = request.body.email;

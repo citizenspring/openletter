@@ -18,7 +18,6 @@ Inspirations:
 - [Face à la crise historique engendrée par la pandémie de coronavirus, organisons notre sécurité alimentaire](https://www.lalibre.be/debats/opinions/face-a-la-crise-historique-engendree-par-la-pandemie-de-coronavirus-organisons-notre-securite-alimentaire-5e8aeeb6d8ad581631c03f18)
 - [Mille médecins sonnent l’alarme climatique](https://plus.lesoir.be/252649/article/2019-10-10/mille-medecins-sonnent-lalarme-climatique)
 
-
 ## Demo
 
 ![](https://d.pr/free/i/BILgdt+)
@@ -35,9 +34,10 @@ We are using Heroku to host the API using a Postgres database. Since heroku expe
 
 (or to force push if ever needed: `` git push heroku `git subtree split --prefix api master`:master --force ``)
 
+To test emails, we recommend using (Maildev)[https://github.com/maildev/maildev] (`npm i -g maildev && npx maildev`).
+
 ### Frontend
 
 Simply run `npm run deploy:frontend`
 
 We use Vercel.com.
-
