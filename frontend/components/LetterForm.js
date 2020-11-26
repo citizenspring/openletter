@@ -45,6 +45,9 @@ const StyledButton = styled.button`
   padding: 10px;
   border-radius: 5px;
   box-sizing: border-box;
+  &[disabled] {
+    background: #999;
+  }
 `;
 
 const H2 = styled.h2``;
@@ -73,6 +76,7 @@ class LetterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       form: [
         {
           locale: props.locale,
@@ -107,9 +111,15 @@ class LetterForm extends Component {
     this.setState({ form });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    this.setState({ loading: true });
     event.preventDefault();
-    this.props.onSubmit(this.state.form);
+    await this.props.onSubmit(this.state.form);
+
+    // just in case
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
     return false;
   }
 
@@ -197,7 +207,9 @@ class LetterForm extends Component {
           </Box>
         )}
         <Box>
-          <StyledButton>{t(parentLetter ? 'create.publish_update' : 'create.publish')}</StyledButton>
+          <StyledButton disabled={this.state.loading}>
+            {t(parentLetter ? 'create.publish_update' : 'create.publish')}
+          </StyledButton>
         </Box>
       </form>
     );

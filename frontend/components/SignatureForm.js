@@ -34,6 +34,9 @@ const StyledButton = styled.button`
   border-radius: 5px;
   box-sizing: border-box;
   width: 100%;
+  &[disabled] {
+    background: #999;
+  }
 `;
 
 const Error = styled.div`
@@ -57,6 +60,7 @@ class SignatureForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false,
       form: {
         name: null,
         occupation: null,
@@ -76,9 +80,15 @@ class SignatureForm extends Component {
     this.setState({ form });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    this.setState({ loading: true });
     event.preventDefault();
-    this.props.onSubmit(this.state.form);
+    await this.props.onSubmit(this.state.form);
+
+    // just in case
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
     return false;
   }
 
@@ -125,7 +135,7 @@ class SignatureForm extends Component {
           )}
         </Flex>
         <Box my={2} width={1}>
-          <StyledButton>{t('sign.button')}</StyledButton>
+          <StyledButton disabled={this.state.loading}>{t('sign.button')}</StyledButton>
         </Box>
         {error && <Error>{error.message}</Error>}
       </form>

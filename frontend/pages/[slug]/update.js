@@ -61,7 +61,8 @@ class CreateLetterPage extends Component {
     }
   }
 
-  async createUpdate(formData) {
+  async createUpdate(letters) {
+    const formData = { letters };
     formData.parent_letter_id = this.props.parentLetter.id;
     if (this.props.token) {
       formData.token = this.props.token;
@@ -98,9 +99,7 @@ class CreateLetterPage extends Component {
         <Page>
           <Flex flexWrap="wrap">
             <Box width={[1, 2 / 3]} p={3}>
-              {status === null && (
-                <LetterForm parentLetter={parentLetter} onSubmit={(letters) => this.createUpdate({ letters })} />
-              )}
+              {status === null && <LetterForm parentLetter={parentLetter} onSubmit={this.createUpdate} />}
             </Box>
             <Box width={[1, 1 / 3]} p={3}>
               <Faq />

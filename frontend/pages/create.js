@@ -55,7 +55,8 @@ class CreateLetterPage extends Component {
     }
   }
 
-  async createLetter(formData) {
+  async createLetter(letters) {
+    const formData = { letters };
     console.log('>>> submitting ', formData);
 
     const apiCall = `${process.env.API_URL}/letters/create`;
@@ -83,7 +84,7 @@ class CreateLetterPage extends Component {
         {status === 'confirmed' && <Notification icon="signed" title={t('signed')} message={t('signed.share')} />}
         <Flex flexWrap="wrap">
           <Box width={[1, 2 / 3]} p={3}>
-            {status === null && <LetterForm onSubmit={(letters) => this.createLetter({ letters })} />}
+            {status === null && <LetterForm onSubmit={this.createLetter} />}
           </Box>
           <Box width={[1, 1 / 3]} p={3}>
             <Faq />
