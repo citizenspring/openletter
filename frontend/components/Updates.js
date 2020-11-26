@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Box } from 'reflexbox/styled-components';
 import { withIntl } from '../lib/i18n';
 import moment from 'moment';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 const H2 = styled.h2`
   margin-top: 0px;
@@ -24,7 +26,11 @@ export default withIntl(({ t, updates }) => {
             {t('letter.update')} {moment(update.created_at).format('DD MMMM YYYY')}
           </strong>
           <H2>{update.title}</H2>
-          <Text dangerouslySetInnerHTML={{ __html: update.text }} />
+          <Text>
+            <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
+              {update.text}
+            </ReactMarkdown>
+          </Text>
         </Box>
       ))}
     </>
