@@ -88,7 +88,7 @@ class Letter extends Component {
         </Page>
       );
     }
-    console.log('>>> text', letter.text);
+
     return (
       <div>
         <Head>
@@ -167,7 +167,7 @@ export async function getServerSideProps({ params, req, res }) {
     }
 
     // if there are multiples locales, we make sure we redirect to the right locale url
-    if (response.locales.length > 1) {
+    if (response.locales && response.locales.length > 1) {
       return { redirect: { destination: `/${response.slug}/${response.locale}` } };
     }
 
