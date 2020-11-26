@@ -34,6 +34,13 @@ const BigNumber = styled.div`
 //   fontSize: '64pt'
 // };
 
+const Error = styled.div`
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 18px;
+`;
+
 const BigNumberLabel = styled.div`
   font-size: 32pt;
   margin-top: -14px;
@@ -61,22 +68,26 @@ class CreateLetterPage extends Component {
 
     const apiCall = `${process.env.API_URL}/letters/create`;
 
-    const res = await fetch(apiCall, {
-      method: 'post',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' },
-    });
     try {
+      const res = await fetch(apiCall, {
+        method: 'post',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+      });
       const json = await res.json();
       console.log('>>> json', json);
       Router.push(`/${json.slug}`);
     } catch (e) {
-      console.error('>>> unable to parse JSON', e);
+      console.error('>>> API error', e);
+      this.setState({ error: { message: this.props.t('error.server') } });
+      setTimeout(() => {
+        this.setState({ error: null });
+      }, 5000);
     }
   }
 
   render() {
-    const { status } = this.state;
+    const { status, error } = this.state;
     const { t } = this.props;
 
     return (
@@ -85,6 +96,7 @@ class CreateLetterPage extends Component {
         <Flex flexWrap="wrap">
           <Box width={[1, 2 / 3]} p={3}>
             {status === null && <LetterForm onSubmit={this.createLetter} />}
+            {error && <Error>{error.message}</Error>}
           </Box>
           <Box width={[1, 1 / 3]} p={3}>
             <Faq />

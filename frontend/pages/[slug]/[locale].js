@@ -15,6 +15,8 @@ import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
 import Head from 'next/head';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 const Page = styled.div`
   max-width: 960px;
@@ -78,16 +80,24 @@ class Letter extends Component {
     console.log('>>> submitting ', signature, 'headers', this.props.headers);
     const apiCall = `${process.env.API_URL}/letters/${this.props.letter.slug}/${this.props.letter.locale}/sign`;
 
-    const res = await fetch(apiCall, {
-      method: 'post',
-      body: JSON.stringify(signature),
-      headers: { 'Content-Type': 'application/json', 'accept-language': this.props.headers['accept-language'] },
-    });
-    const json = await res.json();
-    if (json.error) {
-      this.setState({ status: 'error', error: json.error });
-    } else {
-      this.setState({ status: 'signature_sent' });
+    try {
+      const res = await fetch(apiCall, {
+        method: 'post',
+        body: JSON.stringify(signature),
+        headers: { 'Content-Type': 'application/json', 'accept-language': this.props.headers['accept-language'] },
+      });
+      const json = await res.json();
+      if (json.error) {
+        this.setState({ status: 'error', error: json.error });
+      } else {
+        this.setState({ status: 'signature_sent' });
+      }
+    } catch (e) {
+      console.error('>>> API error', e);
+      this.setState({ status: 'error', error: { message: this.props.t('error.server') } });
+      setTimeout(() => {
+        this.setState({ status: null, error: null });
+      }, 5000);
     }
   }
 
@@ -135,7 +145,11 @@ class Letter extends Component {
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
               {letter.image && <IMG src={letter.image} />}
-              <Text dangerouslySetInnerHTML={{ __html: letter.text }} />
+              <Text>
+                <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
+                  {letter.text}
+                </ReactMarkdown>
+              </Text>
               <Updates updates={letter.updates} />
             </Box>
             {letter.type === 'letter' && (
