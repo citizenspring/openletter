@@ -1,6 +1,7 @@
 export default {
+  ar: 'عربى',
   en: 'English',
   fr: 'Français',
   nl: 'Nederlands',
-  ar: 'عربى',
+  tr: 'Türkçe',
 };

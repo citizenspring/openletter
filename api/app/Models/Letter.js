@@ -29,7 +29,7 @@ class Letter extends Model {
   }
 
   getText(text) {
-    return (text || '').replace(/\n/g, '<br />');
+    return (text || '').replace(/\n/g, '<br />\n');
   }
 
   async getLocales() {

@@ -50,7 +50,9 @@ class LetterController {
     const request = ctx.request.only(['locale']);
     const locale =
       request.locale ||
-      acceptLanguageParser.pick(['en', 'fr', 'nl'], ctx.request.headers()['accept-language'], { loose: true }) ||
+      acceptLanguageParser.pick(['en', 'fr', 'nl', 'ar', 'tr'], ctx.request.headers()['accept-language'], {
+        loose: true,
+      }) ||
       'en';
     console.log('GET', ctx.params.slug, locale);
     let res;
@@ -85,7 +87,6 @@ class LetterController {
       res = resultSet.rows[0].toJSON();
       res.locales = [res.locale];
       res.type = res.parent_letter_id ? 'update' : 'letter';
-      console.log('>>> return', res);
       return res;
     } else {
       return { error: { code: 404, message: 'not found' } };

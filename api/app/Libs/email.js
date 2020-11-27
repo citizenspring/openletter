@@ -1,7 +1,7 @@
 const Mail = use('Mail');
 
 async function sendEmail(recipient, subject, template, data, options = {}) {
-  const from = options.from || 'support@openletter.earth';
+  const from = options.from || 'Open Letter <support@openletter.earth>';
   const maxAttempts = options.maxAttempts || 10;
 
   let attempt = 0;
