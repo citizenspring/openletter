@@ -44,6 +44,12 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledLabeL = styled.label`
+  @media (prefers-color-scheme: dark) {
+    color: #aaa;
+  }
+`;
+
 const Error = styled.div`
   color: red;
   font-weight: bold;
@@ -134,7 +140,7 @@ class SignatureForm extends Component {
                     onChange={(e) => this.handleChange('share_email', e.target.checked)}
                   />
                 </Box>
-                {t('sign.share_email')}
+                <StyledLabeL>{t('sign.share_email')}</StyledLabeL>
               </Label>
             </Box>
           )}

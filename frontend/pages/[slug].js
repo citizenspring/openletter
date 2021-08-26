@@ -28,6 +28,9 @@ const Title = styled.h1`
   ${typography}
   line-height: 1.2;
   color: black;
+  @media (prefers-color-scheme: dark) {
+    color: white;
+  }
 `;
 
 const Text = styled.div`

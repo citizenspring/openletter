@@ -9,6 +9,9 @@ const Verified = styled.span`
   color: #444;
   cursor: pointer;
   font-size: 12pt;
+  @media (prefers-color-scheme: dark) {
+    color: #888;
+  }
 `;
 
 const TooltipText = styled.div`
