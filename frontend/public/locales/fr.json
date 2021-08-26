@@ -47,7 +47,7 @@
   "home.privacy.3": "Pas de cookies, pas de tracking",
   "letter.signatures.verified": "vérifées",
   "letter.signatures.unverified": "non vérifées",
-  "letter.signatures.unverified.tooltip": "Les signatures non vérifiées apparaissent en gris. Veuillez confirmer votre signature avec le lien envoyé par email. Pour renvoyer le lien de confirmation, signez à nouveau cette lettre avec la même adresse email.",
+  "letter.signatures.unverified.tooltip": "Veuillez confirmer votre signature avec le lien envoyé par email. Pour renvoyer le lien de confirmation, signez à nouveau cette lettre avec la même adresse email.",
   "letter.update": "Mise à jour",
   "link.ourcollective": "notre collectif",
   "notification.pleasewait": "Veuillez patienter",

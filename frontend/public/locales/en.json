@@ -47,7 +47,7 @@
   "home.privacy.3": "No cookies, no tracking",
   "letter.signatures.verified": "verified",
   "letter.signatures.unverified": "unverified",
-  "letter.signatures.unverified.tooltip": "Unverified signatures appear in grey. Please make sure to confirm your signature by clicking on the link in the confirmation email. If you haven't received it, you can sign the letter again. Make sure to check your spam folder.",
+  "letter.signatures.unverified.tooltip": "Please make sure to confirm your signature by clicking on the link in the confirmation email. If you haven't received it, you can sign the letter again using the same email address. Make sure to check your spam folder.",
   "letter.update": "Update",
   "link.ourcollective": "our collective",
   "notification.pleasewait": "Please wait",

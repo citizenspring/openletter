@@ -62,7 +62,10 @@ export default withIntl(({ signatures, t }) => {
   };
 
   // we first copy the array otherwise we keep on reversing the array multiple times
-  const sortedSignatures = signatures.slice().reverse();
+  const sortedSignatures = signatures
+    .filter((s) => s.is_verified)
+    .slice()
+    .reverse();
 
   return (
     <ol reversed>

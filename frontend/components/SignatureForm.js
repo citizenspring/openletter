@@ -37,6 +37,11 @@ const StyledButton = styled.button`
   &[disabled] {
     background: #999;
   }
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid white;
+    color: #f0f0f0;
+    background: #333;
+  }
 `;
 
 const Error = styled.div`

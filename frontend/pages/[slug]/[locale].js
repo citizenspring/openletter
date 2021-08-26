@@ -28,7 +28,6 @@ const Title = styled.h1`
   font-size: 50px;
   ${typography}
   line-height: 1.2;
-  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const H2 = styled.h2`
