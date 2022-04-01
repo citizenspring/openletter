@@ -11,5 +11,3 @@ module.exports = {
     await queryInterface.changeColumn('letters', 'slug', { type: Sequelize.DataTypes.STRING(100) });
   }
 }
-
-module.exports = LetterSchema
