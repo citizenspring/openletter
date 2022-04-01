@@ -1,13 +1,22 @@
 'use strict'
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    await queryInterface.changeColumn('letters', 'title', { type: Sequelize.DataTypes.STRING(256) });
-    await queryInterface.changeColumn('letters', 'slug', { type: Sequelize.DataTypes.STRING(256) });
-  },
+/** @type {import('@adonisjs/lucid/src/Schema')} */
+const Schema = use('Schema')
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.changeColumn('letters', 'title', { type: Sequelize.DataTypes.STRING(100) });
-    await queryInterface.changeColumn('letters', 'slug', { type: Sequelize.DataTypes.STRING(100) });
+class LetterSchema extends Schema {
+  up () {
+    this.table('letters', (table) => {
+      table.string('slug', 255).notNullable().unique().index()
+      table.string('title', 255).notNullable()
+    })
+  }
+
+  down () {
+    this.table('letters', (table) => {
+      table.string('slug', 100).notNullable().unique().index()
+      table.string('title', 100).notNullable()
+    })
   }
 }
+
+module.exports = LetterSchema
