@@ -6,15 +6,15 @@ const Schema = use('Schema')
 class LetterSchema extends Schema {
   up () {
     this.table('letters', (table) => {
-      table.string('slug', 255).notNullable().index().alter()
-      table.string('title', 255).notNullable().alter()
+      table.string('slug', 255).alter()
+      table.string('title', 255).alter()
     })
   }
 
   down () {
     this.table('letters', (table) => {
-      table.string('slug', 100).notNullable().index().alter()
-      table.string('title', 100).notNullable().alter()
+      table.string('slug', 100).alter()
+      table.string('title', 100).alter()
     })
   }
 }
