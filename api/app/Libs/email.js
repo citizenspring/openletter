@@ -17,7 +17,7 @@ async function sendEmail(recipient, subject, template, data, options = {}) {
       });
       console.log('>>> email sent');
     } catch (e) {
-      console.error('error', e);
+      console.error('error', JSON.stringify(e, null, '  '));
       attempt++;
       console.log('>>> new attempt in 10mn');
       setTimeout(makeAttempt, 1000 * 60 * 10);
