@@ -59,6 +59,7 @@ module.exports = {
   sparkpost: {
     driver: 'sparkpost',
     apiKey: Env.get('SPARKPOST_API_KEY'),
+    endpoint: 'https://api.eu.sparkpost.com/api/v1',
     extras: {}
   },
 
