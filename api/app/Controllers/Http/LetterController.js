@@ -196,6 +196,37 @@ class LetterController {
     return res;
   }
 
+  /**
+   * Delete an existing open letter
+   * @param {*} param0
+   */
+  async delete({ request }) {
+    const formData = request.only(['parent_letter_id', 'token']);
+    console.log('>>> LetterController.delete', formData);
+
+    const parentLetter = await Letter.find(formData.parent_letter_id);
+
+    if (!parentLetter) {
+      return { error: { code: 404, message: 'This open letter cannot be found in the database' } };
+    }
+
+    if (formData.token !== parentLetter.token) {
+      return { error: { code: 403, message: 'Unauthorized: Invalid token' } };
+    }
+
+    await parentLetter.updates().delete();
+    await parentLetter.signatures().delete();
+    await parentLetter.delete();
+
+    return {
+      code: 200,
+      status: 'success',
+      action: 'delete',
+      letter_url: `https://openletter.earth/${parentLetter.slug}`,
+      message: `Open letter removed successfully`,
+    };
+  }
+
   async sign({ request }) {
     const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email']);
 

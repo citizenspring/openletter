@@ -69,7 +69,13 @@ export async function getServerSideProps({ params, req, res }) {
 
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/featured`;
-  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] } });
+  props.featuredLetters = [];
+  let result;
+  try {
+    result = await fetch(apiCall);
+  } catch (e) {
+    console.error('Unable fetch', e);
+  }
 
   try {
     const response = await result.json();
