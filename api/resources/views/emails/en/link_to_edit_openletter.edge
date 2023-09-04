@@ -4,9 +4,11 @@
   </head>
   <body>
 <p>
-  Your open letter has been published: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>. To post an update, click on the button below
+  Your open letter has been published: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>. 
 </p>
-
+<p>
+  To post an update, click on the button below
+</p>
 <p>
   <center>
     <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/update?token={{letter.token}}" style="text-decoration: none;display:inline-block;width:220px;font-size: 12pt; font-family: Arial; background: #111; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box;">
@@ -14,9 +16,12 @@
     </a>
   </center>
 </p>
+<p>
+  To permanently delete your open letter, click on this link: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/delete?token={{letter.token}}">remove my open letter</a>.
+</p>
 
 <h3>Important notes ☝️</h3>
-<li>Anyone with this link can post an update to this open letter, so be cautious before forwarding this email!</li>
+<li>Anyone with this email can permanently delete this open letter or post an update, so be cautious before forwarding this email!</li>
 <li>Only the people who signed that open letter and that have opted in to receive updates will be notified when you post an update</li>
 <li>If you open letter is in multiple languages, make sure that you post your updates in the same languages</li>
 

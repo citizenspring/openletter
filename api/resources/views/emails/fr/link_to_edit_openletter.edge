@@ -4,7 +4,10 @@
   </head>
   <body>
 <p>
-  Votre lettre ouverte a été publiée: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>. Pour publier une mise à jour, cliquez sur le bouton ci-dessous
+  Votre lettre ouverte a été publiée: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}">{{letter.title}}</a>. 
+</p>
+<p>
+  Pour publier une mise à jour, cliquez sur le bouton ci-dessous:
 </p>
 
 <p>
@@ -13,6 +16,10 @@
       Publier une mise à jour
     </a>
   </center>
+</p>
+
+<p>
+  Pour supprimer de manière permanente votre lettre ouverte, cliquez sur ce lien: <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/delete?token={{letter.token}}">supprimer ma lettre ouverte</a>.
 </p>
 
 <h3>Importantes notes ☝️</h3>
