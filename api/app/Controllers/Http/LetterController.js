@@ -47,7 +47,7 @@ class LetterController {
       .with('updates')
       .fetch();
 
-    const request = ctx.request.only(['locale']);
+    const request = ctx.request.only(['locale', 'limit']);
     const locale =
       request.locale ||
       acceptLanguageParser.pick(['en', 'fr', 'nl', 'ar', 'tr'], ctx.request.headers()['accept-language'], {
@@ -85,9 +85,9 @@ class LetterController {
         return a.created_at < b.created_at ? -1 : 1;
       });
       stats.total = signatures.length;
-      res.stats = stats;
       res = letters[index].toJSON();
-      res.signatures = signatures.slice(0, ctx.params.limit || 1000);
+      res.stats = stats;
+      res.signatures = signatures.slice(0, ctx.request.limit || 1000);
       res.locales = locales;
       res.type = res.parent_letter_id ? 'update' : 'letter';
       if (res.updates) {
