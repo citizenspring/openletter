@@ -58,13 +58,25 @@ class LetterController {
     let res;
     if (resultSet.rows.length > 1) {
       const letters = resultSet.rows;
+      const signatures_stats = {
+        verified: 0,
+        unverified: 0,
+        total: 0,
+      };
 
       let index = 0;
       const signatures = [];
       const locales = [];
       letters.map((l, i) => {
         const letter = l.toJSON();
-        letter.signatures.map((s) => signatures.push(s));
+        letter.signatures.map((s) => {
+          if (s.is_verified) {
+            signatures_stats.verified++;
+          } else {
+            signatures_stats.unverified++;
+          }
+          signatures.push(s);
+        });
         locales.push(letter.locale);
         if (letter.locale === locale) index = i;
       });
@@ -72,9 +84,10 @@ class LetterController {
       signatures.sort((a, b) => {
         return a.created_at < b.created_at ? -1 : 1;
       });
-
+      stats.total = signatures.length;
+      res.stats = stats;
       res = letters[index].toJSON();
-      res.signatures = signatures;
+      res.signatures = signatures.slice(0, ctx.params.limit || 1000);
       res.locales = locales;
       res.type = res.parent_letter_id ? 'update' : 'letter';
       if (res.updates) {
