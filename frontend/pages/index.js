@@ -47,7 +47,7 @@ export class Index extends React.Component {
               <Card key={`card-${i}`} letter={letter} />
             ))}
           </div>
-          <section className="mt-20">
+          {/* <section className="mt-20">
             <h2 className="text-2xl font-bold mb-8">Our Impact</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
               <div>
@@ -63,7 +63,7 @@ export class Index extends React.Component {
                 <p className="text-lg text-gray-500">signatures</p>
               </div>
             </div>
-          </section>
+          </section> */}
           <section className="mt-20">
             <h2 className="text-2xl font-bold mb-8">{t('home.howitworks')}</h2>
             <ol className="list-decimal list-inside space-y-2">
@@ -143,7 +143,7 @@ export async function getServerSideProps({ params, req, res }) {
   const props = { headers: req.headers };
   props.latestLetters = await fetchFromAPI('/letters/');
   props.featuredLetters = await fetchFromAPI('/letters/featured');
-  props.stats = await fetchFromAPI('/stats');
+  // props.stats = await fetchFromAPI('/stats');
 
   console.log('>>> props', props);
 
