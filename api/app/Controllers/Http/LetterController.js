@@ -13,26 +13,30 @@ async function getLetters(featured = false) {
   const Database = use('Database');
 
   const result = await Database.raw(`
-    SELECT min(letters.created_at) as created_at, letters.slug, min(letters.title) as title, 
-      substring(min(letters.text), 0, 100+STRPOS(min(substring(letters.text, 100)), '\n')) as text,
-      min(locale) as locale,
-      string_agg(distinct(letters.locale),',') as locales,
-      COUNT(signatures.id) as total_signatures,
-      min(image) as image,
-      min(featured_at) as featured_at
-    FROM letters
-    LEFT JOIN signatures ON letters.id = signatures.letter_id
-    WHERE letters.id IN (
-      SELECT letter_id
-      FROM signatures
-      GROUP BY letter_id
-      HAVING COUNT(*) >= 10
-    )
+    SELECT 
+      min(l.created_at) as created_at, 
+      min(l.slug) as slug, 
+      min(l.title) as title,
+      min(l.text) as text,
+      min(l.locale) as locale,
+      count(*) as total_signatures,
+      min(l.image) as image,
+      min(l.featured_at) as featured_at
+    FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
+    WHERE l.created_at >= NOW() - INTERVAL '20 days'
     ${featured ? 'AND featured_at IS NOT NULL' : ''}
-    GROUP BY letters.slug
-    ORDER BY min(letters.${featured ? 'featured_at' : 'created_at'}) DESC
+    GROUP BY letter_id
+    HAVING COUNT(*) >= 10
+    ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
     LIMIT 10;
   `);
+  result.rows = result.rows.map((row) => {
+    row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);
+    if (row.text.length > 500) {
+      row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
+    }
+    return row;
+  });
   return result.rows;
 }
 

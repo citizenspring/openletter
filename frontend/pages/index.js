@@ -43,9 +43,7 @@ export class Index extends React.Component {
         <main className="container mx-auto px-6 py-12">
           <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredLetters.map((letter, i) => (
-              <Card key={`card-${i}`} letter={letter} />
-            ))}
+            {featuredLetters && featuredLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
           </div>
           {/* <section className="mt-20">
             <h2 className="text-2xl font-bold mb-8">Our Impact</h2>
@@ -123,6 +121,7 @@ export class Index extends React.Component {
 
 async function fetchFromAPI(path) {
   let result, response;
+  // console.log('>>> fetchFromAPI', process.env.API_URL, path);
   try {
     result = await fetch(`${process.env.API_URL}${path}`);
   } catch (e) {
@@ -132,6 +131,7 @@ async function fetchFromAPI(path) {
     response = await result.json();
   } catch (e) {
     console.error('Unable to parse JSON returned by the API', e);
+    return null;
   }
   return response;
 }
