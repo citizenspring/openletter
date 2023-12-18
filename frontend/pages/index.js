@@ -27,26 +27,31 @@ export class Index extends React.Component {
 
     return (
       <>
-        <header className="flex items-center justify-between px-6 py-4">
-          <Link href="#">
-            <h1 className="text-3xl font-bold">openletter.earth</h1>
-          </Link>
-          <div className="flex items-center">
-            <Button variant="link">
+        <div className="flex items-center justify-center py-4">
+          <Footer />
+          <div className="flex content-center justify-center">
+            {/* <Button variant="link">
               <Link href="/create">Create an Open Letter</Link>
             </Button>
-            {/* <Button className="ml-4" variant="outline">
+            <Button className="ml-4" variant="outline">
               Switch to Dark Mode
             </Button> */}
           </div>
-        </header>
+        </div>
         <main className="container mx-auto px-6 py-12">
-          <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredLetters && featuredLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
-            {latestLetters && latestLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
-          </div>
-          {/* <section className="mt-20">
+          <section>
+            <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {featuredLetters && featuredLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+            </div>
+          </section>
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {latestLetters && latestLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+            </div>
+          </section>
+          {/* <section className="mt-16">
             <h2 className="text-2xl font-bold mb-8">Our Impact</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
               <div>
@@ -63,7 +68,7 @@ export class Index extends React.Component {
               </div>
             </div>
           </section> */}
-          <section className="mt-20">
+          <section className="mt-16">
             <h2 className="text-2xl font-bold mb-8">{t('home.howitworks')}</h2>
             <ol className="list-decimal list-inside space-y-2">
               <li>
@@ -84,7 +89,7 @@ export class Index extends React.Component {
             <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.demo')}</h2>
             <img src="/images/openletter-demo.gif" style={{ width: '100%', maxWidth: '600px' }} />
           </section>
-          <section className="mt-20">
+          <section className="mt-16">
             <Faq />
           </section>
         </main>
@@ -143,7 +148,7 @@ export async function getServerSideProps({ params, req, res }) {
 
   const props = { headers: req.headers };
   props.latestLetters = await fetchFromAPI('/letters/');
-  // props.featuredLetters = await fetchFromAPI('/letters/featured');
+  props.featuredLetters = await fetchFromAPI('/letters/featured');
   // props.stats = await fetchFromAPI('/stats');
 
   console.log('>>> props', props);

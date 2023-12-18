@@ -7,7 +7,6 @@ function Index({ letters }) {
   return (
     <div>
       <h1>Latest open letters</h1>
-      <p>OpenLetter currently holds {letters.length} open letters</p>
       <ul>
         {letters.map((letter) => (
           <li>
