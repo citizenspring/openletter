@@ -2,6 +2,7 @@ import App from 'next/app';
 import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { IntlContext, getLocaleFromHeaders } from '../lib/i18n';
+import '../styles/tailwind.css';
 
 const theme = {
   fontSizes: ['12pt', '16pt', '24pt', '32pt', '48pt', '64pt'],
@@ -27,25 +28,26 @@ export const GlobalStyle = createGlobalStyle`
     url("fonts/SignPainter.svg#SignPainter") format("svg"); /* iOS 4.1- */
   }
 
-  body {
+  body .letter {
     font-family: Baskerville;
     font-size: 14pt;
     line-height: 1.5;
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      color: #F0F0F0;
-      background: #111;
-    }
-    a {
-      color: red;
-    }
-    input {
-      background: #333;
-      color: #f0f0f0 !important;
-    }
-  }
+
+  // @media (prefers-color-scheme: dark) {
+  //   body {
+  //     color: #F0F0F0;
+  //     background: #111;
+  //   }
+  //   a {
+  //     color: red;
+  //   }
+  //   input {
+  //     background: #333;
+  //     color: #f0f0f0 !important;
+  //   }
+  // }
 `;
 
 class MyApp extends App {
