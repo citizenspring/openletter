@@ -41,9 +41,10 @@ export class Index extends React.Component {
           </div>
         </header>
         <main className="container mx-auto px-6 py-12">
-          <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
+          <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredLetters && featuredLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+            {latestLetters && latestLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
           </div>
           {/* <section className="mt-20">
             <h2 className="text-2xl font-bold mb-8">Our Impact</h2>
@@ -141,8 +142,8 @@ export async function getServerSideProps({ params, req, res }) {
   res.setHeader('Vary', 'Accept-Language');
 
   const props = { headers: req.headers };
-  // props.latestLetters = await fetchFromAPI('/letters/');
-  props.featuredLetters = await fetchFromAPI('/letters/featured');
+  props.latestLetters = await fetchFromAPI('/letters/');
+  // props.featuredLetters = await fetchFromAPI('/letters/featured');
   // props.stats = await fetchFromAPI('/stats');
 
   console.log('>>> props', props);
