@@ -18,11 +18,17 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
 
   return (
     <div>
-      <Select onChange={handleChange} width={[1, 1 / 2, 1 / 4]} fontSize={[2, 2, 1]} mb={3} color={'#555'}>
+      <Select
+        defaultValue={currentLocale}
+        onChange={handleChange}
+        width={[1, 1 / 2, 1 / 4]}
+        fontSize={[2, 2, 1]}
+        mb={3}
+        color={'#555'}
+      >
         {locales.map((l) => {
-          const selected = l === currentLocale;
           return (
-            <option value={l} selected={selected}>
+            <option key={l} value={l}>
               {availableLocales[l]}
             </option>
           );

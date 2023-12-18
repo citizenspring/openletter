@@ -3,12 +3,6 @@ import { withIntl } from '../lib/i18n';
 import styled from 'styled-components';
 import { Flex, Box } from 'rebass';
 
-const Signatures = styled.ol`
-  @media (prefers-color-scheme: dark) {
-    color: #888;
-  }
-`;
-
 const Unverified = styled.span`
   color: #888;
   cursor: pointer;
@@ -71,10 +65,10 @@ export default withIntl(({ start, signatures, t }) => {
   const sortedSignatures = signatures.filter((s) => s.is_verified).slice();
 
   return (
-    <Signatures start={start || 1}>
+    <ol start={start || 1} className="dark:text-gray-300">
       {sortedSignatures.map((signature, i) => (
         <li key={`signature-${(start || 1) + i}`}>{printSignature(signature)}</li>
       ))}
-    </Signatures>
+    </ol>
   );
 });

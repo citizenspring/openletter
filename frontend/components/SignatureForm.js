@@ -37,17 +37,6 @@ const StyledButton = styled.button`
   &[disabled] {
     background: #999;
   }
-  @media (prefers-color-scheme: dark) {
-    border: 1px solid white;
-    color: #f0f0f0;
-    background: #333;
-  }
-`;
-
-const StyledLabeL = styled.label`
-  @media (prefers-color-scheme: dark) {
-    color: #aaa;
-  }
 `;
 
 const Error = styled.div`
@@ -140,13 +129,18 @@ class SignatureForm extends Component {
                     onChange={(e) => this.handleChange('share_email', e.target.checked)}
                   />
                 </Box>
-                <StyledLabeL>{t('sign.share_email')}</StyledLabeL>
+                <label>{t('sign.share_email')}</label>
               </Label>
             </Box>
           )}
         </Flex>
         <Box my={2} width={1}>
-          <StyledButton disabled={this.state.loading}>{t('sign.button')}</StyledButton>
+          <StyledButton
+            className="dark:bg-white dark:text-white dark:border-white border-2"
+            disabled={this.state.loading}
+          >
+            {t('sign.button')}
+          </StyledButton>
         </Box>
         {error && <Error>{error.message}</Error>}
       </form>

@@ -21,7 +21,7 @@ export default withIntl(({ t, updates }) => {
   return (
     <>
       {updates.map((update, i) => (
-        <Box my={5} id={`update${i + 1}`}>
+        <Box my={5} id={`update${i + 1}`} key={`update${i + 1}`}>
           <strong>
             {t('letter.update')} {moment(update.created_at).format('DD MMMM YYYY')}
           </strong>

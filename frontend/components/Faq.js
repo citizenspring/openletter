@@ -15,30 +15,40 @@ const A = styled.div`
 
 export default withIntl(({ t }) => (
   <div>
-    <h2>{t('faq')}</h2>
-    <Q>{t('faq.q1')}</Q>
-    <A>{t('faq.q1.response')}</A>
-
-    <Q>{t('faq.q2')}</Q>
-    <A>{t('faq.q2.response')}</A>
-
-    <Q>{t('faq.q3')}</Q>
-    <A>{t('faq.q3.response')}</A>
-
-    <Q>{t('faq.q4')}</Q>
-    <A>{t('faq.q4.response')}</A>
-
-    <Q>{t('faq.q5')}</Q>
-    <A>{t('faq.q5.response')}</A>
-
-    <Q>{t('faq.q6')}</Q>
-    <A>
-      <a href="https://opencollective.com/openletter/conversations">{t('faq.q6.response')}</a>
-    </A>
-
-    <Q>{t('faq.q7')}</Q>
-    <A>
-      {t('faq.q7.response')} <a href="https://opencollective.com/openletter">{t('link.ourcollective')}.</a>
-    </A>
+    <h2 className="text-2xl font-bold mb-8">{t('faq')}</h2>
+    <div className="space-y-8">
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q1')}</summary>
+        <p className="pt-2">{t('faq.q1.response')}</p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q2')}</summary>
+        <p className="pt-2">{t('faq.q2.response')}</p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q3')}</summary>
+        <p className="pt-2">{t('faq.q3.response')}</p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q4')}</summary>
+        <p className="pt-2">{t('faq.q4.response')}</p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q5')}</summary>
+        <p className="pt-2">{t('faq.q5.response')}</p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q6')}</summary>
+        <p className="pt-2">
+          <a href="https://opencollective.com/openletter/conversations">{t('faq.q6.response')}</a>
+        </p>
+      </details>
+      <details>
+        <summary className="cursor-pointer text-lg font-medium">{t('faq.q7')}</summary>
+        <p className="pt-2">
+          {t('faq.q7.response')} <a href="https://opencollective.com/openletter">{t('link.ourcollective')}.</a>
+        </p>
+      </details>
+    </div>
   </div>
 ));

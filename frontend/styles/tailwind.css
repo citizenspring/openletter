@@ -13,3 +13,7 @@ a:hover {
 img {
   @apply my-4;
 }
+
+body {
+  @apply dark:bg-gray-950 dark:text-gray-100;
+}

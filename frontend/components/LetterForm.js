@@ -42,6 +42,7 @@ const StyledButton = styled.button`
   font-family: 'Arial';
   background: #111;
   color: white;
+  border: 2px solid white;
   padding: 10px;
   border-radius: 5px;
   box-sizing: border-box;
@@ -149,11 +150,13 @@ class LetterForm extends Component {
             {this.state.form.length > 1 && (
               <Flex justifyContent="space-between">
                 <Box>
-                  <select onChange={(e) => this.handleChange('locale', e.target.value, index)}>
+                  <select
+                    defaultValue={form.locale}
+                    onChange={(e) => this.handleChange('locale', e.target.value, index)}
+                  >
                     {Object.keys(availableLocales).map((l) => {
-                      const selected = form.locale === l;
                       return (
-                        <option value={l} selected={selected}>
+                        <option key={l} value={l}>
                           {availableLocales[l]}
                         </option>
                       );
