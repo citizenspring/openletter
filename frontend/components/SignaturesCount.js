@@ -60,38 +60,38 @@ const Tooltip = ({ label, tooltip, children }) => {
   );
 };
 
-export default withIntl(({ signatures, t }) => {
-  const stats = {
-    signatures: {
-      verified: 0,
-      unverified: 0,
-      total: 0,
-    },
+export default withIntl(({ signatures, t, stats }) => {
+  const signatures_stats = stats || {
+    verified: 0,
+    unverified: 0,
+    total: 0,
   };
 
-  signatures.map((s) => {
-    stats.signatures.total++;
-    if (s.is_verified) {
-      stats.signatures.verified++;
-    } else {
-      stats.signatures.unverified++;
-    }
-  });
+  if (signatures_stats.total == 0) {
+    signatures.map((s) => {
+      signatures_stats.total++;
+      if (s.is_verified) {
+        signatures_stats.verified++;
+      } else {
+        signatures_stats.unverified++;
+      }
+    });
+  }
 
   return (
     <div>
       <Box mx={1}>
         <BigNumber fontSize={[2, 3, 4]}>
-          <NumberFormat value={stats.signatures.total} displayType={'text'} thousandSeparator={true} />
+          <NumberFormat value={signatures_stats.total} displayType={'text'} thousandSeparator={true} />
         </BigNumber>
         <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
           signatures
         </BigNumberLabel>
         <Box>
-          {stats.signatures.total != stats.signatures.verified && (
+          {signatures_stats.total != signatures_stats.verified && (
             <Verified>
               <Tooltip tooltip={t('letter.signatures.unverified.tooltip')}>
-                <NumberFormat value={stats.signatures.verified} displayType={'text'} thousandSeparator={true} />
+                <NumberFormat value={signatures_stats.verified} displayType={'text'} thousandSeparator={true} />
                 {` ${t('letter.signatures.verified')}`}
               </Tooltip>
             </Verified>

@@ -17,6 +17,8 @@ import moment from 'moment';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
+import url from 'url';
+import Link from 'next/link';
 
 const Page = styled.div`
   max-width: 960px;
@@ -36,6 +38,10 @@ const H2 = styled.h2`
 
 const Text = styled.div`
   max-width: 80ex;
+`;
+
+const ViewMore = styled.div`
+  text-align: center;
 `;
 
 const BigNumber = styled.div`
@@ -127,7 +133,7 @@ class Letter extends Component {
           {letter.image && <meta name="twitter:image" content={letter.image} />}
           {letter.image && <meta name="og:image" content={letter.image} />}
         </Head>
-        <Page>
+        <Page className="letter">
           {status === 'created' && (
             <Notification
               icon="signed"
@@ -153,7 +159,7 @@ class Letter extends Component {
             </Box>
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>
-                <SignaturesCount signatures={letter.signatures} />
+                <SignaturesCount signatures={letter.signatures} stats={letter.signatures_stats} />
                 {[null, 'created', 'error'].includes(status) && (
                   <SignatureForm
                     letter={letter}
@@ -162,7 +168,41 @@ class Letter extends Component {
                   />
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
-                <Signatures signatures={letter.signatures} />
+                {(letter.signatures_stats.verified <= 100 || !letter.first_verified_signatures) && (
+                  <Signatures signatures={letter.signatures} />
+                )}
+                {letter.signatures_stats.verified > 100 && letter.first_verified_signatures && (
+                  <>
+                    <Signatures
+                      signatures={letter.first_verified_signatures}
+                      latest={letter.latest_verified_signatures}
+                    />
+                    <ViewMore className="my-4">
+                      <div>
+                        ...
+                        <br />
+                        <NumberFormat
+                          value={
+                            letter.signatures_stats.verified -
+                            letter.first_verified_signatures.length -
+                            letter.latest_verified_signatures.length
+                          }
+                          displayType={'text'}
+                          thousandSeparator={true}
+                        />{' '}
+                        more <br />
+                        verified signatures
+                      </div>
+                      <div>
+                        <Link href={`/${letter.slug}/${letter.locale}?limit=0`}>view all</Link>
+                      </div>
+                    </ViewMore>
+                    <Signatures
+                      start={letter.signatures_stats.verified - letter.latest_verified_signatures.length + 1}
+                      signatures={letter.latest_verified_signatures}
+                    />
+                  </>
+                )}
               </Box>
             )}
           </Flex>
@@ -177,7 +217,9 @@ export async function getServerSideProps({ params, req, res }) {
   res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
 
   const props = { headers: req.headers };
-  const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}`;
+  const parsedUrl = url.parse(req.url, true);
+  const limit = parsedUrl.query.limit || 100;
+  const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${params.locale}&limit=${limit}`;
   const result = await fetch(apiCall);
 
   try {

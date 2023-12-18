@@ -44,7 +44,7 @@ const Tooltip = ({ label, tooltip }) => {
   );
 };
 
-export default withIntl(({ signatures, t }) => {
+export default withIntl(({ start, signatures, t }) => {
   if (!signatures || signatures.length === 0) {
     return <div>{t('signatures.first')}</div>;
   }
@@ -68,15 +68,12 @@ export default withIntl(({ signatures, t }) => {
   };
 
   // we first copy the array otherwise we keep on reversing the array multiple times
-  const sortedSignatures = signatures
-    .filter((s) => s.is_verified)
-    .slice()
-    .reverse();
+  const sortedSignatures = signatures.filter((s) => s.is_verified).slice();
 
   return (
-    <Signatures reversed>
+    <Signatures start={start || 1}>
       {sortedSignatures.map((signature, i) => (
-        <li key={`signature-${i}`}>{printSignature(signature)}</li>
+        <li key={`signature-${(start || 1) + i}`}>{printSignature(signature)}</li>
       ))}
     </Signatures>
   );

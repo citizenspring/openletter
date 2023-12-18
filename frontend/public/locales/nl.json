@@ -45,9 +45,9 @@
   "home.privacy.1": "Meld je aan met je naam of anoniem",
   "home.privacy.2": "We registreren je e-mailadres standaard niet in onze database",
   "home.privacy.3": "Geen cookies, geen tracking",
-  "letter.signatures.verified": "geverifieerd",
   "letter.signatures.unverified": "niet geverifieerd",
   "letter.signatures.unverified.tooltip": "Zorg ervoor dat u uw handtekening bevestigt door op de link in de bevestigingsmail te klikken. Als u deze niet heeft ontvangen, kunt u de brief opnieuw ondertekenen. Zorg ervoor dat u uw spam-map controleert.",
+  "letter.signatures.verified": "geverifieerd",
   "letter.update": "Update",
   "link.ourcollective": "ons collectief",
   "notification.pleasewait": "Wacht alsjeblieft",
@@ -66,5 +66,8 @@
   "sign.organization": "organisatie",
   "sign.share_email": "Stuur me een e-mail om me op de hoogte te houden van de resultaten van deze open brief.",
   "signature.unverified.tooltip": "Het e-mailadres werd nog niet bevestigd. Bevestig je handtekening via de mail die je ontving, of onderteken opnieuw om een nieuwe mail te ontvangen.",
-  "signatures.first": "Wees de eerste die deze brief ondertekent"
+  "signatures.first": "Wees de eerste die deze brief ondertekent",
+  "signatures.more": "more",
+  "signatures.verified": "verified signatures",
+  "signatures.view_all": "view all"
 }

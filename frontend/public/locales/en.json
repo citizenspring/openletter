@@ -32,10 +32,11 @@
   "faq.q6.response": "Start a conversation on our collective.",
   "faq.q7": "How to contribute?",
   "faq.q7.response": "You can contribute to our project on ",
-  "footer.andsignit": "and co-sign it",
+  "footer.andsignit": "and sign it together",
   "footer.create": "Create an open letter",
   "home.demo": "Demo",
   "home.featured": "Featured",
+  "home.latest": "Latest",
   "home.howitworks": "How it works",
   "home.howitworks.1": "Create a letter",
   "home.howitworks.2": "Sign it",
@@ -45,9 +46,9 @@
   "home.privacy.1": "Sign with your name or anonymously",
   "home.privacy.2": "By default, we don't record your email address in our database",
   "home.privacy.3": "No cookies, no tracking",
-  "letter.signatures.verified": "verified",
   "letter.signatures.unverified": "unverified",
   "letter.signatures.unverified.tooltip": "Please make sure to confirm your signature by clicking on the link in the confirmation email. If you haven't received it, you can sign the letter again using the same email address. Make sure to check your spam folder.",
+  "letter.signatures.verified": "verified",
   "letter.update": "Update",
   "link.ourcollective": "our collective",
   "notification.pleasewait": "Please wait",
@@ -66,5 +67,8 @@
   "sign.organization": "organization",
   "sign.share_email": "Send me an email to keep me posted of the results of this open letter",
   "signature.unverified.tooltip": "Email address hasn't been confirmed yet. Please confirm from the email you have received or sign this letter again to receive a new confirmation email.",
-  "signatures.first": "Be the first to sign this letter"
+  "signatures.first": "Be the first to sign this letter",
+  "signatures.more": "more",
+  "signatures.verified": "verified signatures",
+  "signatures.view_all": "view all"
 }

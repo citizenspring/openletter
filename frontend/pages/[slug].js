@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
 import Footer from '../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components';
 import { typography, space } from 'styled-system';
@@ -16,6 +17,7 @@ import moment from 'moment';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
+import Link from 'next/link';
 
 const Page = styled.div`
   max-width: 960px;
@@ -35,6 +37,10 @@ const Title = styled.h1`
 
 const Text = styled.div`
   max-width: 80ex;
+`;
+
+const ViewMore = styled.div`
+  text-align: center;
 `;
 
 const IMG = styled.img`
@@ -106,7 +112,7 @@ class Letter extends Component {
             </>
           )}
         </Head>
-        <Page>
+        <Page className="letter">
           {status === 'created' && (
             <Notification
               icon="signed"
@@ -123,16 +129,18 @@ class Letter extends Component {
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
               {letter.image && <IMG src={letter.image} />}
-              <Text>
-                <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
-                  {letter.text}
-                </ReactMarkdown>
-              </Text>
+              {letter.text && letter.text != 'null' && (
+                <Text>
+                  <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
+                    {letter.text}
+                  </ReactMarkdown>
+                </Text>
+              )}
               <Updates updates={letter.updates} />
             </Box>
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>
-                <SignaturesCount signatures={letter.signatures} />
+                <SignaturesCount signatures={letter.signatures} stats={letter.signatures_stats} />
                 {[null, 'created', 'error'].includes(status) && (
                   <SignatureForm
                     letter={letter}
@@ -141,7 +149,41 @@ class Letter extends Component {
                   />
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
-                <Signatures signatures={letter.signatures} />
+                {(letter.signatures_stats.verified <= 100 || !letter.first_verified_signatures) && (
+                  <Signatures signatures={letter.signatures} />
+                )}
+                {letter.signatures_stats.verified > 100 && letter.first_verified_signatures && (
+                  <>
+                    <Signatures
+                      signatures={letter.first_verified_signatures}
+                      latest={letter.latest_verified_signatures}
+                    />
+                    <ViewMore className="my-4">
+                      <div>
+                        ...
+                        <br />
+                        <NumberFormat
+                          value={
+                            letter.signatures_stats.verified -
+                            letter.first_verified_signatures.length -
+                            letter.latest_verified_signatures.length
+                          }
+                          displayType={'text'}
+                          thousandSeparator={true}
+                        />{' '}
+                        {t('signatures.more')} <br />
+                        {t('signatures.verified')}
+                      </div>
+                      <div>
+                        <Link href={`/${letter.slug}/${letter.locale}?limit=0`}>view all</Link>
+                      </div>
+                    </ViewMore>
+                    <Signatures
+                      start={letter.signatures_stats.verified - letter.latest_verified_signatures.length + 1}
+                      signatures={letter.latest_verified_signatures}
+                    />
+                  </>
+                )}
               </Box>
             )}
           </Flex>

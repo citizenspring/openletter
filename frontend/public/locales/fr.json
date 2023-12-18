@@ -45,9 +45,9 @@
   "home.privacy.1": "Signez avec votre nom ou anonymement",
   "home.privacy.2": "Par défaut, on n'enregistre pas votre adresse email dans notre base de données",
   "home.privacy.3": "Pas de cookies, pas de tracking",
-  "letter.signatures.verified": "vérifées",
   "letter.signatures.unverified": "non vérifées",
   "letter.signatures.unverified.tooltip": "Veuillez confirmer votre signature avec le lien envoyé par email. Pour renvoyer le lien de confirmation, signez à nouveau cette lettre avec la même adresse email.",
+  "letter.signatures.verified": "vérifées",
   "letter.update": "Mise à jour",
   "link.ourcollective": "notre collectif",
   "notification.pleasewait": "Veuillez patienter",
@@ -66,5 +66,8 @@
   "sign.organization": "organisation",
   "sign.share_email": "Envoyez-moi un email pour me tenir au courant des résultats de cette lettre ouverte",
   "signature.unverified.tooltip": "L'adresse email n'a pas encore été confirmée. Veuillez la confirmer en cliquant sur le lien envoyé par email. Pour renvoyer le lien de confirmation, signez à nouveau cette lettre avec la même adresse email.",
-  "signatures.first": "Soyez le/la premier.e à signer cette lettre"
+  "signatures.first": "Soyez le/la premier.e à signer cette lettre",
+  "signatures.more": "signatures vérifiées",
+  "signatures.verified": "en plus",
+  "signatures.view_all": "toutes les voir"
 }
