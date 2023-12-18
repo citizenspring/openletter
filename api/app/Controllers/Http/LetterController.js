@@ -9,14 +9,36 @@ Logger.level = 'info';
 
 const { sendEmail } = use('App/Libs/email');
 
+async function getLetters(featured = false) {
+  const Database = use('Database');
+
+  const result = await Database.raw(`
+    SELECT min(letters.created_at) as created_at, letters.slug, min(letters.title) as title, 
+      substring(min(letters.text), 0, 100+STRPOS(min(substring(letters.text, 100)), '\n')) as text,
+      min(locale) as locale,
+      string_agg(distinct(letters.locale),',') as locales,
+      COUNT(signatures.id) as total_signatures,
+      min(image) as image,
+      min(featured_at) as featured_at
+    FROM letters
+    LEFT JOIN signatures ON letters.id = signatures.letter_id
+    WHERE letters.id IN (
+      SELECT letter_id
+      FROM signatures
+      GROUP BY letter_id
+      HAVING COUNT(*) >= 10
+    )
+    ${featured ? 'AND featured_at IS NOT NULL' : ''}
+    GROUP BY letters.slug
+    ORDER BY min(letters.${featured ? 'featured_at' : 'created_at'}) DESC
+    LIMIT 10;
+  `);
+  return result.rows;
+}
+
 class LetterController {
   async index() {
-    return await Letter.query()
-      .with('signatures')
-      .setHidden(['text', 'updated_at'])
-      .orderBy('id', 'desc')
-      .limit(10)
-      .fetch();
+    return await getLetters();
   }
 
   async featured({ request }) {
@@ -26,13 +48,8 @@ class LetterController {
       acceptLanguageParser.pick(['en', 'fr', 'nl'], request.headers()['accept-language'], { loose: true }) ||
       'en';
     console.log('GET', '/letters/featured', locale);
-    return await Letter.query()
-      .where('locale', locale)
-      .whereNotNull('featured_at')
-      .setHidden(['text', 'updated_at'])
-      .orderBy('id', 'desc')
-      .limit(10)
-      .fetch();
+
+    return await getLetters(true);
   }
 
   async get(ctx) {
@@ -48,6 +65,7 @@ class LetterController {
       .fetch();
 
     const request = ctx.request.only(['locale', 'limit']);
+    const limit = request.limit === '0' ? null : parseInt(request.limit, 10) || 1000;
     const locale =
       request.locale ||
       acceptLanguageParser.pick(['en', 'fr', 'nl', 'ar', 'tr'], ctx.request.headers()['accept-language'], {
@@ -56,7 +74,7 @@ class LetterController {
       'en';
     console.log('GET', ctx.params.slug, locale);
     let res;
-    if (resultSet.rows.length > 1) {
+    if (resultSet.rows.length > 0) {
       const letters = resultSet.rows;
       const signatures_stats = {
         verified: 0,
@@ -67,10 +85,12 @@ class LetterController {
       let index = 0;
       const signatures = [];
       const locales = [];
+      const verified_signatures = [];
       letters.map((l, i) => {
         const letter = l.toJSON();
         letter.signatures.map((s) => {
           if (s.is_verified) {
+            verified_signatures.push(s);
             signatures_stats.verified++;
           } else {
             signatures_stats.unverified++;
@@ -84,10 +104,15 @@ class LetterController {
       signatures.sort((a, b) => {
         return a.created_at < b.created_at ? -1 : 1;
       });
-      stats.total = signatures.length;
+      signatures_stats.total = signatures.length;
       res = letters[index].toJSON();
-      res.stats = stats;
-      res.signatures = signatures.slice(0, ctx.request.limit || 1000);
+      res.signatures_stats = signatures_stats;
+      res.signatures = limit ? signatures.slice(0, limit) : signatures;
+
+      if (limit) {
+        res.first_verified_signatures = verified_signatures.slice(0, 20);
+        res.latest_verified_signatures = verified_signatures.slice(-20);
+      }
       res.locales = locales;
       res.type = res.parent_letter_id ? 'update' : 'letter';
       if (res.updates) {
