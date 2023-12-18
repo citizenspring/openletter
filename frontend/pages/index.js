@@ -141,7 +141,7 @@ export async function getServerSideProps({ params, req, res }) {
   res.setHeader('Vary', 'Accept-Language');
 
   const props = { headers: req.headers };
-  props.latestLetters = await fetchFromAPI('/letters/');
+  // props.latestLetters = await fetchFromAPI('/letters/');
   props.featuredLetters = await fetchFromAPI('/letters/featured');
   // props.stats = await fetchFromAPI('/stats');
 
