@@ -23,8 +23,7 @@ async function getLetters(featured = false) {
       min(l.image) as image,
       min(l.featured_at) as featured_at
     FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
-    WHERE l.created_at >= NOW() - INTERVAL '20 days'
-    ${featured ? 'AND featured_at IS NOT NULL' : ''}
+    WHERE ${featured ? 'l.featured_at IS NOT NULL' : "l.created_at >= NOW() - INTERVAL '20 days'"}
     GROUP BY letter_id
     HAVING COUNT(*) >= 10
     ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
@@ -35,6 +34,7 @@ async function getLetters(featured = false) {
     if (row.text.length > 500) {
       row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
     }
+    row.total_signatures = parseInt(row.total_signatures, 10);
     return row;
   });
   return result.rows;
