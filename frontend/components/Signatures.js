@@ -65,7 +65,7 @@ export default withIntl(({ start, signatures, t }) => {
   const sortedSignatures = signatures.filter((s) => s.is_verified).slice();
 
   return (
-    <ol start={start || 1} className="dark:text-gray-300">
+    <ol start={start || 1} className="dark:text-gray-300 list-decimal list-outside pl-8">
       {sortedSignatures.map((signature, i) => (
         <li key={`signature-${(start || 1) + i}`}>{printSignature(signature)}</li>
       ))}
