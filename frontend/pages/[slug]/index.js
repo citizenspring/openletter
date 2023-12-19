@@ -129,6 +129,8 @@ class Letter extends Component {
       return `<a href="${url}">${url}</a>`;
     });
 
+    console.log('>>> text', text);
+
     return (
       <div>
         <Head>

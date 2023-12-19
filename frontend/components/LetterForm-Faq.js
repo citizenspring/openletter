@@ -6,11 +6,17 @@ const Q = styled.div`
   font-size: 12pt;
   font-weight: bold;
   margin-top: 14px;
+  @media (prefers-color-scheme: dark) {
+    color: #eee;
+  }
 `;
 
 const A = styled.div`
   font-size: 11pt;
   color: #555;
+  @media (prefers-color-scheme: dark) {
+    color: #999;
+  }
 `;
 
 export default withIntl(({ t }) => (

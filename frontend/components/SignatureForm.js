@@ -13,6 +13,10 @@ const SignatureInput = styled.input`
   font-family: 'SignPainter';
   box-sizing: border-box;
   width: 100%;
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -23,6 +27,10 @@ const StyledInput = styled.input`
   font-family: 'Arial';
   box-sizing: border-box;
   width: 100%;
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -97,7 +105,7 @@ class SignatureForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <Flex flexWrap="wrap">
-          <Box my={[1 / 2, 1, 1]} width={1}>
+          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
             <SignatureInput
               type="text"
               id="name"
@@ -113,10 +121,10 @@ class SignatureForm extends Component {
               <Input name="city" placeholder={t('sign.city')} onChange={this.handleChange} />
             </Box>
           </Flex>
-          <Box my={[1 / 2, 1, 1]} width={1}>
+          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
             <Input name="organization" placeholder={t('sign.organization')} onChange={this.handleChange} />
           </Box>
-          <Box my={[1 / 2, 1, 1]} width={1}>
+          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
             <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
           </Box>
           {letter.user_id && (
@@ -129,7 +137,7 @@ class SignatureForm extends Component {
                     onChange={(e) => this.handleChange('share_email', e.target.checked)}
                   />
                 </Box>
-                <label>{t('sign.share_email')}</label>
+                <label className="ml-2">{t('sign.share_email')}</label>
               </Label>
             </Box>
           )}

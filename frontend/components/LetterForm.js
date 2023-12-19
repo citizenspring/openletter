@@ -12,6 +12,10 @@ const TitleInput = styled.input`
   font-family: 'Baskerville', Serif;
   box-sizing: border-box;
   width: 100%;
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -23,6 +27,10 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   width: 100%;
   margin: 5px 0;
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
 `;
 
 const StyledTextarea = styled.textarea`
@@ -34,6 +42,10 @@ const StyledTextarea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 600px;
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -48,6 +60,10 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   &[disabled] {
     background: #999;
+  }
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
   }
 `;
 
@@ -147,10 +163,11 @@ class LetterForm extends Component {
       <form onSubmit={this.handleSubmit}>
         {this.state.form.map((form, index) => (
           <>
-            {this.state.form.length > 1 && (
+            {this.state.form.length > 0 && (
               <Flex justifyContent="space-between">
                 <Box>
                   <select
+                    className="dark:text-white dark:bg-black"
                     defaultValue={form.locale}
                     onChange={(e) => this.handleChange('locale', e.target.value, index)}
                   >
@@ -193,14 +210,19 @@ class LetterForm extends Component {
               </Box>
             )}
             <Box my={1} width={1}>
-              <StyledTextarea name="text" onChange={(e) => this.handleChange('text', e.target.value, index)} required />
+              <StyledTextarea
+                name="text"
+                onChange={(e) => this.handleChange('text', e.target.value, index)}
+                required
+                placeholder={t('create.text')}
+              />
             </Box>
           </>
         ))}
         {!parentLetter && <ActionLink onClick={() => this.addLanguage()}>[{t('create.addLanguage')}]</ActionLink>}
         {!parentLetter && (
           <Box>
-            <p>{t('create.admin_info.description')}</p>
+            <p className="mt-4">{t('create.admin_info.description')}</p>
             <StyledInput
               type="email"
               id="email"

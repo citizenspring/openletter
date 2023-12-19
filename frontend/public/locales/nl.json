@@ -12,6 +12,7 @@
   "create.publish": "Publiceer deze open brief",
   "create.publish_update": "Publish this update",
   "create.removeLanguage": "remove language",
+  "create.text": "Copy paste or write your open letter here.\n\nPro tip: you can use the markdown syntax to format your text with **bold** or *italic*.",
   "create.title": "Titel",
   "error": "Serverfout",
   "error.alreadysigned": "je heeft deze open brief al ondertekend",
