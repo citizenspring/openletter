@@ -72,7 +72,7 @@ export default withIntl(({ start, signatures, t, total }) => {
   return (
     <ol start={start || 1} className={`dark:text-gray-300 list-decimal list-outside ${leftPadding}`}>
       {sortedSignatures.map((signature, i) => (
-        <li key={`signature-${(start || 1) + i}`}>{printSignature(signature)}</li>
+        <li key={`signature-${(start || 1) + i}`} className="my-1">{printSignature(signature)}</li>
       ))}
     </ol>
   );

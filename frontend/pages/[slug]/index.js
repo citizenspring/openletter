@@ -20,6 +20,7 @@ import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
 import url from 'url';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Page = styled.div`
   max-width: 960px;
@@ -132,7 +133,7 @@ class Letter extends Component {
       <div>
         <Head>
           <title>{letter.title}</title>
-          <link rel="shortcut icon" href="/images/openletter-icon.png" />
+          <link rel="shortcut icon" href="/icon.png" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
           {letter.image && <meta name="twitter:image" content={letter.image} />}
           {letter.image && <meta name="og:image" content={letter.image} />}
@@ -153,7 +154,7 @@ class Letter extends Component {
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
-              {letter.image && <IMG src={letter.image} />}
+              {letter.image && <Image src={`/api/image?imageUrl=${encodeURIComponent(letter.image)}`} layout="fill" />}
               <Text>
                 <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
                   {text}
@@ -173,7 +174,7 @@ class Letter extends Component {
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
                 {(letter.signatures_stats.verified <= 100 || !letter.first_verified_signatures) && (
-                  <Signatures signatures={letter.signatures} />
+                  <Signatures signatures={letter.signatures} total={letter.signatures_stats.verified} />
                 )}
                 {letter.signatures_stats.verified > 100 && letter.first_verified_signatures && (
                   <>
