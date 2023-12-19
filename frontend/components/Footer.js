@@ -1,13 +1,7 @@
 import Link from 'next/link';
-import styled from 'styled-components';
 import { withIntl } from '../lib/i18n';
 import React, { useState, useEffect } from 'react';
 
-const FooterText = styled.div`
-  font-size: 11pt;
-  line-height: 1.2;
-  margin-top: 6px;
-`;
 
 function Footer({ t }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -51,11 +45,11 @@ function Footer({ t }) {
               />
             </svg>
           </div>
-          <FooterText>
+          <div className="text-base leading-6 mt-2">
             <a>{t('footer.create')}</a>
             <br />
             {t('footer.andsignit')}
-          </FooterText>
+          </div>
         </center>
       </div>
     </Link>

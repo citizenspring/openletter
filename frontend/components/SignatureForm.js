@@ -1,61 +1,11 @@
 import React, { Component } from 'react';
-import { Flex, Box } from 'reflexbox/styled-components';
-import styled from 'styled-components';
 import { withIntl } from '../lib/i18n';
 import { Label, Checkbox } from '@rebass/forms';
-import { letterSpacing } from 'styled-system';
 
-const SignatureInput = styled.input`
-  border: 1px dotted grey;
-  font-size: 24pt;
-  border-radius: 5px;
-  padding: 10px;
-  font-family: 'SignPainter';
-  box-sizing: border-box;
-  width: 100%;
-  @media (prefers-color-scheme: dark) {
-    background: #111;
-    color: white;
-  }
-`;
-
-const StyledInput = styled.input`
-  border: 1px dotted grey;
-  font-size: 12pt;
-  border-radius: 5px;
-  padding: 10px;
-  font-family: 'Arial';
-  box-sizing: border-box;
-  width: 100%;
-  @media (prefers-color-scheme: dark) {
-    background: #111;
-    color: white;
-  }
-`;
-
-const StyledButton = styled.button`
-  font-size: 12pt;
-  font-family: 'Arial';
-  background: #111;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  width: 100%;
-  &[disabled] {
-    background: #999;
-  }
-`;
-
-const Error = styled.div`
-  color: red;
-  font-weight: bold;
-  text-align: center;
-  margin: 18px;
-`;
 
 const Input = ({ type, name, placeholder, onChange, ...rest }) => (
-  <StyledInput
+  <input
+    className="border-dotted border-gray-400 border p-2 rounded-lg w-full dark:bg-black dark:text-gray-50 dark:border-white"
     type={type || 'text'}
     id={name}
     placeholder={placeholder || name}
@@ -104,53 +54,54 @@ class SignatureForm extends Component {
     const { error, t, letter } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <Flex flexWrap="wrap">
-          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
-            <SignatureInput
+        <div className="flex-wrap">
+          <div className="w-full py-1">
+            <input
+              className="font-[SignPainter] text-3xl border-dotted border-gray-400 border pt-2 px-2 pb-1 rounded-lg w-full dark:bg-black dark:text-gray-50 dark:border-white"
               type="text"
               id="name"
               placeholder={t('sign.name')}
               onChange={(e) => this.handleChange('name', e.target.value)}
             />
-          </Box>
-          <Flex my={[1 / 2, 1, 1]}>
-            <Box width={1 / 2} mr={1}>
+          </div>
+          <div className="flex w-full py-1">
+            <div className="w-1/2 mr-1">
               <Input name="occupation" placeholder={t('sign.occupation')} onChange={this.handleChange} />
-            </Box>
-            <Box width={1 / 2}>
+            </div>
+            <div className="w-1/2">
               <Input name="city" placeholder={t('sign.city')} onChange={this.handleChange} />
-            </Box>
-          </Flex>
-          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
+            </div>
+          </div>
+          <div className="w-full py-1">
             <Input name="organization" placeholder={t('sign.organization')} onChange={this.handleChange} />
-          </Box>
-          <Box my={[1 / 2, 1, 1]} width={1} py={1}>
+          </div>
+          <div className="w-full py-1">
             <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
-          </Box>
+          </div>
           {letter.user_id && (
-            <Box my={1}>
+            <div className="my-1">
               <Label>
-                <Box mt={1} mr={[2, 3, 3]}>
+                <div className="mt-1 mr-0">
                   <Checkbox
                     id="share_email"
                     name="share_email"
                     onChange={(e) => this.handleChange('share_email', e.target.checked)}
                   />
-                </Box>
-                <label className="ml-2">{t('sign.share_email')}</label>
+                </div>
+                <label className="ml-1">{t('sign.share_email')}</label>
               </Label>
-            </Box>
+            </div>
           )}
-        </Flex>
+        </div>
         <div className="mt-4 mb-6">
-          <StyledButton
-            className="dark:bg-white dark:text-white dark:border-white border-2"
+          <button
+            className="text-white text-base font-sans border-white bg-gray-900 p-3 rounded-lg w-full disabled:bg-gray-500 dark:bg-black dark:text-white dark:border-white border-2 font-bold"
             disabled={this.state.loading}
           >
             {t('sign.button')}
-          </StyledButton>
+          </button>
         </div>
-        {error && <Error>{error.message}</Error>}
+        {error && <div className="text-red font-bold text-center m-4">{error.message}</div>}
       </form>
     );
   }

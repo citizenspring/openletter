@@ -1,9 +1,6 @@
-import Link from 'next/link';
-import styled from 'styled-components';
 import { withIntl } from '../lib/i18n';
 import availableLocales from '../constants/locales';
 import { useRouter } from 'next/router';
-import { Select } from '@rebass/forms';
 
 export default withIntl(({ t, slug, currentLocale, locales }) => {
   if (!locales || locales.length === 1) {
@@ -18,7 +15,8 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
 
   return (
     <div>
-      <Select
+      <select
+        className="bg-white w-full md:w-fit  border-gray-200 my-2 dark:bg-gray-950 dark:text-gray-300 dark:border-gray-700 p-2 rounded-lg border-white border"
         defaultValue={currentLocale}
         onChange={handleChange}
         width={[1, 1 / 2, 1 / 4]}
@@ -33,7 +31,7 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
             </option>
           );
         })}
-      </Select>
+      </select>
     </div>
   );
 });
