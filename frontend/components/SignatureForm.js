@@ -134,14 +134,14 @@ class SignatureForm extends Component {
             </Box>
           )}
         </Flex>
-        <Box my={2} width={1}>
+        <div className="mt-4 mb-6">
           <StyledButton
             className="dark:bg-white dark:text-white dark:border-white border-2"
             disabled={this.state.loading}
           >
             {t('sign.button')}
           </StyledButton>
-        </Box>
+        </div>
         {error && <Error>{error.message}</Error>}
       </form>
     );

@@ -23,9 +23,9 @@ async function computeStats() {
 
 async function updateLatestLetters() {
   if (!letters.featured) {
-    letters.featured.en = await Letter.list('en', true);
+    letters.featured.en = await Letter.list({ locale: 'en', featured: true });
   }
-  letters.latest = await Letter.list();
+  letters.latest = await Letter.list({ locale: 'en', limit: 9 });
 }
 
 function updateData() {
@@ -53,7 +53,7 @@ class MainController {
     letters.featured[locale] =
       letters.featured[locale] && letters.featured[locale].length > 0
         ? letters.featured[locale]
-        : await Letter.list(locale, true);
+        : await Letter.list({ locale, featured: true });
 
     return {
       stats,

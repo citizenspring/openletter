@@ -144,7 +144,7 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
 };
 
 // get a list of latest letters
-Letter.list = async (locale = 'en', featured = false) => {
+Letter.list = async ({ locale, featured, limit }) => {
   const Database = use('Database');
 
   const result = await Database.raw(`
@@ -152,7 +152,7 @@ Letter.list = async (locale = 'en', featured = false) => {
         slug, 
         min(l.created_at) as created_at, 
         ${
-          locale === 'en'
+          !locale || locale === 'en'
             ? `min(l.title) FILTER (WHERE locale='en') as title, min(l.text) FILTER (WHERE locale='en') as text,`
             : `CASE WHEN min(l.title) FILTER (WHERE locale='${locale}') IS NULL THEN min(title) FILTER (WHERE locale='en') ELSE min(l.title) FILTER (WHERE locale='${locale}') END as title,
                CASE WHEN min(l.text) FILTER (WHERE locale='${locale}') IS NULL THEN min(text) FILTER (WHERE locale='en') ELSE min(l.text) FILTER (WHERE locale='${locale}') END as text,`
@@ -166,7 +166,7 @@ Letter.list = async (locale = 'en', featured = false) => {
       GROUP BY l.slug
       HAVING COUNT(*) >= 10
       ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
-      LIMIT 10;
+      LIMIT ${limit || 10};
     `);
   result.rows = result.rows.map((row) => {
     row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);

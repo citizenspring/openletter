@@ -17,3 +17,22 @@ img {
 body {
   @apply dark:bg-gray-950 dark:text-gray-100;
 }
+
+.letter a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 400px; /* default size */
+}
+
+@media screen and (max-width: 400px) {
+  .letter a {
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 300px) {
+  .letter a {
+    max-width: 250px;
+  }
+}

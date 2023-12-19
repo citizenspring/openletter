@@ -12,11 +12,11 @@ const { sendEmail } = use('App/Libs/email');
 class LetterController {
   async index(ctx) {
     const request = ctx.request.only(['locale', 'featured']);
-    return await Letter.list(request.locale, request.featured);
+    return await Letter.list({ locale: request.locale, featured: request.featured });
   }
   async featured(ctx) {
     const request = ctx.request.only(['locale']);
-    return await Letter.list(request.locale, true);
+    return await Letter.list({ locale: request.locale, featured: true });
   }
 
   async get(ctx) {

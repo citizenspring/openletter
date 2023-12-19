@@ -38,7 +38,7 @@ const Tooltip = ({ label, tooltip }) => {
   );
 };
 
-export default withIntl(({ start, signatures, t }) => {
+export default withIntl(({ start, signatures, t, total }) => {
   if (!signatures || signatures.length === 0) {
     return <div>{t('signatures.first')}</div>;
   }
@@ -64,8 +64,13 @@ export default withIntl(({ start, signatures, t }) => {
   // we first copy the array otherwise we keep on reversing the array multiple times
   const sortedSignatures = signatures.filter((s) => s.is_verified).slice();
 
+  let leftPadding = 'pl-8';
+  if (total >= 100) leftPadding = 'pl-10';
+  if (total >= 1000) leftPadding = 'pl-12';
+  if (total >= 10000) leftPadding = 'pl-14';
+
   return (
-    <ol start={start || 1} className="dark:text-gray-300 list-decimal list-outside pl-10">
+    <ol start={start || 1} className={`dark:text-gray-300 list-decimal list-outside ${leftPadding}`}>
       {sortedSignatures.map((signature, i) => (
         <li key={`signature-${(start || 1) + i}`}>{printSignature(signature)}</li>
       ))}

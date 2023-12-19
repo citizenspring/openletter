@@ -1,5 +1,6 @@
 import { withIntl } from '../lib/i18n';
 import Link from 'next/link';
+import NumberFormat from 'react-number-format';
 import moment from 'moment';
 const Badge = ({ children }) => (
   <span className="inline-flex flex-nowrap items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-gray-900 text-white hover:bg-primary/80 ml-0 mr-1">
@@ -36,7 +37,10 @@ function Card({ t, letter }) {
             <Link href={`/${letter.slug}`}>{letter.title}</Link>
           </h3>
           <div className="flex align-middle mt-2">
-            <Badge>{letter.total_signatures} signatures</Badge>
+            <Badge>
+              <NumberFormat value={letter.total_signatures} displayType={'text'} thousandSeparator={true} />
+              &nbsp;signatures
+            </Badge>
             {letter.locales &&
               letter.locales.length > 2 &&
               letter.locales.split(',').map((locale) => (

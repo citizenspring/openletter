@@ -27,6 +27,7 @@ const Page = styled.div`
 
 const Title = styled.h1`
   margin-top: 0px;
+  margin-bottom: 14px;
   font-size: 50px;
   ${typography}
   line-height: 1.2;
@@ -123,6 +124,10 @@ class Letter extends Component {
         </Page>
       );
     }
+    const text = letter.text.replace(/[^(]https?:\/\/[^\s<]+/g, (url) => {
+      // const shortUrl = url.replace(/https?:\/\/(www\.)?/, '').substr(0, 39) + '...';
+      return `<a href="${url}">${url}</a>`;
+    });
 
     return (
       <div>
@@ -152,7 +157,7 @@ class Letter extends Component {
               {letter.image && <IMG src={letter.image} />}
               <Text>
                 <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
-                  {letter.text}
+                  {text}
                 </ReactMarkdown>
               </Text>
               <Updates updates={letter.updates} />
@@ -176,6 +181,7 @@ class Letter extends Component {
                     <Signatures
                       signatures={letter.first_verified_signatures}
                       latest={letter.latest_verified_signatures}
+                      total={letter.signatures_stats.verified}
                     />
                     <ViewMore className="my-4">
                       <div>
@@ -200,6 +206,7 @@ class Letter extends Component {
                     <Signatures
                       start={letter.signatures_stats.verified - letter.latest_verified_signatures.length + 1}
                       signatures={letter.latest_verified_signatures}
+                      total={letter.signatures_stats.verified}
                     />
                   </>
                 )}
