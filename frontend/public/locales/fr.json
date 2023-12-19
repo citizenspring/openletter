@@ -32,7 +32,7 @@
   "faq.q6": "Comment puis-je envoyer du feedback ou demander une nouvelle feature ?",
   "faq.q6.response": "Commencez une conversation sur notre collectif.",
   "faq.q7": "Comment contribuer ?",
-  "faq.q7.response": "Vous pouvez contribuer à notre projet sur",
+  "faq.q7.response": "Vous pouvez <a href=\"https://github.com/citizenspring/openletter\">contribuer au développement sur Github</a> 🧑🏻‍💻 ou vous pouvez <a href=\"https://opencollective.com/openletter\">faire une contribution financière à notre collectif</a> 💰. Merci pour votre soutien ! 🙏",
   "footer.andsignit": "et signez-la ensemble",
   "footer.create": "Créez une lettre ouverte",
   "home.demo": "Démo",

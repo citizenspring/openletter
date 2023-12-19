@@ -3,7 +3,7 @@
 Create an open letter and get people to sign it digitally
 
 - No cookies, no trackers, no ads
-- Doesn't save email addresses unless people have opted in to receive updates about the letter they signed
+- Doesn't save email addresses unless people opt in to receive updates about the letter they signed
 - Support for multiple languages
 - Use SSG (Static Site Generation) for super fast delivery
 
@@ -20,7 +20,7 @@ Inspirations:
 
 ## Demo
 
-![](https://d.pr/free/i/BILgdt+)
+![](https://openletter.earth/images/openletter-demo.gif)
 
 ## Deployment
 

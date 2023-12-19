@@ -45,9 +45,7 @@ export default withIntl(({ t }) => (
       </details>
       <details>
         <summary className="cursor-pointer text-lg font-medium">{t('faq.q7')}</summary>
-        <p className="pt-2">
-          {t('faq.q7.response')} <a href="https://opencollective.com/openletter">{t('link.ourcollective')}.</a>
-        </p>
+        <p className="pt-2" dangerouslySetInnerHTML={{ __html: t('faq.q7.response') }} />
       </details>
     </div>
   </div>

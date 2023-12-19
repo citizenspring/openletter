@@ -32,7 +32,7 @@
   "faq.q6": "How to provide feedback or request a feature?",
   "faq.q6.response": "Start a conversation on our collective.",
   "faq.q7": "How to contribute?",
-  "faq.q7.response": "You can contribute to our project on ",
+  "faq.q7.response": "You can <a href=\"https://github.com/citizenspring/openletter\">contribute contribute code on Github</a> 🧑🏻‍💻 or you can <a href=\"https://opencollective.com/openletter\">make a financial contribution to our collective</a> 💰. Thank you for your support! 🙏",
   "footer.andsignit": "and sign it together",
   "footer.create": "Create an open letter",
   "home.demo": "Demo",
