@@ -13,6 +13,7 @@ import SignaturesCount from '../../components/SignaturesCount';
 import Updates from '../../components/Updates';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
+import { replaceURLsWithMarkdownAnchors } from '../../lib/utils';
 import moment from 'moment';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
@@ -124,12 +125,8 @@ class Letter extends Component {
         </Page>
       );
     }
-    const text = letter.text.replace(/[^(]https?:\/\/[^\s<]+/g, (url) => {
-      // const shortUrl = url.replace(/https?:\/\/(www\.)?/, '').substr(0, 39) + '...';
-      return `<a href="${url}">${url}</a>`;
-    });
 
-    console.log('>>> text', text);
+    const text = replaceURLsWithMarkdownAnchors(letter.text);
 
     return (
       <div>

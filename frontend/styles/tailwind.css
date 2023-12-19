@@ -23,6 +23,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+  vertical-align: bottom;
+  margin: 0 2px;
   max-width: 400px; /* default size */
 }
 
