@@ -1,8 +1,9 @@
 import App from 'next/app';
 import React from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import { IntlContext, getLocaleFromHeaders } from '../lib/i18n';
+import { IntlContext, getMessagesForLocale } from '../lib/i18n';
 import '../styles/tailwind.css';
+import { useRouter } from 'next/router';
 
 const theme = {
   fontSizes: ['12pt', '16pt', '24pt', '32pt', '48pt', '64pt'],
@@ -33,42 +34,21 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 14pt;
     line-height: 1.5;
   }
-
-
-  // @media (prefers-color-scheme: dark) {
-  //   body {
-  //     color: #F0F0F0;
-  //     background: #111;
-  //   }
-  //   a {
-  //     color: red;
-  //   }
-  //   input {
-  //     background: #333;
-  //     color: #f0f0f0 !important;
-  //   }
-  // }
 `;
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps, locale, messages } = this.props;
-    return (
-      <IntlContext.Provider value={{ locale, messages }}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </IntlContext.Provider>
-    );
-  }
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const locale = router.locale;
+  const messages = getMessagesForLocale(locale);
+  // Use currentLocale as needed
+  return (
+    <IntlContext.Provider value={{ locale, messages }}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </IntlContext.Provider>
+  );
 }
-
-MyApp.getInitialProps = async (appContext) => {
-  const i18n = getLocaleFromHeaders(appContext.ctx.req && appContext.ctx.req.headers);
-  const appProps = await App.getInitialProps(appContext);
-
-  return { ...appProps, ...i18n };
-};
 
 export default MyApp;

@@ -2,7 +2,7 @@ import { withIntl } from '../lib/i18n';
 import Link from 'next/link';
 import moment from 'moment';
 const Badge = ({ children }) => (
-  <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-gray-900 text-white hover:bg-primary/80 ml-2">
+  <span className="inline-flex flex-nowrap items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-gray-900 text-white hover:bg-primary/80 ml-0 mr-1">
     {children}
   </span>
 );
@@ -20,6 +20,8 @@ function getEmoji(locale) {
     fr: '🇫🇷',
     nl: '🇳🇱',
     en: '🇬🇧',
+    tr: '🇹🇷',
+    ar: '🇸🇦',
   };
   return emojis[locale] || locale;
 }
@@ -29,18 +31,21 @@ function Card({ t, letter }) {
     <div className="rounded-lg border shadow-sm dark:bg-gray-800 dark:text-white">
       <CardHeader>
         <div className="flex items-left flex-col">
+          <span className="text-sm text-gray-500">{moment(letter.created_at).format('D MMMM YYYY')}</span>
           <h3 className="text-xl font-bold">
             <Link href={`/${letter.slug}`}>{letter.title}</Link>
           </h3>
           <div className="flex align-middle mt-2">
-            <span className="text-sm text-gray-500">{moment(letter.created_at).format('D MMMM YYYY')}</span>
+            <Badge>{letter.total_signatures} signatures</Badge>
             {letter.locales &&
+              letter.locales.length > 2 &&
               letter.locales.split(',').map((locale) => (
-                <div className="inline-flex items-center border w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-primary-foreground hover:bg-primary/80 mr-2 py-1 rounded-lg px-1">
-                  <Link href={`/${letter.slug}/${locale}`}>{getEmoji(locale)}</Link>
+                <div className="inline-flex items-center text-xs ml-1 py-0">
+                  <Link href={`/${letter.slug}`} locale={locale}>
+                    <a title={locale}>{getEmoji(locale)}</a>
+                  </Link>
                 </div>
               ))}
-            <Badge>{letter.total_signatures} signatures</Badge>
           </div>
         </div>
         <p className="text-sm text-gray-500"></p>

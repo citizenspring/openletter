@@ -13,7 +13,7 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
   const router = useRouter();
   const handleChange = (e) => {
     e.preventDefault();
-    router.push('/[slug]/[locale]', `/${slug}/${e.target.value}`);
+    router.push('/[slug]', `/${slug}`, { locale: e.target.value });
   };
 
   return (

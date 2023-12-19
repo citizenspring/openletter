@@ -26,6 +26,8 @@ export const getLocaleFromHeaders = (headers) => {
   return response;
 };
 
+export const getMessagesForLocale = (locale) => locales[locale] || locales[defaultLanguage];
+
 export const IntlContext = React.createContext();
 
 const t = (key, messages) => (messages && messages[key]) || `[no message for key '${key}']`;

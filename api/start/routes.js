@@ -19,6 +19,7 @@ const Route = use('Route');
 Route.on('/').render('welcome');
 
 Route.get('stats', 'MainController.stats');
+Route.get('homepage', 'MainController.homepage');
 Route.get('letters', 'LetterController.index');
 Route.get('letters/featured', 'LetterController.featured');
 Route.get('letters/:slug', 'LetterController.get');

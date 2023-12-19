@@ -8,6 +8,7 @@ import { Flex, Box } from 'reflexbox/styled-components';
 import { withIntl } from '../lib/i18n';
 import Card from '../components/Card';
 import NumberFormat from 'react-number-format';
+import { useRouter } from 'next/router';
 
 // const Page = styled.div`
 //   max-width: 960px;
@@ -21,108 +22,80 @@ const Button = ({ children }) => (
   </button>
 );
 
-export class Index extends React.Component {
-  render() {
-    const { t, locale, featuredLetters, latestLetters, stats } = this.props;
+function Homepage({ t, letters, stats }) {
+  const router = useRouter();
 
-    return (
-      <>
-        <div className="flex items-center justify-center py-4">
-          <Footer />
-          <div className="flex content-center justify-center">
-            {/* <Button variant="link">
+  return (
+    <>
+      <div className="flex items-center justify-center py-4">
+        <Footer />
+        <div className="flex content-center justify-center">
+          {/* <Button variant="link">
               <Link href="/create">Create an Open Letter</Link>
             </Button>
             <Button className="ml-4" variant="outline">
               Switch to Dark Mode
             </Button> */}
-          </div>
         </div>
-        <main className="container mx-auto px-6 py-12">
-          <section>
-            <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredLetters && featuredLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+      </div>
+      <main className="container mx-auto px-6 py-12">
+        <section>
+          <h2 className="text-2xl font-bold mb-8">{t('home.stats')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
+            <div>
+              <h3 className="text-5xl font-bold">
+                <NumberFormat value={stats.letters} displayType={'text'} thousandSeparator={true} />
+              </h3>
+              <p className="text-lg text-gray-500">open letters</p>
             </div>
-          </section>
-          <section className="mt-16">
-            <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {latestLetters && latestLetters.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+            <div>
+              <h3 className="text-5xl font-bold">
+                <NumberFormat value={stats.signatures} displayType={'text'} thousandSeparator={true} />
+              </h3>
+              <p className="text-lg text-gray-500">signatures</p>
             </div>
-          </section>
-          {/* <section className="mt-16">
-            <h2 className="text-2xl font-bold mb-8">Our Impact</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
-              <div>
-                <h3 className="text-5xl font-bold">
-                  <NumberFormat value={stats.totalLetters} displayType={'text'} thousandSeparator={true} />
-                </h3>
-                <p className="text-lg text-gray-500">open letters</p>
-              </div>
-              <div>
-                <h3 className="text-5xl font-bold">
-                  <NumberFormat value={stats.totalSignatures} displayType={'text'} thousandSeparator={true} />
-                </h3>
-                <p className="text-lg text-gray-500">signatures</p>
-              </div>
-            </div>
-          </section> */}
-          <section className="mt-16">
-            <h2 className="text-2xl font-bold mb-8">{t('home.howitworks')}</h2>
-            <ol className="list-decimal list-inside space-y-2">
-              <li>
-                <Link href="/create">
-                  <a>{t('home.howitworks.1')}</a>
-                </Link>
-              </li>
-              <li>{t('home.howitworks.2')}</li>
-              <li>{t('home.howitworks.3')}</li>
-              <li>{t('home.howitworks.4')}</li>
-            </ol>
-            <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.privacy')}</h2>
-            <ul className="list-disc list-inside space-y-2">
-              <li>{t('home.privacy.1')}</li>
-              <li>{t('home.privacy.2')}</li>
-              <li>{t('home.privacy.3')}</li>{' '}
-            </ul>
-            <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.demo')}</h2>
-            <img src="/images/openletter-demo.gif" style={{ width: '100%', maxWidth: '600px' }} />
-          </section>
-          <section className="mt-16">
-            <Faq />
-          </section>
-        </main>
-        <Footer />
-      </>
-    );
-
-    // return (
-    //   <Page>
-    //     <Footer />
-    //     <Box width={1}>
-    //       <h2></h2>
-    //       <ul>
-    //         {featuredLetters.map((letter) => (
-    //           <li>
-    //             <Link href={`/${letter.slug}`}>
-    //               <a>{letter.title}</a>
-    //             </Link>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </Box>
-
-    //     <Box width={1}>
-    //       <h2>{t('home.latest')}</h2>
-    //       <ul>
-
-    //       </ul>
-    //     </Box>
-    //     <Faq />
-    //   </Page>
-    // );
-  }
+          </div>
+        </section>
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {letters.featured && letters.featured.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+          </div>
+        </section>
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {letters.latest && letters.latest.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+          </div>
+        </section>
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold mb-8">{t('home.howitworks')}</h2>
+          <ol className="list-decimal list-inside space-y-2">
+            <li>
+              <Link href="/create">
+                <a>{t('home.howitworks.1')}</a>
+              </Link>
+            </li>
+            <li>{t('home.howitworks.2')}</li>
+            <li>{t('home.howitworks.3')}</li>
+            <li>{t('home.howitworks.4')}</li>
+          </ol>
+          <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.privacy')}</h2>
+          <ul className="list-disc list-inside space-y-2">
+            <li>{t('home.privacy.1')}</li>
+            <li>{t('home.privacy.2')}</li>
+            <li>{t('home.privacy.3')}</li>{' '}
+          </ul>
+          <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.demo')}</h2>
+          <img src="/images/openletter-demo.gif" style={{ width: '100%', maxWidth: '600px' }} />
+        </section>
+        <section className="mt-16">
+          <Faq />
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 async function fetchFromAPI(path) {
@@ -142,18 +115,10 @@ async function fetchFromAPI(path) {
   return response;
 }
 
-export async function getServerSideProps({ params, req, res }) {
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
-  res.setHeader('Vary', 'Accept-Language');
-
-  const props = { headers: req.headers };
-  props.latestLetters = await fetchFromAPI('/letters/');
-  props.featuredLetters = await fetchFromAPI('/letters/featured');
-  // props.stats = await fetchFromAPI('/stats');
-
-  console.log('>>> props', props);
-
-  return { props };
+export async function getStaticProps({ locale }) {
+  const homepageData = await fetchFromAPI(`/homepage?locale=${locale}`);
+  const props = { ...homepageData };
+  return { props, revalidate: 180 };
 }
 
-export default withIntl(Index);
+export default withIntl(Homepage);

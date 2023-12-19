@@ -9,51 +9,14 @@ Logger.level = 'info';
 
 const { sendEmail } = use('App/Libs/email');
 
-async function getLetters(featured = false) {
-  const Database = use('Database');
-
-  const result = await Database.raw(`
-    SELECT 
-      min(l.created_at) as created_at, 
-      min(l.slug) as slug, 
-      min(l.title) as title,
-      min(l.text) as text,
-      min(l.locale) as locale,
-      count(*) as total_signatures,
-      min(l.image) as image,
-      min(l.featured_at) as featured_at
-    FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
-    WHERE ${featured ? 'l.featured_at IS NOT NULL' : "l.created_at >= NOW() - INTERVAL '20 days'"}
-    GROUP BY letter_id
-    HAVING COUNT(*) >= 10
-    ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
-    LIMIT 10;
-  `);
-  result.rows = result.rows.map((row) => {
-    row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);
-    if (row.text.length > 500) {
-      row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
-    }
-    row.total_signatures = parseInt(row.total_signatures, 10);
-    return row;
-  });
-  return result.rows;
-}
-
 class LetterController {
-  async index() {
-    return await getLetters();
+  async index(ctx) {
+    const request = ctx.request.only(['locale', 'featured']);
+    return await Letter.list(request.locale, request.featured);
   }
-
-  async featured({ request }) {
-    const params = request.only(['locale']);
-    const locale =
-      params.locale ||
-      acceptLanguageParser.pick(['en', 'fr', 'nl'], request.headers()['accept-language'], { loose: true }) ||
-      'en';
-    console.log('GET', '/letters/featured', locale);
-
-    return await getLetters(true);
+  async featured(ctx) {
+    const request = ctx.request.only(['locale']);
+    return await Letter.list(request.locale, true);
   }
 
   async get(ctx) {

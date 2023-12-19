@@ -143,4 +143,40 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
   return await Letter.createMany(sanitizedLetters);
 };
 
+// get a list of latest letters
+Letter.list = async (locale = 'en', featured = false) => {
+  const Database = use('Database');
+
+  const result = await Database.raw(`
+      SELECT 
+        slug, 
+        min(l.created_at) as created_at, 
+        ${
+          locale === 'en'
+            ? `min(l.title) FILTER (WHERE locale='en') as title, min(l.text) FILTER (WHERE locale='en') as text,`
+            : `CASE WHEN min(l.title) FILTER (WHERE locale='${locale}') IS NULL THEN min(title) FILTER (WHERE locale='en') ELSE min(l.title) FILTER (WHERE locale='${locale}') END as title,
+               CASE WHEN min(l.text) FILTER (WHERE locale='${locale}') IS NULL THEN min(text) FILTER (WHERE locale='en') ELSE min(l.text) FILTER (WHERE locale='${locale}') END as text,`
+        }
+        STRING_AGG(DISTINCT locale, ',') as locales,
+        count(*) as total_signatures,
+        min(l.image) as image,
+        min(l.featured_at) as featured_at
+      FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
+      WHERE ${featured ? 'l.featured_at IS NOT NULL' : "l.created_at >= NOW() - INTERVAL '20 days'"}
+      GROUP BY l.slug
+      HAVING COUNT(*) >= 10
+      ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
+      LIMIT 10;
+    `);
+  result.rows = result.rows.map((row) => {
+    row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);
+    if (row.text.length > 500) {
+      row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
+    }
+    row.total_signatures = parseInt(row.total_signatures, 10);
+    return row;
+  });
+  return result.rows;
+};
+
 module.exports = Letter;

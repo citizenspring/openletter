@@ -1,22 +1,23 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import fetch from 'node-fetch';
 import styled from 'styled-components';
-import NumberFormat from 'react-number-format';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components';
+import NumberFormat from 'react-number-format';
 import { typography, space } from 'styled-system';
-import SignatureForm from '../components/SignatureForm';
-import Updates from '../components/Updates';
-import Notification from '../components/Notification';
-import SignatureEmailSent from '../components/SignatureEmailSent';
-import Signatures from '../components/Signatures';
-import SignaturesCount from '../components/SignaturesCount';
-import LocaleSelector from '../components/LocaleSelector';
-import { withIntl } from '../lib/i18n';
+import SignatureForm from '../../components/SignatureForm';
+import Notification from '../../components/Notification';
+import SignatureEmailSent from '../../components/SignatureEmailSent';
+import Signatures from '../../components/Signatures';
+import SignaturesCount from '../../components/SignaturesCount';
+import Updates from '../../components/Updates';
+import LocaleSelector from '../../components/LocaleSelector';
+import { withIntl } from '../../lib/i18n';
 import moment from 'moment';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
+import url from 'url';
 import Link from 'next/link';
 
 const Page = styled.div`
@@ -29,10 +30,10 @@ const Title = styled.h1`
   font-size: 50px;
   ${typography}
   line-height: 1.2;
-  color: black;
-  @media (prefers-color-scheme: dark) {
-    color: white;
-  }
+`;
+
+const H2 = styled.h2`
+  margin-top: 0px;
 `;
 
 const Text = styled.div`
@@ -41,6 +42,22 @@ const Text = styled.div`
 
 const ViewMore = styled.div`
   text-align: center;
+`;
+
+const BigNumber = styled.div`
+  font-size: 64pt;
+  ${typography}
+`;
+
+// BigNumber.defaultProps = {
+//   fontSize: '64pt'
+// };
+
+const BigNumberLabel = styled.div`
+  font-size: 32pt;
+  margin-top: -14px;
+  ${space}
+  ${typography}
 `;
 
 const IMG = styled.img`
@@ -68,22 +85,31 @@ class Letter extends Component {
     console.log('>>> submitting ', signature, 'headers', this.props.headers);
     const apiCall = `${process.env.API_URL}/letters/${this.props.letter.slug}/${this.props.letter.locale}/sign`;
 
-    const res = await fetch(apiCall, {
-      method: 'post',
-      body: JSON.stringify(signature),
-      headers: { 'Content-Type': 'application/json', 'accept-language': this.props.headers['accept-language'] },
-    });
-    const json = await res.json();
-    if (json.error) {
-      this.setState({ status: 'error', error: json.error });
-    } else {
-      this.setState({ status: 'signature_sent' });
+    try {
+      const res = await fetch(apiCall, {
+        method: 'post',
+        body: JSON.stringify(signature),
+        headers: { 'Content-Type': 'application/json', 'accept-language': this.props.headers['accept-language'] },
+      });
+      const json = await res.json();
+      if (json.error) {
+        this.setState({ status: 'error', error: json.error });
+      } else {
+        this.setState({ status: 'signature_sent' });
+      }
+    } catch (e) {
+      console.error('>>> API error', e);
+      this.setState({ status: 'error', error: { message: this.props.t('error.server') } });
+      setTimeout(() => {
+        this.setState({ status: null, error: null });
+      }, 5000);
     }
   }
 
   render() {
     const { letter, error, t } = this.props;
     const { status } = this.state;
+
     if (error) {
       return (
         <Page>
@@ -104,13 +130,8 @@ class Letter extends Component {
           <title>{letter.title}</title>
           <link rel="shortcut icon" href="/images/openletter-icon.png" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-          {letter.image && (
-            <>
-              <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:image" content={letter.image} />
-              <meta property="og:image" content={letter.image} />
-            </>
-          )}
+          {letter.image && <meta name="twitter:image" content={letter.image} />}
+          {letter.image && <meta name="og:image" content={letter.image} />}
         </Head>
         <Page className="letter">
           {status === 'created' && (
@@ -129,13 +150,11 @@ class Letter extends Component {
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
               {letter.image && <IMG src={letter.image} />}
-              {letter.text && letter.text != 'null' && (
-                <Text>
-                  <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
-                    {letter.text}
-                  </ReactMarkdown>
-                </Text>
-              )}
+              <Text>
+                <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
+                  {letter.text}
+                </ReactMarkdown>
+              </Text>
               <Updates updates={letter.updates} />
             </Box>
             {letter.type === 'letter' && (
@@ -171,8 +190,8 @@ class Letter extends Component {
                           displayType={'text'}
                           thousandSeparator={true}
                         />{' '}
-                        {t('signatures.more')} <br />
-                        {t('signatures.verified')}
+                        more <br />
+                        verified signatures
                       </div>
                       <div>
                         <Link href={`/${letter.slug}/${letter.locale}?limit=0`}>view all</Link>
@@ -194,14 +213,14 @@ class Letter extends Component {
   }
 }
 
-export async function getServerSideProps({ params, req, res }) {
-  // we cannot cache otherwise the locale shown will be the last one cached
-  // res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
-  // res.setHeader('Vary', 'Accept-Language');
+export async function getServerSideProps({ params, req, res, locale }) {
+  res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
 
   const props = { headers: req.headers };
-  const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  const result = await fetch(apiCall, { headers: { 'accept-language': req.headers['accept-language'] } });
+  const parsedUrl = url.parse(req.url, true);
+  const limit = parsedUrl.query.limit || 100;
+  const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
+  const result = await fetch(apiCall);
 
   try {
     const response = await result.json();
@@ -210,15 +229,6 @@ export async function getServerSideProps({ params, req, res }) {
     } else {
       props.letter = response;
     }
-
-    // if there are multiples locales, we make sure we redirect to the right locale url
-    if (response.locales && response.locales.length > 1) {
-      return { redirect: { destination: `/${response.slug}/${response.locale}` } };
-    }
-
-    // if there is only one locale, it's safe to cache
-    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
-
     return { props };
   } catch (e) {
     console.error('Unable to parse JSON returned by the API', e);
