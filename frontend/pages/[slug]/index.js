@@ -109,7 +109,7 @@ class Letter extends Component {
   }
 
   render() {
-    const { letter, error, t } = this.props;
+    const { letter, error, t, locale } = this.props;
     const { status } = this.state;
 
     if (error) {
@@ -199,7 +199,9 @@ class Letter extends Component {
                         verified signatures
                       </div>
                       <div>
-                        <Link href={`/${letter.slug}/${letter.locale}?limit=0`}>view all</Link>
+                        <Link href={`/${letter.slug}?limit=0`} locale={locale}>
+                          view all
+                        </Link>
                       </div>
                     </ViewMore>
                     <Signatures
