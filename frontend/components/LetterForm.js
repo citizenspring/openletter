@@ -105,7 +105,6 @@ class LetterForm extends Component {
     };
 
     // If we pass the list of locales (when posting an update)
-    console.log('>>> props.parentLetter', props.parentLetter);
     if (props.parentLetter) {
       this.state.form = [];
       props.parentLetter.locales.map((locale) => {

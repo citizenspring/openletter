@@ -5,8 +5,8 @@
   "scripts": {
     "start:frontend": "cd frontend && npx next",
     "start:api": "cd api && adonis serve",
-    "frontend:dev": "cd frontend && npx next dev",
-    "api:dev": "cd api && adonis serve --dev",
+    "frontend:dev": "cd frontend && API_URL=https://openletter-earth.herokuapp.com NODE_OPTIONS=--openssl-legacy-provider npx next dev",
+    "api:dev": "cd api && PG_DATABASE=openletter-earth_snapshot adonis serve --dev",
     "deploy:api": "git subtree push --prefix api heroku master",
     "deploy:frontend": "cd frontend && vercel",
     "deploy:frontend:prod": "cd frontend && vercel --prod",

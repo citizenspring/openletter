@@ -127,7 +127,7 @@ class Letter extends Component {
       );
     }
 
-    const text = replaceURLsWithMarkdownAnchors(letter.text);
+    const text = replaceURLsWithMarkdownAnchors(letter.text.replace(/<br ?\/> ?/g, '\n'));
 
     return (
       <div>
@@ -135,8 +135,8 @@ class Letter extends Component {
           <title>{letter.title}</title>
           <link rel="shortcut icon" href="/icon.png" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-          {letter.image && <meta name="twitter:image" content={letter.image} />}
-          {letter.image && <meta name="og:image" content={letter.image} />}
+          {letter.image && <meta name="twitter:image" content={letter.image.src} />}
+          {letter.image && <meta name="og:image" content={letter.image.src} />}
         </Head>
         <Page className="letter">
           {status === 'created' && (
@@ -154,9 +154,17 @@ class Letter extends Component {
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
-              {letter.image && <Image src={`/api/image?imageUrl=${encodeURIComponent(letter.image)}`} layout="fill" />}
+              {letter.image && letter.image.src && (
+                <div className="w-full">
+                  <Image
+                    width={letter.image.width}
+                    height={letter.image.height}
+                    src={`/api/image?imageUrl=${encodeURIComponent(letter.image.src)}`}
+                  />
+                </div>
+              )}
               <Text>
-                <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
+                <ReactMarkdown plugins={[gfm]} allowedElements={['a', '<br>', 'p', 'b', 'i']}>
                   {text}
                 </ReactMarkdown>
               </Text>
@@ -229,6 +237,7 @@ export async function getServerSideProps({ params, req, res, locale }) {
   const parsedUrl = url.parse(req.url, true);
   const limit = parsedUrl.query.limit || 100;
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
+  console.log('>>> apiCall', apiCall);
   const result = await fetch(apiCall);
 
   try {

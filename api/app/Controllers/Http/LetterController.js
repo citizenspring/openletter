@@ -8,6 +8,7 @@ const Logger = use('Logger');
 Logger.level = 'info';
 
 const { sendEmail } = use('App/Libs/email');
+const { getImageSize } = use('App/Libs/image');
 
 class LetterController {
   async index(ctx) {
@@ -85,6 +86,11 @@ class LetterController {
       if (res.updates) {
         res.updates = res.updates.filter((u) => u.locale === locale);
       }
+
+      if (res.image) {
+        res.image = await getImageSize(res.image);
+      }
+
       return res;
     }
 
