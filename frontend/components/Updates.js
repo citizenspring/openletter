@@ -1,17 +1,9 @@
-import styled from 'styled-components';
 import { Box } from 'reflexbox/styled-components';
 import { withIntl } from '../lib/i18n';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm';
-
-const H2 = styled.h2`
-  margin-top: 0px;
-`;
-
-const Text = styled.div`
-  max-width: 80ex;
-`;
+import { replaceURLsWithMarkdownAnchors } from '../lib/utils';
 
 export default withIntl(({ t, updates }) => {
   if (!updates || updates.length === 0) {
@@ -25,12 +17,12 @@ export default withIntl(({ t, updates }) => {
           <strong>
             {t('letter.update')} {moment(update.created_at).format('DD MMMM YYYY')}
           </strong>
-          <H2>{update.title}</H2>
-          <Text>
+          <h2 className="mt-0 text-3xl">{update.title}</h2>
+          <div className="max-w-fit">
             <ReactMarkdown plugins={[gfm]} allowDangerousHtml={true}>
-              {update.text}
+              {replaceURLsWithMarkdownAnchors(update.text.replace(/<br ?\/> ?/g, '\n'))}
             </ReactMarkdown>
-          </Text>
+          </div>
         </Box>
       ))}
     </>
