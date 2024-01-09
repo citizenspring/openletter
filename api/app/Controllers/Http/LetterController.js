@@ -1,7 +1,5 @@
 'use strict';
 
-const { re } = require('prettier');
-
 const crypto = use('crypto');
 const Letter = use('App/Models/Letter');
 const Signature = use('App/Models/Signature');
