@@ -170,9 +170,11 @@ Letter.list = async ({ locale, featured, limit, minSignatures }) => {
       LIMIT ${limit || 10};
     `);
   result.rows = result.rows.map((row) => {
-    row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);
-    if (row.text.length > 500) {
-      row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
+    if (row.text) {
+      row.text = row.text.substr(0, row.text.substr(100).indexOf('\n') + 100);
+      if (row.text.length > 500) {
+        row.text = row.text.substr(0, row.text.substr(300).indexOf('.') + 301);
+      }
     }
     row.total_signatures = parseInt(row.total_signatures, 10);
     return row;
