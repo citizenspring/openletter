@@ -144,7 +144,7 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
 };
 
 // get a list of latest letters
-Letter.list = async ({ locale, featured, limit }) => {
+Letter.list = async ({ locale, featured, limit, minSignatures }) => {
   const Database = use('Database');
 
   const result = await Database.raw(`
@@ -164,7 +164,7 @@ Letter.list = async ({ locale, featured, limit }) => {
       FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
       WHERE ${featured ? 'l.featured_at IS NOT NULL' : "l.created_at >= NOW() - INTERVAL '20 days'"}
       GROUP BY l.slug
-      HAVING COUNT(*) >= 10
+      HAVING COUNT(*) >= ${minSignatures || 10}
       ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
       LIMIT ${limit || 10};
     `);

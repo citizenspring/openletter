@@ -1,4 +1,7 @@
 'use strict';
+
+const { re } = require('prettier');
+
 const crypto = use('crypto');
 const Letter = use('App/Models/Letter');
 const Signature = use('App/Models/Signature');
@@ -12,8 +15,13 @@ const { getImageSize } = use('App/Libs/image');
 
 class LetterController {
   async index(ctx) {
-    const request = ctx.request.only(['locale', 'featured']);
-    return await Letter.list({ locale: request.locale, featured: request.featured });
+    const request = ctx.request.only(['locale', 'featured', 'limit', 'minSignatures']);
+    return await Letter.list({
+      locale: request.locale,
+      featured: request.featured,
+      limit: request.limit,
+      minSignatures: request.minSignatures,
+    });
   }
   async featured(ctx) {
     const request = ctx.request.only(['locale']);
