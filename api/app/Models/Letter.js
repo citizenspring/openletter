@@ -147,6 +147,7 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
 Letter.list = async ({ locale, featured, limit, minSignatures }) => {
   const Database = use('Database');
 
+  const days = limit && limit > 10 ? 90 : 30;
   const result = await Database.raw(`
       SELECT 
         slug, 
@@ -162,7 +163,7 @@ Letter.list = async ({ locale, featured, limit, minSignatures }) => {
         min(l.image) as image,
         min(l.featured_at) as featured_at
       FROM letters l LEFT JOIN signatures s on l.id = s.letter_id      
-      WHERE ${featured ? 'l.featured_at IS NOT NULL' : "l.created_at >= NOW() - INTERVAL '20 days'"}
+      WHERE ${featured ? 'l.featured_at IS NOT NULL' : `l.created_at >= NOW() - INTERVAL '${days} days'`}
       GROUP BY l.slug
       HAVING COUNT(*) >= ${minSignatures || 10}
       ORDER BY min(l.${featured ? 'featured_at' : 'created_at'}) DESC
