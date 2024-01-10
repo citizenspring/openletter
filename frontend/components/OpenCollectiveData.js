@@ -71,18 +71,18 @@ function CollectiveBalance({ collectiveSlug, locale }) {
   if (!data) return <div className="text-center">Loading...</div>;
 
   return (
-    <div className="text-center">
+    <div className="text-center my-4">
       <h2>Thank you to all our contributors 🙏</h2>
       <ul className="p-2 flex overflow-hidden flex-wrap justify-center list-none">
         {data.backers
           .filter((b) => b.member.name != 'Guest')
           .map((backer) => {
             return (
-              <li key={backer.member.slug} className="ml-4">
+              <li key={backer.member.slug} className="mx-2">
                 <a
                   href={`https://opencollective.com/${backer.member.slug}`}
                   title={backer.member.name}
-                  className="display-inline-block h-14"
+                  className="display-inline-block"
                 >
                   {/* <img
                   className="inline-block mr-2 h-10 w-10 rounded-full ring-2 ring-white"
