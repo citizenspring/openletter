@@ -53,8 +53,8 @@ class ConfirmSignaturePage extends Component {
     }
 
     return (
-      <div className="w-full">
-        {status !== 'signature_confirmed' && (
+      <div className="w-full pt-4">
+        {status === 'signature_confirmed' && (
           <>
             <div className="text-center mt-4 text-lg">
               <a href={`/${letter.slug}`} className="underline">
@@ -74,7 +74,7 @@ class ConfirmSignaturePage extends Component {
             <OpenCollectiveData collectiveSlug="openletter" />
           </>
         )}
-        {status && (
+        {!status && (
           <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />
         )}
       </div>
