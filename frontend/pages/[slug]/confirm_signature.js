@@ -32,9 +32,9 @@ class ConfirmSignaturePage extends Component {
     });
     const resActionJSON = await resAction.json();
     this.setState({ status: 'signature_confirmed' });
-    if (Router.router && this.props.letter) {
-      Router.replace(`/${this.props.letter.slug}`);
-    }
+    // if (Router.router && this.props.letter) {
+    //   Router.replace(`/${this.props.letter.slug}`);
+    // }
   }
 
   componentDidMount() {
@@ -56,6 +56,11 @@ class ConfirmSignaturePage extends Component {
       <div className="w-full">
         {status !== 'signature_confirmed' && (
           <>
+            <div className="text-center mt-4 text-lg">
+              <a href={`/${letter.slug}`} className="underline">
+                {letter.title}
+              </a>
+            </div>
             <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
             <div className="flex justify-center flex-col text-center my-4">
               <h2 className="text-2xl">{t('notification.signed.donate.title')}</h2>
