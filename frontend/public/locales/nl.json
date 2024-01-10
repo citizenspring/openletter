@@ -59,6 +59,8 @@
   "notification.sent": "Bijna klaar!",
   "notification.sent.info": "Klik gewoon op de link in de e-mail die we je hebben gestuurd om je handtekening te bevestigen.",
   "notification.signed": "Ondertekend!",
+  "notification.signed.donate.button": "Donate to our open collective",
+  "notification.signed.donate.title": "Help us keep Open Letter free!",
   "notification.signed.info": "Deel deze open brief en laat meer mensen hem ondertekenen.",
   "notification.signing": "Ondertekening",
   "sign.button": "Onderteken deze brief",

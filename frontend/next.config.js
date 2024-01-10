@@ -3,6 +3,8 @@ module.exports = {
   env: {
     // You can also use process.env.API_URL if it is defined in your .env file
     API_URL: process.env.API_URL || 'https://openletter-earth.herokuapp.com',
+    OC_GRAPHQL_API: 'https://api.opencollective.com/graphql/v1/',
+    OC_GRAPHQL_API_V2: 'https://api.opencollective.com/graphql/v2/',
   },
   async redirects() {
     return [

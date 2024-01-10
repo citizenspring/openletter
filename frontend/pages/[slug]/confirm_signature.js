@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import fetch from 'node-fetch';
 import Notification from '../../components/Notification';
-import styled from 'styled-components';
 import Router, { withRouter } from 'next/router';
 import { withIntl } from '../../lib/i18n';
-
-const Page = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
-`;
-
+import OpenCollectiveData from '../../components/OpenCollectiveData';
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -24,6 +18,10 @@ class ConfirmSignaturePage extends Component {
 
   async confirmSignature() {
     const { token } = this.props.router.query;
+    if (!token) {
+      console.error('>>> no token found in query string, aborting');
+      return;
+    }
     console.log('>>> confirming signature with token', token, 'letter to sign', this.props.letter);
     await sleep(500);
     const apiCall = `${process.env.API_URL}/signatures/confirm`;
@@ -48,21 +46,33 @@ class ConfirmSignaturePage extends Component {
     const { status } = this.state;
     if (!letter) {
       return (
-        <Page>
+        <div>
           <Notification title={t('error.letter.notfound')} />
-        </Page>
+        </div>
       );
     }
 
     return (
-      <Page>
-        {status === 'signature_confirmed' && (
-          <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
+      <div className="w-full">
+        {status !== 'signature_confirmed' && (
+          <>
+            <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
+            <div className="flex justify-center flex-col text-center my-4">
+              <h2 className="text-2xl">{t('notification.signed.donate.title')}</h2>
+              <a
+                className="my-4 mx-4 text-white text-base font-sans border-white bg-gray-900 p-3 rounded-lg disabled:bg-gray-500 dark:bg-black dark:text-white dark:border-white border-2 font-bold"
+                href="https://opencollective.com/openletter/donate"
+              >
+                {t('notification.signed.donate.button')}
+              </a>
+            </div>
+            <OpenCollectiveData collectiveSlug="openletter" />
+          </>
         )}
-        {!status && (
+        {status && (
           <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />
         )}
-      </Page>
+      </div>
     );
   }
 }

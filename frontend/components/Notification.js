@@ -1,32 +1,17 @@
-import { Flex, Box } from 'reflexbox/styled-components';
-import styled from 'styled-components';
-import { space } from 'styled-system';
-
-const NotificationBox = styled.div`
-  border-top: 4px solid black;
-  border-bottom: 4px solid black;
-  ${space}
-`;
-
-const H2 = styled.h2`
-  margin: 0 0 8px 8px;
-  font-size: 18pt;
-`;
-
 const Notification = ({ icon, title, message }) => (
-  <NotificationBox my={4} py={4}>
-    <Box mx={2}>
-      <Flex flexWrap="wrap" alignItems="center">
-        <Box my={1}>
-          <img src={`/images/${icon || 'openletter'}-icon.png`} width={64} />
-        </Box>
-        <Box>
-          <H2>{title}</H2>
-        </Box>
-      </Flex>
-      <Box>{message}</Box>
-    </Box>
-  </NotificationBox>
+  <div className="my-2 py-3">
+    <div className="mx-2 p-2">
+      <div className="text-center justify-center">
+        <div className="flex justify-center">
+          <img src={`/favicon.png`} width={64} />
+        </div>
+        <div>
+          <h2 className="text-2xl my-2">{title}</h2>
+        </div>
+      </div>
+      <div className="my-4 text-center">{message}</div>
+    </div>
+  </div>
 );
 
 export default Notification;
