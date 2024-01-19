@@ -22,7 +22,7 @@ const StyledInput = styled.input`
   font-size: 14pt;
   border-radius: 5px;
   padding: 10px;
-  font-family: 'Baskerville', Serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   box-sizing: border-box;
   width: 100%;
   margin: 5px 0;
@@ -33,7 +33,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledTextarea = styled.textarea`
-  font-family: 'Baskerville', Serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   border: 1px dotted grey;
   font-size: 14pt;
   border-radius: 5px;
