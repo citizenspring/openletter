@@ -113,8 +113,10 @@ function CollectiveBalance({ collectiveSlug, locale }) {
             <div className="mr-2 text-right">
               €<NumberFormat value={expense.amount / 100} displayType={'text'} thousandSeparator={true} />
             </div>
-            <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground">
-              {expense.status === 'PAID' ? 'paid' : 'pending'}
+            <div className=" w-16 text-center">
+              <div className="w-fit inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground">
+                {expense.status === 'PAID' ? 'paid' : 'pending'}
+              </div>
             </div>
           </li>
         ))}

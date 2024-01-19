@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Flex, Box } from 'reflexbox/styled-components';
 import styled from 'styled-components';
 import { withIntl } from '../lib/i18n';
 import availableLocales from '../constants/locales';
@@ -67,8 +66,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const H2 = styled.h2``;
-
 const ActionLink = styled.a`
   font-size: 14px;
   cursor: pointer;
@@ -78,16 +75,6 @@ const ActionLink = styled.a`
     color: darkred;
   }
 `;
-
-const Input = ({ type, name, placeholder, onChange, ...rest }) => (
-  <StyledInput
-    type={type || 'text'}
-    id={name}
-    placeholder={placeholder || name}
-    onChange={(e) => onChange(name, e.target.value)}
-    {...rest}
-  />
-);
 
 class LetterForm extends Component {
   constructor(props) {
@@ -163,8 +150,8 @@ class LetterForm extends Component {
         {this.state.form.map((form, index) => (
           <>
             {this.state.form.length > 0 && (
-              <Flex justifyContent="space-between">
-                <Box>
+              <div className="flex justify-between">
+                <div>
                   <select
                     className="dark:text-white dark:bg-black"
                     defaultValue={form.locale}
@@ -178,15 +165,15 @@ class LetterForm extends Component {
                       );
                     })}
                   </select>
-                </Box>
+                </div>
                 {index > 0 && !parentLetter && (
-                  <Box>
+                  <div>
                     <ActionLink onClick={() => this.removeLanguage(index)}>[{t('create.removeLanguage')} ⨯]</ActionLink>
-                  </Box>
+                  </div>
                 )}
-              </Flex>
+              </div>
             )}
-            <Box my={1} width={1}>
+            <div className="my-1 w-full">
               <TitleInput
                 type="text"
                 id="title"
@@ -197,30 +184,30 @@ class LetterForm extends Component {
                   this.firstTitleInput = this.firstTitleInput || input;
                 }}
               />
-            </Box>
+            </div>
             {index === 0 && (
-              <Box my={1} width={1}>
+              <div className="my-1 w-full">
                 <StyledInput
                   type="url"
                   id="url"
                   placeholder={t('create.image')}
                   onChange={(e) => this.handleChange('image', e.target.value)}
                 />
-              </Box>
+              </div>
             )}
-            <Box my={1} width={1}>
+            <div className="my-1 w-full">
               <StyledTextarea
                 name="text"
                 onChange={(e) => this.handleChange('text', e.target.value, index)}
                 required
                 placeholder={t('create.text')}
               />
-            </Box>
+            </div>
           </>
         ))}
         {!parentLetter && <ActionLink onClick={() => this.addLanguage()}>[{t('create.addLanguage')}]</ActionLink>}
         {!parentLetter && (
-          <Box>
+          <div>
             <p className="mt-4">{t('create.admin_info.description')}</p>
             <StyledInput
               type="email"
@@ -228,13 +215,13 @@ class LetterForm extends Component {
               placeholder={t('create.email')}
               onChange={(e) => this.handleChange('email', e.target.value)}
             />
-          </Box>
+          </div>
         )}
-        <Box>
+        <div>
           <StyledButton disabled={this.state.loading}>
             {t(parentLetter ? 'create.publish_update' : 'create.publish')}
           </StyledButton>
-        </Box>
+        </div>
       </form>
     );
   }

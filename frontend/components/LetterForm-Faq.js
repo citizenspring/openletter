@@ -1,7 +1,13 @@
 import { withIntl } from '../lib/i18n';
 
-const Q = ({ children }) => <summary className='text-lg text-gray-800 cursor-pointer font-medium mt-4'>{children}</summary>;
-const A = ({ children }) => <p className='pt-1 text-base text-gray-500 dark:text-gray-400'>{children}</p>;
+const Q = ({ children }) => (
+  <summary className="text-lg text-gray-800 dark:text-gray-300 cursor-pointer font-medium mt-4">{children}</summary>
+);
+const A = (props) => (
+  <p className="pt-1 text-base text-gray-500 dark:text-gray-400" {...props}>
+    {props.children}
+  </p>
+);
 
 export default withIntl(({ t }) => (
   <div>

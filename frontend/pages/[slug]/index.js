@@ -22,50 +22,12 @@ import url from 'url';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Page = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
-`;
-
-const Title = styled.h1`
-  margin-top: 0px;
-  margin-bottom: 14px;
-  font-size: 50px;
-  ${typography}
-  line-height: 1.2;
-`;
-
-const H2 = styled.h2`
-  margin-top: 0px;
-`;
-
-const Text = styled.div`
-  max-width: 80ex;
-`;
-
-const ViewMore = styled.div`
-  text-align: center;
-`;
-
-const BigNumber = styled.div`
-  font-size: 64pt;
-  ${typography}
-`;
-
-// BigNumber.defaultProps = {
-//   fontSize: '64pt'
-// };
-
-const BigNumberLabel = styled.div`
-  font-size: 32pt;
-  margin-top: -14px;
-  ${space}
-  ${typography}
-`;
-
-const IMG = styled.img`
-  max-width: 100%;
-`;
+const Page = ({ children, className }) => <div className={`max-w-4xl mx-auto ${className}`}>{children}</div>;
+const Title = ({ children, className }) => (
+  <div className={`text-3xl md:text-4xl mt-0 mb-3 leading-tight ${className}`}>{children}</div>
+);
+const Text = ({ children }) => <div className=" font-sans max-w-2xl dark:text-gray-300">{children}</div>;
+const ViewMore = ({ children }) => <div className="text-center">{children}</div>;
 
 class Letter extends Component {
   constructor(props) {
@@ -153,7 +115,7 @@ class Letter extends Component {
             <Box width={[1, 2 / 3]} p={3}>
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
               <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
-              <Title fontSize={[2, 2, 3]}>{letter.title}</Title>
+              <Title>{letter.title}</Title>
               {letter.image && letter.image.src && (
                 <div className="w-full">
                   <Image
