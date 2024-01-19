@@ -1,45 +1,13 @@
 import React, { useState } from 'react';
 import { withIntl } from '../lib/i18n';
-import styled from 'styled-components';
-import { typography, space } from 'styled-system';
-import { Flex, Box } from 'rebass';
 import NumberFormat from 'react-number-format';
 
-const Verified = styled.span`
-  color: #444;
-  cursor: pointer;
-  font-size: 12pt;
-  @media (prefers-color-scheme: dark) {
-    color: #888;
-  }
-`;
+const Verified = ({ children }) => (
+  <div className="text-gray-900 mt-1 cursor-pointer dark:text-gray-500 text-xl">{children}</div>
+);
 
-const TooltipText = styled.div`
-  color: #666;
-  font-size: 11pt;
-`;
-const InfoIcon = styled.img`
-  height: 14px;
-  margin-left: 0px;
-  margin-right: 3px;
-  margin-top: 0px;
-`;
-
-const BigNumber = styled.div`
-  font-size: 64pt;
-  ${typography}
-`;
-
-// BigNumber.defaultProps = {
-//   fontSize: '64pt'
-// };
-
-const BigNumberLabel = styled.div`
-  font-size: 32pt;
-  margin-top: -14px;
-  ${space}
-  ${typography}
-`;
+const TooltipText = ({ children }) => <div className="text-gray-500 text-base">{children}</div>;
+const InfoIcon = ({ src }) => <img className="h-3.5 ml-0 mr-1 mt-0" src={src} />;
 
 const Tooltip = ({ label, tooltip, children }) => {
   const [visible, setVisible] = useState(false);
@@ -47,14 +15,14 @@ const Tooltip = ({ label, tooltip, children }) => {
     <div onClick={() => setVisible(!visible)} title={tooltip}>
       <span>{label || children}</span>
       {visible && (
-        <Flex>
+        <div className="flex">
           <div textAlign="right">
             <InfoIcon src="/images/info-icon.png" />
           </div>
           <div>
             <TooltipText>{tooltip}</TooltipText>
           </div>
-        </Flex>
+        </div>
       )}
     </div>
   );
@@ -80,14 +48,12 @@ export default withIntl(({ signatures, t, stats }) => {
 
   return (
     <div>
-      <Box mx={1}>
-        <BigNumber fontSize={[2, 3, 4]}>
+      <div className="mx-1 mb-8">
+        <div className="text-center md:text-left text-7xl">
           <NumberFormat value={signatures_stats.total} displayType={'text'} thousandSeparator={true} />
-        </BigNumber>
-        <BigNumberLabel fontSize={[1, 2, 3]} mt={[-1, -2, -3]}>
-          signatures
-        </BigNumberLabel>
-        <Box>
+        </div>
+        <div className="-mt-1 text-center md:text-left text-3xl md:text-4xl">signatures</div>
+        <div className="text-center md:text-left">
           {signatures_stats.total != signatures_stats.verified && (
             <Verified>
               <Tooltip tooltip={t('letter.signatures.unverified.tooltip')}>
@@ -96,8 +62,8 @@ export default withIntl(({ signatures, t, stats }) => {
               </Tooltip>
             </Verified>
           )}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </div>
   );
 });
