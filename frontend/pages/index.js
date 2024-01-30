@@ -7,7 +7,7 @@ import { withIntl } from '../lib/i18n';
 import Card from '../components/Card';
 import NumberFormat from 'react-number-format';
 import { useRouter } from 'next/router';
-import Head from "next/head";
+import Head from 'next/head';
 
 function Homepage({ t, letters, stats }) {
   const router = useRouter();
@@ -25,8 +25,7 @@ function Homepage({ t, letters, stats }) {
       </Head>
       <div className="flex items-center justify-center py-4">
         <Footer />
-        <div className="flex content-center justify-center">
-        </div>
+        <div className="flex content-center justify-center"></div>
       </div>
       <main className="container mx-auto px-6 py-12">
         <section>
@@ -35,13 +34,13 @@ function Homepage({ t, letters, stats }) {
               <h3 className="text-5xl font-bold">
                 <NumberFormat value={stats.letters} displayType={'text'} thousandSeparator={true} />
               </h3>
-              <p className="text-lg text-gray-500">open letters</p>
+              <p className="text-lg text-gray-500">{t('home.stats.openletters')}</p>
             </div>
             <div>
               <h3 className="text-5xl font-bold">
                 <NumberFormat value={stats.signatures} displayType={'text'} thousandSeparator={true} />
               </h3>
-              <p className="text-lg text-gray-500">signatures</p>
+              <p className="text-lg text-gray-500">{t('home.stats.signatures')}</p>
             </div>
           </div>
         </section>
@@ -66,14 +65,13 @@ function Homepage({ t, letters, stats }) {
               </Link>
             </li>
             <li>{t('home.howitworks.2')}</li>
-            <li>{t('home.howitworks.3')}</li>
-            <li>{t('home.howitworks.4')}</li>
           </ol>
-          <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.privacy')}</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.values.title')}</h2>
           <ul className="list-disc list-inside space-y-2">
-            <li>{t('home.privacy.1')}</li>
-            <li>{t('home.privacy.2')}</li>
-            <li>{t('home.privacy.3')}</li>{' '}
+            <li>{t('home.values.1')}</li>
+            <li>{t('home.values.2')}</li>
+            <li>{t('home.values.3')}</li>
+            <li>{t('home.values.4')}</li>{' '}
           </ul>
           <h2 className="text-2xl font-bold mt-8 mb-4">{t('home.demo')}</h2>
           <img src="/images/openletter-demo.gif" style={{ width: '100%', maxWidth: '600px' }} />

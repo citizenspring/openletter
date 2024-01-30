@@ -1,5 +1,5 @@
 import { withIntl } from '../lib/i18n';
-import availableLocales from '../constants/locales';
+import availableLocales from '../constants/locales.json';
 import { useRouter } from 'next/router';
 
 export default withIntl(({ t, slug, currentLocale, locales }) => {
@@ -27,7 +27,7 @@ export default withIntl(({ t, slug, currentLocale, locales }) => {
         {locales.map((l) => {
           return (
             <option key={l} value={l}>
-              {availableLocales[l]}
+              {availableLocales[l].emoji} {availableLocales[l].name}
             </option>
           );
         })}

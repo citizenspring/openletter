@@ -1,0 +1,26 @@
+{
+  "ar": {
+    "name": "عربى",
+    "emoji": "🇦🇪"
+  },
+  "de": {
+    "name": "Deutsche",
+    "emoji": "🇩🇪"
+  },
+  "en": {
+    "name": "English",
+    "emoji": "🇬🇧"
+  },
+  "fr": {
+    "name": "Français",
+    "emoji": "🇫🇷"
+  },
+  "nl": {
+    "name": "Nederlands",
+    "emoji": "🇳🇱"
+  },
+  "tr": {
+    "name": "Türkçe",
+    "emoji": "🇹🇷"
+  }
+}

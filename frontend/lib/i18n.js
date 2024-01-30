@@ -1,10 +1,13 @@
 import React from 'react';
 import parser from 'accept-language-parser';
 
+import availableLocales from '../constants/locales.json';
+
 const locales = {};
 locales.en = require('../public/locales/en.json');
 locales.fr = require('../public/locales/fr.json');
 locales.nl = require('../public/locales/nl.json');
+locales.de = require('../public/locales/de.json');
 
 const defaultLanguage = 'en';
 
@@ -18,7 +21,8 @@ Object.keys(locales).forEach((locale) => {
 
 export const getLocaleFromHeaders = (headers) => {
   const language =
-    parser.pick(['en', 'fr', 'nl'], headers && headers['accept-language'], { loose: true }) || defaultLanguage;
+    parser.pick(Object.keys(availableLocales), headers && headers['accept-language'], { loose: true }) ||
+    defaultLanguage;
   const response = {
     locale: language,
     messages: locales[language],

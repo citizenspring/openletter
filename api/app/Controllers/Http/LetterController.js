@@ -8,6 +8,8 @@ const acceptLanguageParser = use('accept-language-parser');
 const Logger = use('Logger');
 Logger.level = 'info';
 
+const availableLocales = require('../../../locales.json');
+
 const { sendEmail } = use('App/Libs/email');
 const { getImageSize } = use('App/Libs/image');
 
@@ -42,7 +44,7 @@ class LetterController {
     const limit = request.limit === '0' ? null : parseInt(request.limit, 10) || 1000;
     const locale =
       request.locale ||
-      acceptLanguageParser.pick(['en', 'fr', 'nl', 'ar', 'tr'], ctx.request.headers()['accept-language'], {
+      acceptLanguageParser.pick(Object.keys(availableLocales), ctx.request.headers()['accept-language'], {
         loose: true,
       }) ||
       'en';

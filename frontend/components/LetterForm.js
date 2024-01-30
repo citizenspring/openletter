@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { withIntl } from '../lib/i18n';
-import availableLocales from '../constants/locales';
+import availableLocales from '../constants/locales.json';
 
 const TitleInput = styled.input`
   border: 1px dotted grey;
@@ -160,7 +160,7 @@ class LetterForm extends Component {
                     {Object.keys(availableLocales).map((l) => {
                       return (
                         <option key={l} value={l}>
-                          {availableLocales[l]}
+                          {availableLocales[l].emoji} {availableLocales[l].name}
                         </option>
                       );
                     })}

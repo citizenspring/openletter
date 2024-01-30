@@ -1,4 +1,7 @@
 require('dotenv').config();
+
+var locales = require('./constants/locales');
+
 module.exports = {
   env: {
     // You can also use process.env.API_URL if it is defined in your .env file
@@ -19,7 +22,7 @@ module.exports = {
   i18n: {
     // These are all the locales you want to support in
     // your application
-    locales: ['en', 'fr', 'nl', 'tr', 'ar'],
+    locales: Object.keys(locales),
     // This is the default locale you want to be used when visiting
     // a non-locale prefixed path e.g. `/hello`
     defaultLocale: 'en',

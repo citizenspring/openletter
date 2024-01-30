@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import fetch from 'node-fetch';
-import styled from 'styled-components';
 import Footer from '../../components/Footer';
 import { Flex, Box } from 'reflexbox/styled-components';
 import NumberFormat from 'react-number-format';
-import { typography, space } from 'styled-system';
 import SignatureForm from '../../components/SignatureForm';
 import Notification from '../../components/Notification';
 import SignatureEmailSent from '../../components/SignatureEmailSent';
