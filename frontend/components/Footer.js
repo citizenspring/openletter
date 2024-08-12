@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { withIntl } from '../lib/i18n';
 import React, { useState, useEffect } from 'react';
 
-
 function Footer({ t }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -49,6 +48,9 @@ function Footer({ t }) {
             <a>{t('footer.create')}</a>
             <br />
             {t('footer.andsignit')}
+          </div>
+          <div>
+            <a href="https://docs.openletter.earth/tos">Terms of Service</a>
           </div>
         </center>
       </div>
