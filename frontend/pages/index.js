@@ -32,7 +32,7 @@ function Homepage({ t, letters, stats }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
             <div>
               <h3 className="text-5xl font-bold">
-                <NumberFormat value={stats.letters} displayType={'text'} thousandSeparator={true} />
+                <NumberFormat value={stats && stats.letters} displayType={'text'} thousandSeparator={true} />
               </h3>
               <p className="text-lg text-gray-500">{t('home.stats.openletters')}</p>
             </div>

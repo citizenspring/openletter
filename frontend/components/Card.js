@@ -26,16 +26,17 @@ function getEmoji(locale) {
   };
   return emojis[locale] || locale;
 }
-
 function Card({ t, letter }) {
   return (
     <div className="rounded-lg border shadow-sm dark:bg-gray-800 dark:text-white">
       <CardHeader>
         <div className="flex items-left flex-col">
           <span className="text-sm text-gray-500">{moment(letter.created_at).format('D MMMM YYYY')}</span>
-          <h3 className="text-xl font-bold">
-            <Link href={`/${letter.slug}`}>{letter.title}</Link>
-          </h3>
+          {letter.title && (
+            <h3 className="text-xl font-bold">
+              <Link href={`/${letter.slug}`}>{letter.title}</Link>
+            </h3>
+          )}
           <div className="flex align-middle mt-2">
             <Badge>
               <NumberFormat value={letter.total_signatures} displayType={'text'} thousandSeparator={true} />
