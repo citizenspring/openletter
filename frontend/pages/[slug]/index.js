@@ -124,7 +124,7 @@ class Letter extends Component {
                 </div>
               )}
               <Text>
-                <ReactMarkdown plugins={[gfm]} allowedElements={['a', 'br', 'p', 'b', 'i', 'strong', 'em']}>
+                <ReactMarkdown plugins={[gfm]} allowedElements={['a', 'br', 'p', 'b', 'i', 'strong', 'em', 'img']}>
                   {text}
                 </ReactMarkdown>
               </Text>

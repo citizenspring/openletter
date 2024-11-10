@@ -154,9 +154,22 @@ Letter.list = async ({ locale, featured, limit, minSignatures }) => {
         min(l.created_at) as created_at, 
         ${
           !locale || locale === 'en'
-            ? `min(l.title) FILTER (WHERE locale='en') as title, min(l.text) FILTER (WHERE locale='en') as text,`
-            : `CASE WHEN min(l.title) FILTER (WHERE locale='${locale}') IS NULL THEN min(title) FILTER (WHERE locale='en') ELSE min(l.title) FILTER (WHERE locale='${locale}') END as title,
-               CASE WHEN min(l.text) FILTER (WHERE locale='${locale}') IS NULL THEN min(text) FILTER (WHERE locale='en') ELSE min(l.text) FILTER (WHERE locale='${locale}') END as text,`
+            ? `COALESCE(
+                min(l.title) FILTER (WHERE locale='en'),
+                min(l.title)
+              ) as title,
+              COALESCE(
+                min(l.text) FILTER (WHERE locale='en'),
+                min(l.text)
+              ) as text,`
+            : `CASE WHEN min(l.title) FILTER (WHERE locale='${locale}') IS NULL 
+                   THEN COALESCE(min(title) FILTER (WHERE locale='en'), min(title))
+                   ELSE min(l.title) FILTER (WHERE locale='${locale}')
+               END as title,
+               CASE WHEN min(l.text) FILTER (WHERE locale='${locale}') IS NULL 
+                    THEN COALESCE(min(text) FILTER (WHERE locale='en'), min(text))
+                    ELSE min(l.text) FILTER (WHERE locale='${locale}')
+               END as text,`
         }
         STRING_AGG(DISTINCT locale, ',') as locales,
         count(*) as total_signatures,
