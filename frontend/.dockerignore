@@ -1,0 +1,23 @@
+# Exclude node_modules and build artifacts
+node_modules
+.next
+out
+build
+
+# Exclude git and development files
+.git
+.gitignore
+README.md
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Keep everything else
+!pages/
+!app/
+!public/
+!styles/
+!components/
+!lib/ 
+!constants/
