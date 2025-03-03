@@ -48,7 +48,7 @@ function Footer({ t }) {
           <br />
           {t('footer.andsignit')}
         </div>
-        <div className="mt-2">
+        <div className="mt-4 text-sm">
           <a href="https://docs.openletter.earth/tos">Terms of Service</a>
         </div>
       </center>
