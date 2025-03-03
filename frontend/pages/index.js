@@ -6,12 +6,22 @@ import Footer from '../components/Footer';
 import { withIntl } from '../lib/i18n';
 import Card from '../components/Card';
 import NumberFormat from 'react-number-format';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 
 function Homepage({ t, letters, stats }) {
-  const router = useRouter();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+
+    const handler = (event) => setIsDarkMode(event.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  const fillColor = isDarkMode ? 'white' : 'black';
   return (
     <>
       <Head>
@@ -58,34 +68,40 @@ function Homepage({ t, letters, stats }) {
         <div className="flex content-center justify-center"></div>
       </div>
       <main className="container mx-auto px-6 py-12">
-        <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
-            <div>
-              <h3 className="text-5xl font-bold">
-                <NumberFormat value={stats && stats.letters} displayType={'text'} thousandSeparator={true} />
-              </h3>
-              <p className="text-lg text-gray-500">{t('home.stats.openletters')}</p>
+        {stats && (
+          <section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
+              <div>
+                <h3 className="text-5xl font-bold">
+                  <NumberFormat value={stats && stats.letters} displayType={'text'} thousandSeparator={true} />
+                </h3>
+                <p className="text-lg text-gray-500">{t('home.stats.openletters')}</p>
+              </div>
+              <div>
+                <h3 className="text-5xl font-bold">
+                  <NumberFormat value={stats && stats.signatures} displayType={'text'} thousandSeparator={true} />
+                </h3>
+                <p className="text-lg text-gray-500">{t('home.stats.signatures')}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-5xl font-bold">
-                <NumberFormat value={stats.signatures} displayType={'text'} thousandSeparator={true} />
-              </h3>
-              <p className="text-lg text-gray-500">{t('home.stats.signatures')}</p>
+          </section>
+        )}
+        {letters && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {letters.featured && letters.featured.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
             </div>
-          </div>
-        </section>
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold mb-8">{t('home.featured')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {letters.featured && letters.featured.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
-          </div>
-        </section>
-        <section className="mt-16">
-          <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {letters.latest && letters.latest.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
-          </div>
-        </section>
+          </section>
+        )}
+        {letters && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold mb-8">{t('home.latest')}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {letters.latest && letters.latest.map((letter, i) => <Card key={`card-${i}`} letter={letter} />)}
+            </div>
+          </section>
+        )}
         <section className="mt-16">
           <h2 className="text-2xl font-bold mb-8">{t('home.howitworks')}</h2>
           <ol className="list-decimal list-inside space-y-2">

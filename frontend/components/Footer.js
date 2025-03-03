@@ -17,7 +17,7 @@ function Footer({ t }) {
   const fillColor = isDarkMode ? 'white' : 'black';
 
   return (
-    <div className="mt-12 mb-6 cursor-pointer">
+    <div className="mt-12 mb-6">
       <center>
         <div>
           <svg width="64" viewBox="0 0 781 913" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@ function Footer({ t }) {
           <br />
           {t('footer.andsignit')}
         </div>
-        <div>
+        <div className="mt-2">
           <a href="https://docs.openletter.earth/tos">Terms of Service</a>
         </div>
       </center>
