@@ -1,6 +1,7 @@
 import { withIntl } from '../lib/i18n';
 import Link from 'next/link';
 import NumberFormat from 'react-number-format';
+import locales from '../constants/locales.json';
 import moment from 'moment';
 const Badge = ({ children }) => (
   <span className="inline-flex flex-nowrap items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-gray-900 text-white hover:bg-primary/80 ml-0 mr-1">
@@ -17,14 +18,7 @@ const Button = ({ children, variant }) => (
 const CardHeader = ({ children }) => <div className="flex flex-col space-y-1.5 p-6">{children}</div>;
 
 function getEmoji(locale) {
-  const emojis = {
-    fr: '🇫🇷',
-    nl: '🇳🇱',
-    en: '🇬🇧',
-    tr: '🇹🇷',
-    ar: '🇸🇦',
-  };
-  return emojis[locale] || locale;
+  return locales[locale].emoji || locale;
 }
 function Card({ t, letter }) {
   return (
