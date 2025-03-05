@@ -116,7 +116,7 @@ class Letter extends Component {
               <Title>{letter.title}</Title>
               {letter.image && letter.image.src && (
                 <div className="w-full">
-                  <Image
+                  <img
                     width={letter.image.width}
                     height={letter.image.height}
                     src={`/api/image?imageUrl=${encodeURIComponent(letter.image.src)}`}
