@@ -1,8 +1,17 @@
 const Mail = use('Mail');
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 async function sendEmail(recipient, subject, template, data, options = {}) {
   const from = options.from || 'Open Letter <support@openletter.earth>';
   const maxAttempts = options.maxAttempts || 10;
+
+  if (!isValidEmail(recipient)) {
+    console.error('>>> invalid email', recipient);
+    return;
+  }
 
   let attempt = 0;
 
