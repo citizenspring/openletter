@@ -249,6 +249,12 @@ class LetterController {
   async sign({ request }) {
     const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email']);
 
+    if (JSON.stringify(signatureData).match(/https?:\/\//)) {
+      return {
+        error: { code: 400, message: 'Invalid signature: it should not contain any URL' },
+      };
+    }
+
     const letter = await Letter.query()
       .where('slug', request.params.slug)
       .where('locale', request.params.locale)
