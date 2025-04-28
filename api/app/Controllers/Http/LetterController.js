@@ -312,11 +312,8 @@ class LetterController {
     let signature;
     try {
       signature = await letter.signatures().create(signatureData);
-      if (ipAddress) {
-        latestSignatureTimestampByIpAddress[ipAddress] = new Date();
-        console.log('>>> latestSignatureTimestampByIpAddress', ipAddress, latestSignatureTimestampByIpAddress);
-      }
     } catch (e) {
+      console.log('>>> error', e);
       if (e.constraint === 'signatures_token_unique') {
         signature = await Signature.query().where('token', signatureData.token).first();
         if (!signature || signature.is_verified) {
@@ -356,6 +353,12 @@ class LetterController {
       signature.email = null;
       signature.save();
     }
+
+    if (ipAddress) {
+      latestSignatureTimestampByIpAddress[ipAddress] = new Date();
+      console.log('>>> latestSignatureTimestampByIpAddress', ipAddress, latestSignatureTimestampByIpAddress);
+    }
+
     return signature.toJSON();
   }
 }
