@@ -268,13 +268,6 @@ class LetterController {
     // only accept one signature per 30s per ip address
     const ipAddress = request.headers()['x-forwarded-for'] || request.ip;
     if (ipAddress) {
-      console.log(
-        '>>> last signature request from ip',
-        ipAddress,
-        latestSignatureTimestampByIpAddress[ipAddress],
-        new Date(Date.now() - 30000),
-        latestSignatureTimestampByIpAddress[ipAddress] > new Date(Date.now() - 30000),
-      );
       if (latestSignatureTimestampByIpAddress[ipAddress] > new Date(Date.now() - 30000)) {
         console.log('>>> Too many requests: please try again later', ipAddress, JSON.stringify(signatureData));
         return {
@@ -284,12 +277,7 @@ class LetterController {
     }
 
     if (containsURL(JSON.stringify(signatureData))) {
-      console.log(
-        '>>> containsURL',
-        JSON.stringify(signatureData),
-        'ip address:',
-        request.headers()['x-forwarded-for'],
-      );
+      console.log('>>> containsURL', JSON.stringify(signatureData));
       return {
         error: { code: 400, message: 'Invalid signature: it should not contain any URL' },
       };
@@ -313,7 +301,6 @@ class LetterController {
     try {
       signature = await letter.signatures().create(signatureData);
     } catch (e) {
-      console.log('>>> error', e);
       if (e.constraint === 'signatures_token_unique') {
         signature = await Signature.query().where('token', signatureData.token).first();
         if (!signature || signature.is_verified) {
@@ -345,8 +332,6 @@ class LetterController {
       fr: 'ACTION REQUISE: Veuillez confirmer votre signature sur cette lettre ouverte',
     };
 
-    console.log('>>> send email confirmation for locale', locale);
-
     await sendEmail(request.body.email, subject[locale], `emails.${locale}.confirm_signature`, emailData);
     // if successful, we remove the email from database if the user didn't subscribe for updates
     if (!request.body.share_email) {
@@ -356,7 +341,6 @@ class LetterController {
 
     if (ipAddress) {
       latestSignatureTimestampByIpAddress[ipAddress] = new Date();
-      console.log('>>> latestSignatureTimestampByIpAddress', ipAddress, latestSignatureTimestampByIpAddress);
     }
 
     return signature.toJSON();
