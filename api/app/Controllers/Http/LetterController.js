@@ -23,7 +23,9 @@ function containsURL(str) {
 }
 
 const latestSignatureTimestampByIpAddress = {};
+console.log('>>> Setting up latestSignatureTimestampByIpAddress');
 setInterval(() => {
+  console.log('>>> Resetting latestSignatureTimestampByIpAddress');
   latestSignatureTimestampByIpAddress = {};
 }, 1000 * 60 * 60 * 24); // reset every day
 
@@ -312,6 +314,7 @@ class LetterController {
       signature = await letter.signatures().create(signatureData);
       if (ipAddress) {
         latestSignatureTimestampByIpAddress[ipAddress] = new Date();
+        console.log('>>> latestSignatureTimestampByIpAddress', ipAddress, latestSignatureTimestampByIpAddress);
       }
     } catch (e) {
       if (e.constraint === 'signatures_token_unique') {
