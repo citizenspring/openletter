@@ -21,6 +21,12 @@ function containsURL(str) {
   ];
   return patterns.some((pattern) => pattern.test(str));
 }
+
+const latestSignatureTimestampByIpAddress = {};
+setInterval(() => {
+  latestSignatureTimestampByIpAddress = {};
+}, 1000 * 60 * 60 * 24); // reset every day
+
 class LetterController {
   async index(ctx) {
     const request = ctx.request.only(['locale', 'featured', 'limit', 'minSignatures']);
@@ -257,8 +263,24 @@ class LetterController {
   async sign({ request }) {
     const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email']);
 
+    // only accept one signature per 30s per ip address
+    const ipAddress = request.headers()['x-forwarded-for'] || request.ip;
+    if (ipAddress) {
+      if (latestSignatureTimestampByIpAddress[ipAddress] > new Date(Date.now() - 30000)) {
+        console.log('>>> Too many requests: please try again later', ipAddress, JSON.stringify(signatureData));
+        return {
+          error: { code: 429, message: 'Too many requests: please try again later' },
+        };
+      }
+    }
+
     if (containsURL(JSON.stringify(signatureData))) {
-      console.log('>>> containsURL', JSON.stringify(signatureData), request.headers());
+      console.log(
+        '>>> containsURL',
+        JSON.stringify(signatureData),
+        'ip address:',
+        request.headers()['x-forwarded-for'],
+      );
       return {
         error: { code: 400, message: 'Invalid signature: it should not contain any URL' },
       };
@@ -281,6 +303,9 @@ class LetterController {
     let signature;
     try {
       signature = await letter.signatures().create(signatureData);
+      if (ipAddress) {
+        latestSignatureTimestampByIpAddress[ipAddress] = new Date();
+      }
     } catch (e) {
       if (e.constraint === 'signatures_token_unique') {
         signature = await Signature.query().where('token', signatureData.token).first();
