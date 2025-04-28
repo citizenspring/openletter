@@ -13,6 +13,10 @@ const availableLocales = require('../../../locales.json');
 const { sendEmail } = use('App/Libs/email');
 const { getImageSize } = use('App/Libs/image');
 
+function containsURL(str) {
+  const urlPattern = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+  return urlPattern.test(str);
+}
 class LetterController {
   async index(ctx) {
     const request = ctx.request.only(['locale', 'featured', 'limit', 'minSignatures']);
@@ -249,7 +253,8 @@ class LetterController {
   async sign({ request }) {
     const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email']);
 
-    if (JSON.stringify(signatureData).match(/https?:\/\//)) {
+    if (containsURL(JSON.stringify(signatureData))) {
+      console.log('>>> containsURL', JSON.stringify(signatureData), request.headers());
       return {
         error: { code: 400, message: 'Invalid signature: it should not contain any URL' },
       };
