@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   /*
@@ -17,8 +17,7 @@ module.exports = {
   |
   */
   origin: (origin) => {
-    console.log(">>> cors origin", origin);
-    return true;
+    return origin === 'https://openletter.earth';
   },
 
   /*
@@ -86,5 +85,5 @@ module.exports = {
   | Define Access-Control-Allow-Max-Age
   |
   */
-  maxAge: 90
-}
+  maxAge: 90,
+};

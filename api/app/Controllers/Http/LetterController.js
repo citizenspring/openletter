@@ -266,6 +266,13 @@ class LetterController {
     // only accept one signature per 30s per ip address
     const ipAddress = request.headers()['x-forwarded-for'] || request.ip;
     if (ipAddress) {
+      console.log(
+        '>>> last signature request from ip',
+        ipAddress,
+        latestSignatureTimestampByIpAddress[ipAddress],
+        new Date(Date.now() - 30000),
+        latestSignatureTimestampByIpAddress[ipAddress] > new Date(Date.now() - 30000),
+      );
       if (latestSignatureTimestampByIpAddress[ipAddress] > new Date(Date.now() - 30000)) {
         console.log('>>> Too many requests: please try again later', ipAddress, JSON.stringify(signatureData));
         return {
