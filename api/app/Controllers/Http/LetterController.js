@@ -14,8 +14,12 @@ const { sendEmail } = use('App/Libs/email');
 const { getImageSize } = use('App/Libs/image');
 
 function containsURL(str) {
-  const urlPattern = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
-  return urlPattern.test(str);
+  const patterns = [
+    /https?:\/\/.+\..+/,
+    /www\..+\..+/,
+    /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,8}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+  ];
+  return patterns.some((pattern) => pattern.test(str));
 }
 class LetterController {
   async index(ctx) {
@@ -275,7 +279,6 @@ class LetterController {
     delete signatureData.share_email;
 
     let signature;
-    console.log('>>> Signature.create', signatureData);
     try {
       signature = await letter.signatures().create(signatureData);
     } catch (e) {
