@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withIntl } from '../lib/i18n';
 import { Label, Checkbox } from '@rebass/forms';
 
-
 const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <input
     className="border-dotted border-gray-400 border p-2 rounded-lg w-full dark:bg-black dark:text-gray-50 dark:border-white"
@@ -25,6 +24,8 @@ class SignatureForm extends Component {
         city: null,
         email: null,
         share_email: false,
+        id: this.props.signature && this.props.signature.id,
+        token: this.props.signature && this.props.signature.token,
       },
     };
 
@@ -50,6 +51,8 @@ class SignatureForm extends Component {
     return false;
   }
 
+  updatingSignature = this.props.signature && this.props.signature.id;
+
   render() {
     const { error, t, letter } = this.props;
     return (
@@ -61,24 +64,42 @@ class SignatureForm extends Component {
               type="text"
               id="name"
               placeholder={t('sign.name')}
+              defaultValue={this.props.signature && this.props.signature.name}
               onChange={(e) => this.handleChange('name', e.target.value)}
             />
           </div>
           <div className="flex w-full py-1">
             <div className="w-1/2 mr-1">
-              <Input name="occupation" placeholder={t('sign.occupation')} onChange={this.handleChange} />
+              <Input
+                name="occupation"
+                placeholder={t('sign.occupation')}
+                onChange={this.handleChange}
+                defaultValue={this.props.signature && this.props.signature.occupation}
+              />
             </div>
             <div className="w-1/2">
-              <Input name="city" placeholder={t('sign.city')} onChange={this.handleChange} />
+              <Input
+                name="city"
+                placeholder={t('sign.city')}
+                onChange={this.handleChange}
+                defaultValue={this.props.signature && this.props.signature.city}
+              />
             </div>
           </div>
           <div className="w-full py-1">
-            <Input name="organization" placeholder={t('sign.organization')} onChange={this.handleChange} />
+            <Input
+              name="organization"
+              placeholder={t('sign.organization')}
+              onChange={this.handleChange}
+              defaultValue={this.props.signature && this.props.signature.organization}
+            />
           </div>
-          <div className="w-full py-1">
-            <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
-          </div>
-          {letter.user_id && (
+          {!this.updatingSignature && (
+            <div className="w-full py-1">
+              <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
+            </div>
+          )}
+          {!this.updatingSignature && letter.user_id && (
             <div className="my-1">
               <Label>
                 <div className="mt-1 mr-0">
@@ -98,7 +119,7 @@ class SignatureForm extends Component {
             className="text-white text-base font-sans border-white bg-gray-900 p-3 rounded-lg w-full disabled:bg-gray-500 dark:bg-black dark:text-white dark:border-white border-2 font-bold"
             disabled={this.state.loading}
           >
-            {t('sign.button')}
+            {this.props.signature ? t('sign.update') : t('sign.button')}
           </button>
         </div>
         {error && <div className="text-red font-bold text-center m-4">{error.message}</div>}

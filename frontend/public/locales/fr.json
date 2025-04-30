@@ -67,6 +67,7 @@
   "notification.signed.info": "Partagez cette lettre ouverte et trouvez plus de personnes pour la signer avec vous.",
   "notification.signing": "Signature en cours",
   "sign.button": "Signer cette lettre",
+  "sign.update": "Modifier ma signature",
   "sign.city": "ville",
   "sign.email": "email",
   "sign.name": "Votre nom",
