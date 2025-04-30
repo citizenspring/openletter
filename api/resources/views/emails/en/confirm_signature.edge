@@ -12,12 +12,7 @@
   <center>
     <a href="{{env.WEBSITE_URL}}/{{letter.slug}}/confirm_signature?token={{signature.token}}" style="text-decoration: none;display:inline-block;width:220px;font-size: 12pt; font-family: Arial; background: #111; color: white; padding: 10px; border-radius: 5px; box-sizing: border-box;">
       Confirm Signature
-    </a>
-    <br />
-    <a href="{{env.WEBSITE_URL}}/{{letter.slug}}?signatureId={{signature.id}}&token={{signature.token}}">
-      Edit Signature
-    </a>
-    
+    </a>    
   </center>
 </p>
 
@@ -27,6 +22,14 @@
 </p>
 <p>
   If you like software that respects your privacy, please consider supporting our work by <a href="https://opencollective.com/openletter/donate">donating to our open collective</a>. Thank you 🙏
+</p>
+
+<h3>What if I want to change my signature?</h3>
+<p>
+  Use this link to change your signature: 
+  <a href="{{env.WEBSITE_URL}}/{{letter.slug}}?signatureId={{signature.id}}&token={{signature.token}}">
+    Edit Signature
+  </a> (Keep this email preciously in case you want to modify your signature in the future (and don't share it with anyone!).
 </p>
 </body>
 </html>
