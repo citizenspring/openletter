@@ -263,7 +263,7 @@ class LetterController {
   }
 
   async sign({ request }) {
-    const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email']);
+    const signatureData = request.only(['name', 'occupation', 'city', 'organization', 'share_email', 'id', 'token']);
 
     // only accept one signature per 30s per ip address
     const ipAddress = request.headers()['x-forwarded-for'] || request.ip;
@@ -281,6 +281,21 @@ class LetterController {
       return {
         error: { code: 400, message: 'Invalid signature: it should not contain any URL' },
       };
+    }
+
+    if (signatureData.id && signatureData.token) {
+      const existingSignature = await Signature.query()
+        .where('id', signatureData.id)
+        .where('token', signatureData.token)
+        .first();
+      if (!existingSignature) {
+        return {
+          error: { code: 400, message: 'Unable to update signature. Invalid id and token.' },
+        };
+      }
+      existingSignature.merge(signatureData);
+      await existingSignature.save();
+      return existingSignature.toJSON();
     }
 
     const letter = await Letter.query()
