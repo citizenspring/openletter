@@ -34,7 +34,7 @@
   "faq.q7": "Wie kann ich beitragen?",
   "faq.q7.response": "Sie können <a href=\"https://github.com/citizenspring/openletter\">Code auf Github beitragen</a> 🧑🏻‍💻 oder Sie können <a href=\"https://opencollective.com/openletter\">einen finanziellen Beitrag zu unserem Kollektiv leisten</a> 💰. Vielen Dank für Ihre Unterstützung! 🙏",
   "faq.q8": "Wie kann ich meine Unterschrift entfernen oder bearbeiten?",
-  "faq.q8.response": "In Ihrer Bestätigungs-E-Mail haben Sie einen eindeutigen Link, um Ihre Unterschrift zu bearbeiten. Speichern Sie diesen für zukünftige Verwendung (und teilen Sie diese E-Mail niemandem mit!).",
+  "faq.q8.response": "In Ihrer Bestätigungs-E-Mail haben Sie einen eindeutigen Link, um Ihre Unterschrift zu bearbeiten. Speichern Sie diesen für zukünftige Verwendung (und teilen Sie diese E-Mail niemandem mit!). Für ältere Unterschriften (vor Mai 2025) oder falls Sie Ihre Bestätigungs-E-Mail verloren haben, können Sie diese <a href=\"https://forms.gle/NqewFfQVdftQqGnn9\">Google Form</a> verwenden.",
   "footer.andsignit": "und unterschreiben Sie es gemeinsam",
   "footer.create": "Erstellen Sie einen offenen Brief",
   "home.demo": "Demo",

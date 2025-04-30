@@ -34,7 +34,7 @@
   "faq.q7": "How to contribute?",
   "faq.q7.response": "You can <a href=\"https://github.com/citizenspring/openletter\">contribute contribute code on Github</a> 🧑🏻‍💻 or you can <a href=\"https://opencollective.com/openletter\">make a financial contribution to our collective</a> 💰. Thank you for your support! 🙏",
   "faq.q8": "How to remove or edit my signature?",
-  "faq.q8.response": "In your confirmation email, you have a unique link to edit your signature. Keep it safely for future use (and don't share it with anyone!).",
+  "faq.q8.response": "In your confirmation email, you have a unique link to edit your signature. Keep it safely for future use (and don't share it with anyone!). For older signatures (before May 2025) or if you have lost your confirmation email, you can use this <a href=\"https://forms.gle/NqewFfQVdftQqGnn9\">Google Form</a>.",
   "footer.andsignit": "and sign it together",
   "footer.create": "Create an open letter",
   "home.demo": "Demo",
