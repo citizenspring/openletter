@@ -43,6 +43,10 @@ export default withIntl(({ t }) => (
         <Q>{t('faq.q7')}</Q>
         <A dangerouslySetInnerHTML={{ __html: t('faq.q7.response') }} />
       </details>
+      <details>
+        <Q>{t('faq.q8')}</Q>
+        <A dangerouslySetInnerHTML={{ __html: t('faq.q8.response') }} />
+      </details>
     </div>
   </div>
 ));

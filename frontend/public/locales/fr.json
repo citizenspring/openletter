@@ -33,6 +33,8 @@
   "faq.q6.response": "Commencez une conversation sur notre collectif.",
   "faq.q7": "Comment contribuer ?",
   "faq.q7.response": "Vous pouvez <a href=\"https://github.com/citizenspring/openletter\">contribuer au développement sur Github</a> 🧑🏻‍💻 ou vous pouvez <a href=\"https://opencollective.com/openletter\">faire une contribution financière à notre collectif</a> 💰. Merci pour votre soutien ! 🙏",
+  "faq.q8": "Comment supprimer ou modifier ma signature ?",
+  "faq.q8.response": "Vous pouvez utiliser ce <a href=\"https://forms.gle/NqewFfQVdftQqGnn9\">Google Form</a>. Nous sommes bénévoles, donc le support est limité et lent.",
   "footer.andsignit": "et signez-la ensemble",
   "footer.create": "Créez une lettre ouverte",
   "home.demo": "Démo",
