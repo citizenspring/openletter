@@ -207,6 +207,7 @@ export async function getServerSideProps({ params, req, res, locale }) {
     const signatureApiCall = `${process.env.API_URL}/signatures/${signatureId}/${token}`;
     const signatureResult = await fetch(signatureApiCall);
     const signature = await signatureResult.json();
+    signature.token = token;
     props.signature = signature;
   }
 
