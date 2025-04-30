@@ -293,8 +293,8 @@ class LetterController {
           error: { code: 400, message: 'Unable to update signature. Invalid id and token.' },
         };
       }
+      delete signatureData.share_email; // no a db column
       existingSignature.merge(signatureData);
-      delete existingSignature.share_email; // no a db column
       await existingSignature.save();
       return existingSignature.toJSON();
     }
