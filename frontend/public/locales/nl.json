@@ -66,6 +66,8 @@
   "notification.signed.donate.title": "Help us keep Open Letter free!",
   "notification.signed.info": "Deel deze open brief en laat meer mensen hem ondertekenen.",
   "notification.signing": "Ondertekening",
+  "notification.updated": "Gewijzigd!",
+  "notification.updated.info": "Je handtekening is gewijzigd.",
   "sign.button": "Onderteken deze brief",
   "sign.update": "Wijzig mijn handtekening",
   "sign.city": "stad",

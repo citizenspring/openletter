@@ -62,6 +62,8 @@
   "notification.sent": "Presque terminé!",
   "notification.sent.info": "Veuillez juste cliquer sur le lien dans l'email que nous venons de vous envoyer pour confirmer votre signature.",
   "notification.signed": "Signé!",
+  "notification.updated": "Ça, c'est fait!",
+  "notification.updated.info": "Votre signature a été modifiée avec succès.",
   "notification.signed.donate.button": "Faire une donation à notre collectif",
   "notification.signed.donate.title": "Aidez-nous à garder openletter.earth libre & gratuit!",
   "notification.signed.info": "Partagez cette lettre ouverte et trouvez plus de personnes pour la signer avec vous.",

@@ -61,6 +61,8 @@
   "notification.published.info": "Sign it and then get others to co-sign it with you.",
   "notification.sent": "Almost done!",
   "notification.sent.info": "Just click on the link in the email that we sent you to confirm your signature.",
+  "notification.updated": "Updated!",
+  "notification.updated.info": "Your signature has been updated.",
   "notification.signed": "Signed!",
   "notification.signed.donate.button": "Donate to our open collective",
   "notification.signed.donate.title": "Help us keep openletter.earth open and free",

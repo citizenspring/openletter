@@ -61,6 +61,8 @@
   "notification.published.info": "Unterschreiben Sie ihn und lassen Sie andere gemeinsam mit Ihnen unterschreiben.",
   "notification.sent": "Fast fertig!",
   "notification.sent.info": "Klicken Sie einfach auf den Link in der E-Mail, die wir Ihnen geschickt haben, um Ihre Unterschrift zu bestätigen.",
+  "notification.updated": "Aktualisiert!",
+  "notification.updated.info": "Ihre Unterschrift wurde aktualisiert.",
   "notification.signed": "Unterschrieben!",
   "notification.signed.donate.button": "Spenden Sie an unser offenes Kollektiv",
   "notification.signed.donate.title": "Helfen Sie uns, Open Letter frei zu halten!",

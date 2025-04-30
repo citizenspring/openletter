@@ -6,6 +6,7 @@ import NumberFormat from 'react-number-format';
 import SignatureForm from '../../components/SignatureForm';
 import Notification from '../../components/Notification';
 import SignatureEmailSent from '../../components/SignatureEmailSent';
+import SignatureUpdated from '../../components/SignatureUpdated';
 import Signatures from '../../components/Signatures';
 import SignaturesCount from '../../components/SignaturesCount';
 import Updates from '../../components/Updates';
@@ -58,7 +59,7 @@ class Letter extends Component {
       if (json.error) {
         this.setState({ status: 'error', error: json.error });
       } else {
-        this.setState({ status: 'signature_sent' });
+        this.setState({ status: signature.token ? 'signature_updated' : 'signature_sent' });
       }
     } catch (e) {
       console.error('>>> API error', e);
@@ -142,6 +143,7 @@ class Letter extends Component {
                   />
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
+                {status === 'signature_updated' && <SignatureUpdated />}
                 {(letter.signatures_stats.verified <= 100 || !letter.first_verified_signatures) && (
                   <Signatures signatures={letter.signatures} total={letter.signatures_stats.verified} />
                 )}
