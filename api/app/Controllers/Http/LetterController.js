@@ -294,6 +294,7 @@ class LetterController {
         };
       }
       existingSignature.merge(signatureData);
+      delete existingSignature.share_email; // no a db column
       await existingSignature.save();
       return existingSignature.toJSON();
     }
