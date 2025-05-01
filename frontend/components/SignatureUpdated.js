@@ -20,7 +20,7 @@ export default withIntl(({ t, letter }) => {
   // redirect to the letter page after 4 seconds
   useEffect(() => {
     setTimeout(() => {
-      Router.push(`/${letter.slug}`);
+      Router.replace(`/${letter.slug}`); // we remove the token from the url for safety
     }, 4000);
   }, []);
 

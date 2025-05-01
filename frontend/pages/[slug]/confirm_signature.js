@@ -12,7 +12,8 @@ function sleep(ms) {
 class ConfirmSignaturePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { status: null };
+    const { status } = this.props.router.query;
+    this.state = { status: status || null };
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
@@ -31,10 +32,10 @@ class ConfirmSignaturePage extends Component {
       headers: { 'Content-Type': 'application/json' },
     });
     const resActionJSON = await resAction.json();
+    if (Router.router && this.props.letter) {
+      Router.replace(`/${this.props.letter.slug}/confirm_signature?status=signature_confirmed`);
+    }
     this.setState({ status: 'signature_confirmed' });
-    // if (Router.router && this.props.letter) {
-    //   Router.replace(`/${this.props.letter.slug}`);
-    // }
   }
 
   componentDidMount() {
@@ -54,37 +55,45 @@ class ConfirmSignaturePage extends Component {
     }
 
     return (
-      <div className="w-full pt-4">
-        {status === 'signature_confirmed' && (
-          <>
-            <div className="text-center mt-4 text-lg">
-              <a href={`/${letter.slug}`} className="underline">
-                {letter.title}
-              </a>
-            </div>
-            <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
-            <p>
-              Looking to modify your signature?{' '}
-              <a href={`/${letter.slug}?token=${token}`} className="underline">
-                Click here
-              </a>
-              .
-            </p>
-            <div className="flex justify-center flex-col text-center my-4">
-              <h2 className="text-2xl">{t('notification.signed.donate.title')}</h2>
-              <a
-                className="my-4 mx-4 text-white text-base font-sans border-white bg-gray-900 p-3 rounded-lg disabled:bg-gray-500 dark:bg-black dark:text-white dark:border-white border-2 font-bold"
-                href="https://opencollective.com/openletter/donate"
-              >
-                {t('notification.signed.donate.button')}
-              </a>
-            </div>
-            <OpenCollectiveData collectiveSlug="openletter" />
-          </>
-        )}
-        {!status && (
-          <Notification title={`${t('notification.signing')} ${letter.title}`} message={t('notification.pleasewait')} />
-        )}
+      <div className="max-w-2xl mx-auto w-full pt-4">
+        <div className="px-4">
+          {status === 'signature_confirmed' && (
+            <>
+              <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
+              <div className="text-center mt--4 mb-4 text-lg">
+                <a href={`/${letter.slug}`} className="underline">
+                  {letter.title}
+                </a>
+              </div>
+              <p className="text-center text-sm">
+                Looking to modify your signature?{' '}
+                <a href={`/${letter.slug}?token=${token}`} className="underline">
+                  Click here
+                </a>
+                .
+              </p>
+              <div className="max-w-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl p-6 my-8 shadow-md">
+                <h2 className="text-2xl font-bold mb-3 bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent dark:text-white">
+                  {t('notification.signed.donate.title')}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">{t('notification.signed.donate.description')}</p>
+                <a
+                  className="inline-block w-full text-center transition-all duration-200 text-white text-lg font-medium bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:text-white"
+                  href="https://opencollective.com/openletter/donate"
+                >
+                  {t('notification.signed.donate.button')}
+                </a>
+              </div>
+              <OpenCollectiveData collectiveSlug="openletter" />
+            </>
+          )}
+          {!status && (
+            <Notification
+              title={`${t('notification.signing')} ${letter.title}`}
+              message={t('notification.pleasewait')}
+            />
+          )}
+        </div>
       </div>
     );
   }

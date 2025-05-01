@@ -14,7 +14,7 @@ const Notification = ({ icon, title, message }) => {
   const fillColor = isDarkMode ? 'white' : 'black';
 
   return (
-    <div className="my-2 py-3">
+    <div className="my-0 py-3">
       <div className="mx-2 p-2">
         <div className="text-center justify-center">
           <div className="flex justify-center">

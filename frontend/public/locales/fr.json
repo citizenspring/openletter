@@ -65,6 +65,7 @@
   "notification.updated": "Ça, c'est fait!",
   "notification.updated.info": "Votre signature a été modifiée avec succès.",
   "notification.signed.donate.button": "Faire une donation à notre collectif",
+  "notification.signed.donate.description": "OpenLetter.earth est financé par la communauté pour la communauté. \n\nFaites votre part et contribuez à notre collectif pour nous aider à garder ce service gratuit et indépendant.",
   "notification.signed.donate.title": "Aidez-nous à garder openletter.earth libre & gratuit!",
   "notification.signed.info": "Partagez cette lettre ouverte et trouvez plus de personnes pour la signer avec vous.",
   "notification.signing": "Signature en cours",
