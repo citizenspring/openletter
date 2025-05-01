@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { space } from 'styled-system';
 import { withIntl } from '../lib/i18n';
 import Router from 'next/router';
+import React, { useEffect } from 'react';
 
 const NotificationBox = styled.div`
   border-top: 4px solid black;
