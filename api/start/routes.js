@@ -27,7 +27,8 @@ Route.get('letters/:slug/:locale', 'LetterController.get');
 Route.post('letters/create', 'LetterController.create');
 Route.post('letters/update', 'LetterController.update');
 Route.post('letters/delete', 'LetterController.delete');
-Route.get('signatures/:id/:token', 'SignatureController.get');
+Route.get('signatures/:token', 'SignatureController.get');
+Route.get('signatures/:id/:token', 'SignatureController.get'); // deprecated
 // TODO: refactor to signatures/create
 Route.post('letters/:slug/:locale/sign', 'LetterController.sign');
 Route.post('signatures/confirm', 'SignatureController.confirm');

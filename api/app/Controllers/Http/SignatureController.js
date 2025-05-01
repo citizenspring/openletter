@@ -10,10 +10,10 @@ class SignatureController {
   }
 
   async get(ctx) {
-    if (!ctx.params.id || !ctx.params.token) {
-      return ctx.response.status(400).json({ error: 'Missing id or token' });
+    if (!ctx.params.token) {
+      return ctx.response.status(400).json({ error: 'Missing token' });
     }
-    const resultSet = await Signature.query().where('id', ctx.params.id).where('token', ctx.params.token).fetch();
+    const resultSet = await Signature.query().where('token', ctx.params.token).fetch();
     if (resultSet.rows.length === 0) {
       return ctx.response.status(404).json({ error: 'Signature not found' });
     }
