@@ -44,6 +44,7 @@ class ConfirmSignaturePage extends Component {
   render() {
     const { letter, t } = this.props;
     const { status } = this.state;
+    const { token } = this.props.router.query;
     if (!letter) {
       return (
         <div>
@@ -62,6 +63,13 @@ class ConfirmSignaturePage extends Component {
               </a>
             </div>
             <Notification icon="signed" title={t('notification.signed')} message={t('notification.signed.info')} />
+            <p>
+              Looking to modify your signature?{' '}
+              <a href={`/${letter.slug}?token=${token}`} className="underline">
+                Click here
+              </a>
+              .
+            </p>
             <div className="flex justify-center flex-col text-center my-4">
               <h2 className="text-2xl">{t('notification.signed.donate.title')}</h2>
               <a

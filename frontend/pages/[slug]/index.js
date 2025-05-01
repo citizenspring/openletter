@@ -143,7 +143,7 @@ class Letter extends Component {
                   />
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
-                {status === 'signature_updated' && <SignatureUpdated />}
+                {status === 'signature_updated' && <SignatureUpdated letter={letter} />}
                 {(letter.signatures_stats.verified <= 100 || !letter.first_verified_signatures) && (
                   <Signatures signatures={letter.signatures} total={letter.signatures_stats.verified} />
                 )}
@@ -199,18 +199,21 @@ export async function getServerSideProps({ params, req, res, locale }) {
   const props = { headers: req.headers };
   const parsedUrl = url.parse(req.url, true);
   const limit = parsedUrl.query.limit || 100;
-  const signatureId = parsedUrl.query.signatureId || null;
   const token = parsedUrl.query.token || null;
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
   console.log('>>> apiCall', apiCall);
   const result = await fetch(apiCall);
 
-  if (signatureId && token) {
-    const signatureApiCall = `${process.env.API_URL}/signatures/${signatureId}/${token}`;
+  if (token) {
+    const signatureApiCall = `${process.env.API_URL}/signatures/${token}`;
     const signatureResult = await fetch(signatureApiCall);
     const signature = await signatureResult.json();
-    signature.token = token;
-    props.signature = signature;
+    if (signature.error) {
+      props.error = signature.error;
+    } else {
+      signature.token = token;
+      props.signature = signature;
+    }
   }
 
   try {
