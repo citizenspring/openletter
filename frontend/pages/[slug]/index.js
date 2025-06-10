@@ -77,7 +77,7 @@ class Letter extends Component {
     if (error) {
       return (
         <Page>
-          <Notification title="No letter found" />
+          <Notification title="Unable to show load this letter" message={error.message} icon="error" />
         </Page>
       );
     } else if (!letter) {
@@ -202,30 +202,48 @@ export async function getServerSideProps({ params, req, res, locale }) {
   const token = parsedUrl.query.token || null;
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
   console.log('>>> apiCall', apiCall);
-  const result = await fetch(apiCall);
 
-  if (token) {
-    const signatureApiCall = `${process.env.API_URL}/signatures/${token}`;
-    const signatureResult = await fetch(signatureApiCall);
-    const signature = await signatureResult.json();
-    if (signature.error) {
-      props.error = signature.error;
-    } else {
-      signature.token = token;
-      props.signature = signature;
-    }
-  }
+  // Create AbortController for timeout handling
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
   try {
-    const response = await result.json();
-    if (response.error) {
-      props.error = response.error;
+    const result = await fetch(apiCall, { signal: controller.signal });
+    clearTimeout(timeoutId); // Clear timeout if request succeeds
+
+    if (token) {
+      const signatureApiCall = `${process.env.API_URL}/signatures/${token}`;
+      const signatureResult = await fetch(signatureApiCall);
+      const signature = await signatureResult.json();
+      if (signature.error) {
+        props.error = signature.error;
+      } else {
+        signature.token = token;
+        props.signature = signature;
+      }
+    }
+
+    try {
+      const response = await result.json();
+      if (response.error) {
+        props.error = response.error;
+      } else {
+        props.letter = response;
+      }
+      return { props };
+    } catch (e) {
+      console.error('Unable to parse JSON returned by the API', e);
+    }
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      console.error('API request timed out after 5 seconds');
+      props.error = { message: 'Request timeout' };
     } else {
-      props.letter = response;
+      console.error('API request failed:', error);
+      props.error = { message: 'Request failed' };
     }
     return { props };
-  } catch (e) {
-    console.error('Unable to parse JSON returned by the API', e);
   }
 }
 
