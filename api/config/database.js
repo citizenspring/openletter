@@ -80,8 +80,7 @@ module.exports = {
       user: Env.get('DB_USER', DATABASE_URL.username),
       password: Env.get('DB_PASSWORD', DATABASE_URL.password),
       database: Env.get('DB_DATABASE', DATABASE_URL.pathname.substr(1)),
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-      // }process.env.NODE_ENV === 'production'
+      ssl: DATABASE_URL.query.match(/\?ssl=[1|true]/) ? { rejectUnauthorized: false } : false,
     },
   },
 };
