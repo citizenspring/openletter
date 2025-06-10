@@ -77,7 +77,7 @@ class Letter extends Component {
     if (error) {
       return (
         <Page>
-          <Notification title="Unable to show load this letter" message={error.message} icon="error" />
+          <Notification title="Unable to load this letter" message={error.message} icon="error" />
         </Page>
       );
     } else if (!letter) {

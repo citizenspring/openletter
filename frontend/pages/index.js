@@ -61,7 +61,7 @@ function Homepage({ t, letters, stats, error }) {
               </svg>
             </div>
             <div className="text-base leading-6 mt-2">
-              <Link href={`/create`}>{t('footer.create')}</Link>
+              {t('footer.create')}
               <br />
               {t('footer.andsignit')}
             </div>
