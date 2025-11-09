@@ -212,6 +212,7 @@ class LetterForm extends Component {
             <StyledInput
               type="email"
               id="email"
+              required
               placeholder={t('create.email')}
               onChange={(e) => this.handleChange('email', e.target.value)}
             />

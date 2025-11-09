@@ -1,6 +1,6 @@
 {
   "create.addLanguage": "Add another language",
-  "create.admin_info.description": "If you want to be able to remove this open letter or submit an update, please provide us with your email address. We will ask signatories if they would like to opt in for those updates.",
+  "create.admin_info.description": "Please provide an email address to make sure you can edit or update this open letter.",
   "create.email": "Your email address",
   "create.faq.q1": "How to create an open letter?",
   "create.faq.q1.response": "We recommend you to start a google doc with one or two other people. It's a co-creation process! Once you are happy with it, copy paste it here, publish it and share the URL with your collaborators to be the first to sign it.",

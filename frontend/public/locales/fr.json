@@ -1,6 +1,6 @@
 {
   "create.addLanguage": "Ajouter une autre langue",
-  "create.admin_info.description": "Si vous voulez pouvoir supprimer cette lettre ouverte ou publier une mise à jour, veuillez nous transmettre votre adresse email. On demandera aux signataires s'ils souhaitent souscrire à ces mises à jour par email.",
+  "create.admin_info.description": "Veuillez nous transmettre votre adresse email pour pouvoir modifier ou mettre à jour cette lettre ouverte.",
   "create.email": "Votre adresse email",
   "create.faq.q1": "Comment créer une lettre ouverte ?",
   "create.faq.q1.response": "On vous recommande de commencer avec un Google Doc avec un ou deux personnes. C'est un process de co-création! Une fois que vous êtes heureux du résultat, copiez-collez la ici, publiez la et partagez l'URL avec vos collaborateurs/trices pour qu'elles/ils soient les premiers à la signer.",
