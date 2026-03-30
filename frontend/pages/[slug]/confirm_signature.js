@@ -12,13 +12,13 @@ function sleep(ms) {
 class ConfirmSignaturePage extends Component {
   constructor(props) {
     super(props);
-    const { status } = this.props.router.query;
-    this.state = { status: status || null };
+    const { status, token } = this.props.router.query;
+    this.state = { status: status || null, token: token || null };
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
   async confirmSignature() {
-    const { token } = this.props.router.query;
+    const token = this.props.router.query.token || this.state.token;
     if (!token) {
       console.error('>>> no token found in query string, aborting');
       return;
@@ -45,7 +45,7 @@ class ConfirmSignaturePage extends Component {
   render() {
     const { letter, t } = this.props;
     const { status } = this.state;
-    const { token } = this.props.router.query;
+    const token = this.state.token;
     if (!letter) {
       return (
         <div>
@@ -79,7 +79,7 @@ class ConfirmSignaturePage extends Component {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{t('notification.signed.donate.description')}</p>
                 <a
                   className="inline-block w-full text-center transition-all duration-200 text-white text-lg font-medium bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:text-white"
-                  href="https://opencollective.com/openletter/donate"
+                  href="https://donate.stripe.com/28EcN52CwaOIb2X8e5eUU0k"
                 >
                   {t('notification.signed.donate.button')}
                 </a>

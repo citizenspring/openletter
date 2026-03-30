@@ -64,7 +64,7 @@
   "notification.updated": "Updated!",
   "notification.updated.info": "Your signature has been updated.",
   "notification.signed": "Signed!",
-  "notification.signed.donate.button": "Donate to our open collective",
+  "notification.signed.donate.button": "Contribute to our costs",
   "notification.signed.donate.title": "Keep openletter.earth open and free",
   "notification.signed.donate.description": "OpenLetter.earth is funded by the community for the community. \n\nPlease do your part and contribute to our collective to help us keep it running as a free independent service.",
   "notification.signed.info": "Share this open letter and get more people to sign it.",
