@@ -81,5 +81,6 @@
   "signatures.first": "Soyez le/la premier.e à signer cette lettre",
   "signatures.more": "signatures vérifiées",
   "signatures.verified": "en plus",
-  "signatures.view_all": "toutes les voir"
+  "signatures.view_all": "toutes les voir",
+  "notification.sent.donate.note": "Note : Open Letter est un service gratuit, ouvert et indépendant grâce aux dons de citoyens comme vous."
 }

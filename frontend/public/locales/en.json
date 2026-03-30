@@ -81,5 +81,6 @@
   "signatures.first": "Be the first to sign this letter",
   "signatures.more": "more",
   "signatures.verified": "verified signatures",
-  "signatures.view_all": "view all"
+  "signatures.view_all": "view all",
+  "notification.sent.donate.note": "Note: Open Letter is a free, open and independent service thanks to the donations of citizens like you."
 }

@@ -81,5 +81,6 @@
   "signatures.first": "Seien Sie der Erste, der diesen Brief unterschreibt",
   "signatures.more": "mehr",
   "signatures.verified": "verifizierte Unterschriften",
-  "signatures.view_all": "alle anzeigen"
+  "signatures.view_all": "alle anzeigen",
+  "notification.sent.donate.note": "Hinweis: Open Letter ist ein kostenloser, offener und unabhängiger Dienst dank der Spenden von Bürgern wie Ihnen."
 }
