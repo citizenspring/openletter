@@ -12,13 +12,13 @@ function sleep(ms) {
 class ConfirmSignaturePage extends Component {
   constructor(props) {
     super(props);
-    const { status } = this.props.router.query;
-    this.state = { status: status || null };
+    const { status, token } = this.props.router.query;
+    this.state = { status: status || null, token: token || null };
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
   async confirmSignature() {
-    const { token } = this.props.router.query;
+    const token = this.props.router.query.token || this.state.token;
     if (!token) {
       console.error('>>> no token found in query string, aborting');
       return;
@@ -45,7 +45,7 @@ class ConfirmSignaturePage extends Component {
   render() {
     const { letter, t } = this.props;
     const { status } = this.state;
-    const { token } = this.props.router.query;
+    const token = this.state.token;
     if (!letter) {
       return (
         <div>
