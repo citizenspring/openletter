@@ -81,5 +81,6 @@
   "signatures.first": "Wees de eerste die deze brief ondertekent",
   "signatures.more": "more",
   "signatures.verified": "verified signatures",
-  "signatures.view_all": "view all"
+  "signatures.view_all": "view all",
+  "notification.sent.donate.note": "Open Letter is een gratis, open en onafhankelijke dienst dankzij de donaties van burgers zoals u."
 }

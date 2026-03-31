@@ -48,8 +48,12 @@ function Footer({ t }) {
           <br />
           {t('footer.andsignit')}
         </div>
-        <div className="mt-4 text-sm">
-          <Link href="/tos">Terms of Service</Link>
+        <div className="mt-4 flex justify-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+          <Link href="/tos"><a className="hover:text-gray-800 dark:hover:text-gray-200">Terms of Service</a></Link>
+          <span>·</span>
+          <Link href="/donate"><a className="hover:text-gray-800 dark:hover:text-gray-200">{t('notification.signed.donate.button')}</a></Link>
+          <span>·</span>
+          <a href="https://github.com/citizenspring/openletter" className="hover:text-gray-800 dark:hover:text-gray-200">GitHub</a>
         </div>
       </center>
     </div>
