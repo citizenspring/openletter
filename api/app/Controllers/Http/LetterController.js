@@ -304,12 +304,24 @@ class LetterController {
       .where('locale', request.params.locale)
       .first();
 
-    // We create the token based on the letter.slug and request.body.email to make sure we can only have one signature per email address per letter (without having to actually record the email address in our database)
-    const tokenData = `${letter.slug}-${request.body.email}-${process.env.APP_KEY}`;
+    const usePasskey = request.body.use_passkey;
+    const email = request.body.email;
 
-    signatureData.token = crypto.createHash('md5').update(tokenData).digest('hex');
-    if (signatureData.share_email) {
-      signatureData.email = request.body.email;
+    if (!usePasskey && !email) {
+      return { error: { code: 400, message: 'Email is required when not using passkey' } };
+    }
+
+    // Generate token: from email if provided, or random for passkey-only signatures
+    if (email) {
+      const tokenData = `${letter.slug}-${email}-${process.env.APP_KEY}`;
+      signatureData.token = crypto.createHash('md5').update(tokenData).digest('hex');
+    } else {
+      // Passkey without email: generate a unique random token
+      signatureData.token = crypto.randomBytes(16).toString('hex');
+    }
+
+    if (signatureData.share_email && email) {
+      signatureData.email = email;
     }
     delete signatureData.share_email;
 
@@ -331,6 +343,16 @@ class LetterController {
       } else {
         console.error('error', e);
       }
+    }
+
+    // If using passkey, skip email confirmation — return signature ID for WebAuthn flow
+    if (request.body.use_passkey) {
+      if (ipAddress) {
+        latestSignatureTimestampByIpAddress[ipAddress] = new Date();
+      }
+      const res = signature.toJSON();
+      res.id = signature.id; // include ID for passkey registration
+      return res;
     }
 
     const emailData = {

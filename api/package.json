@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
+    "@simplewebauthn/server": "^11.0.0",
     "accept-language-parser": "^1.5.0",
     "image-size": "^1.0.2",
     "node-fetch": "^2.7.0",

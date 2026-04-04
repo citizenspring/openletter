@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withIntl } from '../lib/i18n';
 import { Label, Checkbox } from '@rebass/forms';
+import { isPasskeySupported, isPlatformAuthenticatorAvailable } from '../lib/passkey';
 
 const Input = ({ type, name, placeholder, onChange, ...rest }) => (
   <input
@@ -18,6 +19,8 @@ class SignatureForm extends Component {
     super(props);
     this.state = {
       loading: false,
+      passkeyAvailable: false,
+      usePasskey: true, // default to passkey when available
       form: {
         name: null,
         occupation: null,
@@ -33,6 +36,13 @@ class SignatureForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  async componentDidMount() {
+    if (isPasskeySupported()) {
+      const available = await isPlatformAuthenticatorAvailable();
+      this.setState({ passkeyAvailable: available, usePasskey: available });
+    }
+  }
+
   handleChange(fieldname, value) {
     const { form } = this.state;
     form[fieldname] = value;
@@ -42,7 +52,13 @@ class SignatureForm extends Component {
   async handleSubmit(event) {
     this.setState({ loading: true });
     event.preventDefault();
-    await this.props.onSubmit(this.state.form);
+
+    const formData = { ...this.state.form };
+    if (this.state.usePasskey && this.state.passkeyAvailable) {
+      formData.use_passkey = true;
+    }
+
+    await this.props.onSubmit(formData);
 
     // just in case
     setTimeout(() => {
@@ -55,6 +71,10 @@ class SignatureForm extends Component {
 
   render() {
     const { error, t, letter } = this.props;
+    const { passkeyAvailable, usePasskey } = this.state;
+    const showEmailField = !this.updatingSignature && !usePasskey;
+    const showEmailOptional = !this.updatingSignature && usePasskey;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="flex-wrap">
@@ -94,12 +114,55 @@ class SignatureForm extends Component {
               defaultValue={this.props.signature && this.props.signature.organization}
             />
           </div>
-          {!this.updatingSignature && (
+
+          {/* Passkey toggle */}
+          {passkeyAvailable && !this.updatingSignature && (
+            <div className="w-full py-2">
+              <div className="flex items-center gap-2 text-sm">
+                <button
+                  type="button"
+                  onClick={() => this.setState({ usePasskey: true })}
+                  className={`px-3 py-1.5 rounded-lg border transition-colors ${
+                    usePasskey
+                      ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black dark:border-white'
+                      : 'bg-transparent text-gray-500 border-gray-300 dark:border-gray-600'
+                  }`}
+                >
+                  🔐 {t('sign.passkey')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => this.setState({ usePasskey: false })}
+                  className={`px-3 py-1.5 rounded-lg border transition-colors ${
+                    !usePasskey
+                      ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black dark:border-white'
+                      : 'bg-transparent text-gray-500 border-gray-300 dark:border-gray-600'
+                  }`}
+                >
+                  ✉️ {t('sign.email')}
+                </button>
+              </div>
+              {usePasskey && (
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  {t('sign.passkey.info')}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Email field: required for email flow, optional for passkey (for updates) */}
+          {showEmailField && (
             <div className="w-full py-1">
               <Input type="email" name="email" placeholder={t('sign.email')} onChange={this.handleChange} required />
             </div>
           )}
-          {!this.updatingSignature && letter.user_id && (
+          {showEmailOptional && (
+            <div className="w-full py-1">
+              <Input type="email" name="email" placeholder={t('sign.email.optional')} onChange={this.handleChange} />
+            </div>
+          )}
+
+          {!this.updatingSignature && !usePasskey && letter.user_id && (
             <div className="my-1">
               <Label>
                 <div className="mt-1 mr-0">
@@ -119,7 +182,7 @@ class SignatureForm extends Component {
             className="text-white text-base font-sans border-white bg-gray-900 p-3 rounded-lg w-full disabled:bg-gray-500 dark:bg-black dark:text-white dark:border-white border-2 font-bold"
             disabled={this.state.loading}
           >
-            {this.props.signature ? t('sign.update') : t('sign.button')}
+            {this.props.signature ? t('sign.update') : usePasskey ? t('sign.button.passkey') : t('sign.button')}
           </button>
         </div>
         {error && <div className="text-red font-bold text-center m-4">{error.message}</div>}
