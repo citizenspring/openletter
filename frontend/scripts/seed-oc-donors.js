@@ -12,7 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const OUTPUT_PATH = path.join(__dirname, '../../frontend/public/data/donors.json');
+const OUTPUT_PATH = path.join(__dirname, '../public/data/donors.json');
 
 const query = `
   query getCollectiveBackers {

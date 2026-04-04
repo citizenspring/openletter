@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "start": "next start",
-    "install": "npm run build"
+    "install": "npm run build",
+    "cron": "node scripts/sync-donors.js",
+    "seed:oc-donors": "node scripts/seed-oc-donors.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +48,7 @@
     "rebass": "^4.0.7",
     "reflexbox": "^4.0.6",
     "remark-gfm": "^1.0.0",
+    "stripe": "^22.0.0",
     "styled-components": "^5.0.1",
     "styled-system": "^5.1.5",
     "swr": "^2.2.4",

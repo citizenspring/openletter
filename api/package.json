@@ -7,8 +7,6 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
-    "cron": "node scripts/sync-donors.js",
-    "seed:oc-donors": "node scripts/seed-oc-donors.js",
     "db:copy:prod": "./scripts/dbdump-from-heroku.sh openletter-earth"
   },
   "keywords": [
@@ -39,7 +37,6 @@
     "pg": "^8.5.1",
     "sanitize-html": "^1.23.0",
     "slugify": "^1.4.0",
-    "stripe": "^22.0.0",
     "url-parse": "^1.4.7"
   },
   "autoload": {

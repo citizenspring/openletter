@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PAYMENT_LINK_ID = 'plink_1TGev1FAhaWeDyowQqEek3mT';
-const OUTPUT_PATH = path.join(__dirname, '../../frontend/public/data/donors.json');
+const OUTPUT_PATH = path.join(__dirname, '../public/data/donors.json');
 
 async function fetchStripeDonors() {
   const secretKey = process.env.STRIPE_SECRET_KEY;
