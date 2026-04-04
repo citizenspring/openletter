@@ -12,8 +12,8 @@ function sleep(ms) {
 class ConfirmSignaturePage extends Component {
   constructor(props) {
     super(props);
-    const { status, token } = this.props.router.query;
-    this.state = { status: status || null, token: token || null };
+    const { status, token, preview } = this.props.router.query;
+    this.state = { status: status || (preview === 'confirmed' ? 'signature_confirmed' : null), token: token || null };
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
