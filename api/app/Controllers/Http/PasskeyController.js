@@ -5,19 +5,14 @@ const { generateRegistrationOptions, verifyRegistrationResponse } = require('@si
 
 const Signature = use('App/Models/Signature');
 
-// In-memory challenge store (short-lived, per-signature)
-// In production with multiple dynos, consider Redis
-const challengeStore = new Map();
-
-// Clean up expired challenges every 5 minutes
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, value] of challengeStore) {
-    if (now - value.createdAt > 5 * 60 * 1000) {
-      challengeStore.delete(key);
-    }
-  }
-}, 5 * 60 * 1000);
+/**
+ * Derive a deterministic challenge from signature context + server secret.
+ * No need to store challenges server-side.
+ */
+function deriveChallenge(signatureId, letterSlug, signatureName) {
+  const data = `passkey-challenge:${letterSlug}:${signatureName || 'anonymous'}:${signatureId}:${process.env.APP_KEY}`;
+  return crypto.createHash('sha256').update(data).digest('base64url');
+}
 
 class PasskeyController {
   /**
@@ -32,7 +27,11 @@ class PasskeyController {
       return response.status(400).json({ error: 'Missing signature_id' });
     }
 
-    const signature = await Signature.find(signature_id);
+    const signature = await Signature.query()
+      .where('id', signature_id)
+      .with('letter')
+      .first();
+
     if (!signature) {
       return response.status(404).json({ error: 'Signature not found' });
     }
@@ -41,10 +40,13 @@ class PasskeyController {
       return response.status(400).json({ error: 'Signature already verified' });
     }
 
+    const letter = signature.getRelated('letter');
     const rpName = 'Open Letter';
     const rpID = process.env.PASSKEY_RP_ID || 'openletter.earth';
     const userID = Buffer.from(String(signature.id));
     const userName = signature.getName(signature.name);
+
+    const challenge = deriveChallenge(signature.id, letter ? letter.slug : '', signature.name);
 
     const options = await generateRegistrationOptions({
       rpName,
@@ -57,12 +59,7 @@ class PasskeyController {
         residentKey: 'preferred',
         userVerification: 'preferred',
       },
-    });
-
-    // Store challenge temporarily
-    challengeStore.set(String(signature.id), {
-      challenge: options.challenge,
-      createdAt: Date.now(),
+      challenge,
     });
 
     return options;
@@ -80,7 +77,11 @@ class PasskeyController {
       return response.status(400).json({ error: 'Missing signature_id or credential' });
     }
 
-    const signature = await Signature.find(signature_id);
+    const signature = await Signature.query()
+      .where('id', signature_id)
+      .with('letter')
+      .first();
+
     if (!signature) {
       return response.status(404).json({ error: 'Signature not found' });
     }
@@ -89,24 +90,15 @@ class PasskeyController {
       return response.status(400).json({ error: 'Signature already verified' });
     }
 
-    const stored = challengeStore.get(String(signature.id));
-    if (!stored) {
-      return response.status(400).json({ error: 'No challenge found. Please try again.' });
-    }
-
-    // Challenge expires after 2 minutes
-    if (Date.now() - stored.createdAt > 2 * 60 * 1000) {
-      challengeStore.delete(String(signature.id));
-      return response.status(400).json({ error: 'Challenge expired. Please try again.' });
-    }
-
+    const letter = signature.getRelated('letter');
+    const expectedChallenge = deriveChallenge(signature.id, letter ? letter.slug : '', signature.name);
     const rpID = process.env.PASSKEY_RP_ID || 'openletter.earth';
     const expectedOrigin = process.env.PASSKEY_ORIGIN || 'https://openletter.earth';
 
     try {
       const verification = await verifyRegistrationResponse({
         response: credential,
-        expectedChallenge: stored.challenge,
+        expectedChallenge,
         expectedOrigin,
         expectedRPID: rpID,
       });
@@ -116,9 +108,6 @@ class PasskeyController {
         signature.verification_method = 'passkey';
         signature.passkey_credential_id = verification.registrationInfo?.credential?.id || null;
         await signature.save();
-
-        // Clean up challenge
-        challengeStore.delete(String(signature.id));
 
         return { verified: true, signature: signature.toJSON() };
       } else {
