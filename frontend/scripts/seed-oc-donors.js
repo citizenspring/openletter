@@ -11,6 +11,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const fetch = require('node-fetch');
 
 const OUTPUT_PATH = path.join(__dirname, '../public/data/donors.json');
 
