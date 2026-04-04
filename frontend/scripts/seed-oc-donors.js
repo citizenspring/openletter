@@ -27,6 +27,13 @@ const query = `
           all
         }
       }
+      expenses(limit: 5) {
+        id
+        createdAt
+        description
+        amount
+        status
+      }
       transactions(type: "CREDIT", limit: 1000, offset: $offset) {
         id
         createdAt
@@ -70,10 +77,11 @@ async function main() {
       if (transactions.length < 1000) hasMore = false;
     }
 
-    // Store stats from first response
+    // Store stats + expenses from first response
     if (offset === transactions.length) {
       var stats = json.data.Collective.stats;
       var currency = json.data.Collective.currency;
+      var expenses = json.data.Collective.expenses;
     }
   }
 
@@ -130,6 +138,13 @@ async function main() {
       totalReceived: stats.totalAmountReceived,
       totalSpent: stats.totalAmountSpent,
     },
+    expenses: (expenses || []).map((e) => ({
+      id: e.id,
+      description: e.description,
+      amount: e.amount / 100,
+      status: e.status,
+      date: e.createdAt.split('T')[0],
+    })),
     lastUpdated: new Date().toISOString(),
   };
 

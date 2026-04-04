@@ -81,6 +81,8 @@ function DonorsList({ t, compact }) {
     );
   }
 
+  const expenses = data.expenses || [];
+
   // Full mode: top 10 by amount, then all by date DESC
   const top10 = [...allDonors]
     .sort((a, b) => (b.amount || 0) - (a.amount || 0))
@@ -93,6 +95,31 @@ function DonorsList({ t, compact }) {
 
   return (
     <div className="my-8">
+      {/* Latest expenses */}
+      {expenses.length > 0 && (
+        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm mb-6">
+          <h2 className="text-xl font-semibold mb-4 text-center">Latest expenses</h2>
+          <ul className="list-none p-0">
+            {expenses.map((expense) => (
+              <li
+                key={expense.id}
+                className="flex items-center justify-between py-2 px-3 border-b border-gray-100 dark:border-gray-700 last:border-0"
+              >
+                <span>{expense.description}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {expense.amount.toFixed(0)}€
+                  </span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500">
+                    {relativeDate(expense.date)}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* Top contributors */}
       <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm mb-6">
         <h2 className="text-xl font-semibold mb-4 text-center">🏆 Top contributors</h2>
