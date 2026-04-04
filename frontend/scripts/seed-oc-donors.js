@@ -16,15 +16,8 @@ const fetch = require('node-fetch');
 const OUTPUT_PATH = path.join(__dirname, '../public/data/donors.json');
 
 const query = `
-  query getCollectiveBackers {
+  query getCollectiveTransactions($offset: Int) {
     Collective(slug: "openletter") {
-      members(role: "BACKER") {
-        publicMessage
-        member {
-          slug
-          name
-        }
-      }
       currency
       stats {
         balance
@@ -34,6 +27,16 @@ const query = `
           all
         }
       }
+      transactions(type: "CREDIT", limit: 1000, offset: $offset) {
+        id
+        createdAt
+        amount
+        currency
+        fromCollective {
+          slug
+          name
+        }
+      }
     }
   }
 `;
@@ -41,29 +44,71 @@ const query = `
 async function main() {
   const apiUrl = process.env.OC_GRAPHQL_API || 'https://api.opencollective.com/graphql/v1';
 
-  console.log(`Fetching OC backers from ${apiUrl}...`);
+  console.log(`Fetching OC transactions from ${apiUrl}...`);
 
-  const res = await fetch(apiUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query }),
-  });
+  let allTransactions = [];
+  let offset = 0;
+  let hasMore = true;
 
-  const json = await res.json();
-  const members = json.data.Collective.members;
-  const stats = json.data.Collective.stats;
+  while (hasMore) {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables: { offset } }),
+    });
 
-  const ocDonors = members
-    .filter((m) => m.member.name !== 'Guest')
-    .map((m) => ({
-      name: m.member.name,
-      source: 'opencollective',
-      ocSlug: m.member.slug,
-    }));
+    const json = await res.json();
+    const transactions = json.data.Collective.transactions;
 
-  console.log(`Found ${ocDonors.length} OC backers`);
+    if (transactions.length === 0) {
+      hasMore = false;
+    } else {
+      allTransactions = allTransactions.concat(transactions);
+      offset += transactions.length;
+      console.log(`  Fetched ${allTransactions.length} transactions so far...`);
+      // Safety: OC caps at 1000 per query
+      if (transactions.length < 1000) hasMore = false;
+    }
 
-  // Load existing file if any
+    // Store stats from first response
+    if (offset === transactions.length) {
+      var stats = json.data.Collective.stats;
+      var currency = json.data.Collective.currency;
+    }
+  }
+
+  console.log(`Found ${allTransactions.length} CREDIT transactions total`);
+
+  // Aggregate by donor: sum amounts, keep earliest date
+  const donorMap = new Map();
+  for (const tx of allTransactions) {
+    const name = tx.fromCollective?.name;
+    if (!name || name === 'Guest') continue;
+
+    const slug = tx.fromCollective.slug;
+    const key = slug || name.toLowerCase();
+
+    if (donorMap.has(key)) {
+      const existing = donorMap.get(key);
+      existing.amount += tx.amount / 100;
+      // Keep earliest date
+      if (tx.createdAt < existing.date) existing.date = tx.createdAt.split('T')[0];
+    } else {
+      donorMap.set(key, {
+        name,
+        amount: tx.amount / 100,
+        currency: tx.currency || 'USD',
+        date: tx.createdAt.split('T')[0],
+        source: 'opencollective',
+        ocSlug: slug,
+      });
+    }
+  }
+
+  const ocDonors = Array.from(donorMap.values());
+  console.log(`Found ${ocDonors.length} unique OC donors`);
+
+  // Load existing file if any (keep non-OC donors)
   let existing = [];
   try {
     const data = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
@@ -80,7 +125,7 @@ async function main() {
       opencollective: allDonors.filter((d) => d.source === 'opencollective').length,
     },
     ocLegacy: {
-      currency: json.data.Collective.currency,
+      currency,
       balance: stats.balance,
       totalReceived: stats.totalAmountReceived,
       totalSpent: stats.totalAmountSpent,
