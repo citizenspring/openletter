@@ -26,6 +26,60 @@ function relativeDate(dateStr) {
   return years === 1 ? '1 year ago' : `${years} years ago`;
 }
 
+function ExpensesSection({ expenses }) {
+  if (!expenses || expenses.length === 0) return null;
+
+  const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const firstDate = new Date(expenses[0].date);
+  const lastDate = new Date(expenses[expenses.length - 1].date);
+  const daysBetween = Math.max(1, Math.ceil((firstDate - lastDate) / (1000 * 60 * 60 * 24)));
+  const dailyAvg = totalExpenses / daysBetween;
+  const monthlyAvg = dailyAvg * 30;
+
+  return (
+    <div>
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 my-4 shadow-sm">
+        <h3 className="text-xl font-semibold mb-4">Running this free service costs money</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
+            <div className="text-gray-600 dark:text-gray-300 text-sm">Total Spent</div>
+            <div className="text-2xl font-bold">{totalExpenses.toFixed(2)}€</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">over {daysBetween} days</div>
+          </div>
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
+            <div className="text-gray-600 dark:text-gray-300 text-sm">Daily Average</div>
+            <div className="text-2xl font-bold">{dailyAvg.toFixed(2)}€</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">per day</div>
+          </div>
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
+            <div className="text-gray-600 dark:text-gray-300 text-sm">Monthly Average</div>
+            <div className="text-2xl font-bold">{monthlyAvg.toFixed(2)}€</div>
+            <div className="text-gray-500 dark:text-gray-400 text-sm">per month</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 className="text-xl mt-4 ml-4">Latest expenses</h2>
+      <ul className="list-none m-3 text-left">
+        {expenses.map((expense) => (
+          <li
+            key={expense.id}
+            className="my-2 grid grid-cols-[1fr_auto_auto] gap-2 items-center px-4 py-2 rounded-md border border-gray-200 dark:border-gray-800"
+          >
+            <div className="text-left">{expense.description}</div>
+            <div className="text-right">{expense.amount.toFixed(0)}€</div>
+            <div className="w-20 text-center">
+              <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">
+                {expense.status === 'PAID' ? 'paid' : 'pending'}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function DonorItem({ donor, rank, showDate }) {
   return (
     <li className="flex items-center justify-between py-2 px-3 border-b border-gray-100 dark:border-gray-700 last:border-0">
@@ -83,7 +137,7 @@ function DonorsList({ t, compact }) {
 
   const expenses = data.expenses || [];
 
-  // Full mode: top 10 by amount, then all by date DESC
+  // Full mode: expenses → top 10 by amount → all by date DESC
   const top10 = [...allDonors]
     .sort((a, b) => (b.amount || 0) - (a.amount || 0))
     .slice(0, 10);
@@ -94,34 +148,12 @@ function DonorsList({ t, compact }) {
   const visibleDonors = showAll ? byDate : byDate.slice(0, 10);
 
   return (
-    <div className="my-8">
-      {/* Latest expenses */}
-      {expenses.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm mb-6">
-          <h2 className="text-xl font-semibold mb-4 text-center">Latest expenses</h2>
-          <ul className="list-none p-0">
-            {expenses.map((expense) => (
-              <li
-                key={expense.id}
-                className="flex items-center justify-between py-2 px-3 border-b border-gray-100 dark:border-gray-700 last:border-0"
-              >
-                <span>{expense.description}</span>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {expense.amount.toFixed(0)}€
-                  </span>
-                  <span className="text-xs text-gray-400 dark:text-gray-500">
-                    {relativeDate(expense.date)}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+    <div className="my-8 text-center">
+      {/* Expenses + cost breakdown */}
+      <ExpensesSection expenses={expenses} />
 
       {/* Top contributors */}
-      <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm mb-6">
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm mb-6 mt-6">
         <h2 className="text-xl font-semibold mb-4 text-center">🏆 Top contributors</h2>
         <ul className="list-none p-0">
           {top10.map((donor, i) => (
