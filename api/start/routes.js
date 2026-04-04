@@ -32,3 +32,5 @@ Route.get('signatures/:id/:token', 'SignatureController.get'); // deprecated
 // TODO: refactor to signatures/create
 Route.post('letters/:slug/:locale/sign', 'LetterController.sign');
 Route.post('signatures/confirm', 'SignatureController.confirm');
+Route.post('passkey/register-options', 'PasskeyController.registerOptions');
+Route.post('passkey/register-verify', 'PasskeyController.registerVerify');

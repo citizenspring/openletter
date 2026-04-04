@@ -29,6 +29,10 @@ class Signature extends Model {
   tokens() {
     return this.hasMany('App/Models/Token');
   }
+
+  letter() {
+    return this.belongsTo('App/Models/Letter');
+  }
 }
 
 module.exports = Signature;

@@ -13,6 +13,7 @@ import Updates from '../../components/Updates';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
 import { replaceURLsWithMarkdownAnchors } from '../../lib/utils';
+import { registerPasskey } from '../../lib/passkey';
 import moment from 'moment';
 import Head from 'next/head';
 import ReactMarkdown from 'react-markdown';
@@ -58,9 +59,35 @@ class Letter extends Component {
       const json = await res.json();
       if (json.error) {
         this.setState({ status: 'error', error: json.error });
-      } else {
-        this.setState({ status: signature.token ? 'signature_updated' : 'signature_sent' });
+        return;
       }
+
+      // Passkey flow: signature created, now do WebAuthn registration
+      if (signature.use_passkey && json.id) {
+        try {
+          this.setState({ status: 'passkey_verifying' });
+          const result = await registerPasskey(json.id);
+          if (result.verified) {
+            this.setState({ status: 'confirmed' });
+          } else {
+            this.setState({ status: 'error', error: { message: this.props.t('error.passkey.failed') } });
+          }
+        } catch (e) {
+          console.error('>>> Passkey error', e);
+          // If passkey fails (user cancelled, etc.), offer email fallback
+          this.setState({
+            status: 'error',
+            error: { message: this.props.t('error.passkey.cancelled') },
+          });
+          setTimeout(() => {
+            this.setState({ status: null, error: null });
+          }, 5000);
+        }
+        return;
+      }
+
+      // Standard email flow
+      this.setState({ status: signature.token ? 'signature_updated' : 'signature_sent' });
     } catch (e) {
       console.error('>>> API error', e);
       this.setState({ status: 'error', error: { message: this.props.t('error.server') } });
@@ -141,6 +168,9 @@ class Letter extends Component {
                     signature={this.props.signature}
                     onSubmit={(signature) => this.submitSignature(signature)}
                   />
+                )}
+                {status === 'passkey_verifying' && (
+                  <Notification title={t('notification.signing')} message={t('notification.pleasewait')} />
                 )}
                 {status === 'signature_sent' && <SignatureEmailSent />}
                 {status === 'signature_updated' && <SignatureUpdated letter={letter} />}

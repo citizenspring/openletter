@@ -26,6 +26,7 @@
   "homepage": "https://github.com/AllForClimate/openletter#readme",
   "dependencies": {
     "@rebass/forms": "^4.0.6",
+    "@simplewebauthn/browser": "^11.0.0",
     "abort-controller": "^3.0.0",
     "accept-language-parser": "^1.5.0",
     "autoprefixer": "^10.4.16",
