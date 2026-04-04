@@ -1,0 +1,9 @@
+{
+  "donors": [],
+  "stats": {
+    "total": 0,
+    "stripe": 0,
+    "opencollective": 0
+  },
+  "lastUpdated": null
+}
