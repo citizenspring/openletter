@@ -84,7 +84,7 @@ class ConfirmSignaturePage extends Component {
                   {t('notification.signed.donate.button')}
                 </a>
               </div>
-              <DonorsList />
+              <DonorsList compact />
             </>
           )}
           {!status && (
