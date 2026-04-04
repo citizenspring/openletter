@@ -10,6 +10,9 @@ WORKDIR /app
 # Copy the application code
 COPY . /app
 
+# AdonisJS 4 crashes if .env doesn't exist; Coolify injects env vars at runtime
+RUN touch /app/.env
+
 # Install dependencies
 RUN npm i
 
