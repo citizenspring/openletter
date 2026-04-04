@@ -1,5 +1,3 @@
-import { startRegistration } from '@simplewebauthn/browser';
-
 /**
  * Check if the browser supports WebAuthn / passkeys
  */
@@ -29,6 +27,9 @@ export async function isPlatformAuthenticatorAvailable() {
  * @returns {Promise<{verified: boolean, signature: object}>}
  */
 export async function registerPasskey(signatureId) {
+  // Dynamic import — this module is ESM-only and must never be required server-side
+  const { startRegistration } = await import('@simplewebauthn/browser');
+
   // 1. Get registration options from the server
   const optionsRes = await fetch(`${process.env.API_URL}/passkey/register-options`, {
     method: 'POST',
