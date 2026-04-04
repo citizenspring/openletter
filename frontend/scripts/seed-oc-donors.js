@@ -83,7 +83,7 @@ async function main() {
   const donorMap = new Map();
   for (const tx of allTransactions) {
     const name = tx.fromCollective?.name;
-    if (!name || name === 'Guest') continue;
+    if (!name || name === 'Guest' || name === 'Citizen Spring') continue;
 
     const slug = tx.fromCollective.slug;
     const key = slug || name.toLowerCase();

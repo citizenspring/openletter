@@ -4,29 +4,47 @@ import { withIntl } from '../lib/i18n';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-function DonorItem({ donor, rank }) {
-  const link =
-    donor.source === 'opencollective' && donor.ocSlug
-      ? `https://opencollective.com/${donor.ocSlug}`
-      : null;
+function relativeDate(dateStr) {
+  if (!dateStr) return '';
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diffMs = now - date;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  const name = link ? (
-    <a href={link} title={donor.name}>{donor.name}</a>
-  ) : (
-    <span>{donor.name}</span>
-  );
+  if (diffDays === 0) return 'today';
+  if (diffDays === 1) return 'yesterday';
+  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays < 30) {
+    const weeks = Math.floor(diffDays / 7);
+    return weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+  }
+  if (diffDays < 365) {
+    const months = Math.floor(diffDays / 30);
+    return months === 1 ? '1 month ago' : `${months} months ago`;
+  }
+  const years = Math.floor(diffDays / 365);
+  return years === 1 ? '1 year ago' : `${years} years ago`;
+}
 
+function DonorItem({ donor, rank, showDate }) {
   return (
     <li className="flex items-center justify-between py-2 px-3 border-b border-gray-100 dark:border-gray-700 last:border-0">
       <div className="flex items-center gap-2">
         {rank && <span className="text-gray-400 text-sm w-6 text-right">{rank}.</span>}
-        <span className="font-medium">{name}</span>
+        <span className="font-medium">{donor.name}</span>
       </div>
-      {donor.amount && (
-        <span className="text-sm text-gray-500 dark:text-gray-400">
-          {donor.amount.toFixed(0)}€
-        </span>
-      )}
+      <div className="flex items-center gap-3">
+        {donor.amount && (
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            {donor.amount.toFixed(0)}€
+          </span>
+        )}
+        {showDate && donor.date && (
+          <span className="text-xs text-gray-400 dark:text-gray-500">
+            {relativeDate(donor.date)}
+          </span>
+        )}
+      </div>
     </li>
   );
 }
@@ -93,7 +111,7 @@ function DonorsList({ t, compact }) {
         </h2>
         <ul className="list-none p-0">
           {visibleDonors.map((donor, i) => (
-            <DonorItem key={`all-${donor.name}-${donor.date}-${i}`} donor={donor} />
+            <DonorItem key={`all-${donor.name}-${donor.date}-${i}`} donor={donor} showDate />
           ))}
         </ul>
         {!showAll && byDate.length > 10 && (
