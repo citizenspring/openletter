@@ -47,10 +47,12 @@ async function fetchStripeDonors() {
     for (const session of sessions.data) {
       if (session.payment_status !== 'paid') continue;
 
-      const name =
-        session.customer_details?.name ||
-        session.metadata?.name ||
-        null;
+      // Use the optional custom field "display name for the donors list"
+      // If empty/missing, the donor chose to remain anonymous
+      const customField = (session.custom_fields || []).find(
+        (f) => f.key === 'displaynameforthedonorslist'
+      );
+      const name = customField?.text?.value || null;
 
       if (!name) continue;
 
