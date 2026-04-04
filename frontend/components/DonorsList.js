@@ -43,11 +43,14 @@ function DonorsList({ t, compact }) {
 
   // Compact mode: just names inline (for post-signature confirmation)
   if (compact) {
+    const latest20 = [...allDonors]
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+      .slice(0, 20);
     return (
       <div className="text-center my-4">
         <h2 className="text-xl mt-4 text-center">Thank you to all our contributors 🙏</h2>
         <ul className="p-2 flex overflow-hidden flex-wrap justify-center list-none">
-          {allDonors.slice(0, 20).map((donor, i) => (
+          {latest20.map((donor, i) => (
             <li key={`${donor.name}-${i}`} className="mx-2">
               <span>{donor.name}</span>
             </li>
