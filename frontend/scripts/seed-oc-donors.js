@@ -48,6 +48,13 @@ const query = `
   }
 `;
 
+function toISODate(raw) {
+  if (!raw) return null;
+  const d = new Date(raw);
+  if (isNaN(d.getTime())) return null;
+  return d.toISOString().split('T')[0]; // "YYYY-MM-DD"
+}
+
 async function main() {
   const apiUrl = process.env.OC_GRAPHQL_API || 'https://api.opencollective.com/graphql/v1';
 
@@ -100,13 +107,14 @@ async function main() {
       const existing = donorMap.get(key);
       existing.amount += tx.amount / 100;
       // Keep earliest date
-      if (tx.createdAt < existing.date) existing.date = tx.createdAt.split('T')[0];
+      const txDate = toISODate(tx.createdAt);
+      if (txDate && (!existing.date || txDate < existing.date)) existing.date = txDate;
     } else {
       donorMap.set(key, {
         name,
         amount: tx.amount / 100,
         currency: tx.currency || 'USD',
-        date: tx.createdAt.split('T')[0],
+        date: toISODate(tx.createdAt),
         source: 'opencollective',
         ocSlug: slug,
       });
@@ -143,7 +151,7 @@ async function main() {
       description: e.description,
       amount: e.amount / 100,
       status: e.status,
-      date: e.createdAt.split('T')[0],
+      date: toISODate(e.createdAt),
     })),
     lastUpdated: new Date().toISOString(),
   };
