@@ -246,90 +246,95 @@ class LetterForm extends Component {
           </div>
         )}
 
-        {/* Letter type selector */}
+        {/* Who can sign */}
         {!parentLetter && (
           <div className="p-5 border border-gray-200 dark:border-gray-700 rounded-xl mt-2">
-            <h3 className="text-base font-semibold mb-3">{t('create.type.title')}</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+            <h3 className="text-base font-semibold mb-1">{t('create.signing.title')}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{t('create.signing.subtitle')}</p>
+
+            {/* Open to everyone */}
+            <button
+              type="button"
+              onClick={() => this.setState({ letterType: 'public', restrictionMode: 'invite' }, this.saveDraft)}
+              className={`w-full p-4 rounded-xl border-2 transition-all text-left mb-3 ${
+                this.state.letterType === 'public'
+                  ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-800 shadow-sm'
+                  : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-lg">✅</span>
+                <div>
+                  <div className="font-semibold">{t('create.signing.open')}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{t('create.signing.open.desc')}</div>
+                </div>
+              </div>
+            </button>
+
+            {/* Restricted — two columns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Option A: Personal invitations */}
               <button
                 type="button"
-                onClick={() => this.setState({ letterType: 'public' }, this.saveDraft)}
-                className={`p-4 rounded-xl border-2 transition-all text-left ${
-                  this.state.letterType === 'public'
+                onClick={() => this.setState({ letterType: 'invite_only', restrictionMode: 'invite' }, this.saveDraft)}
+                className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col ${
+                  this.state.letterType === 'invite_only' && this.state.restrictionMode === 'invite'
                     ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-800 shadow-sm'
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className="font-semibold">📢 {t('create.type.public')}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t('create.type.public.desc')}</div>
+                <div className="text-lg mb-1">🔗</div>
+                <div className="font-semibold text-sm">{t('create.signing.invite')}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('create.signing.invite.desc')}</div>
+                <div className="mt-auto pt-2 text-xs text-gray-400">€10</div>
               </button>
+
+              {/* Option B: Email domain */}
               <button
                 type="button"
-                onClick={() => this.setState({ letterType: 'invite_only' }, this.saveDraft)}
-                className={`p-4 rounded-xl border-2 transition-all text-left ${
-                  this.state.letterType === 'invite_only'
+                onClick={() => this.setState({ letterType: 'invite_only', restrictionMode: 'domain' }, this.saveDraft)}
+                className={`p-4 rounded-xl border-2 transition-all text-left flex flex-col ${
+                  this.state.letterType === 'invite_only' && this.state.restrictionMode === 'domain'
                     ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-800 shadow-sm'
                     : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                 }`}
               >
-                <div className="font-semibold">🔒 {t('create.type.invite_only')} <span className="text-sm font-normal text-gray-500">€10</span></div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t('create.type.invite_only.desc')}</div>
+                <div className="text-lg mb-1">🏛️</div>
+                <div className="font-semibold text-sm">{t('create.signing.domain')}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('create.signing.domain.desc')}</div>
+                <div className="mt-auto pt-2 text-xs text-gray-400">€10</div>
               </button>
             </div>
 
-            {this.state.letterType === 'invite_only' && (
-              <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl space-y-4">
-                <div>
-                  <label className="text-sm font-medium block mb-1">{t('create.restriction.title')}</label>
-                  <div className="flex gap-2">
-                    <button type="button" onClick={() => this.setState({ restrictionMode: 'invite' }, this.saveDraft)}
-                      className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                        this.state.restrictionMode === 'invite'
-                          ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black'
-                          : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
-                      }`}>
-                      🔗 {t('create.restriction.invite')}
-                    </button>
-                    <button type="button" onClick={() => this.setState({ restrictionMode: 'domain' }, this.saveDraft)}
-                      className={`px-3 py-1.5 rounded-lg border text-sm transition-colors ${
-                        this.state.restrictionMode === 'domain'
-                          ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black'
-                          : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
-                      }`}>
-                      📧 {t('create.restriction.domain')}
-                    </button>
-                  </div>
+            {/* Settings for personal invitations */}
+            {this.state.letterType === 'invite_only' && this.state.restrictionMode === 'invite' && (
+              <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl space-y-4">
+                <div className="flex items-center gap-3">
+                  <label className="text-sm font-medium whitespace-nowrap">{t('create.invites_per_person')}</label>
+                  <input type="number" min="1" max="100" value={this.state.invitesPerPerson}
+                    onChange={(e) => this.setState({ invitesPerPerson: parseInt(e.target.value) || 5 }, this.saveDraft)}
+                    className="w-20 border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 text-sm dark:bg-black" />
                 </div>
-
-                {this.state.restrictionMode === 'invite' && (
-                  <>
-                    <div>
-                      <label className="text-sm font-medium">{t('create.invites_per_person')}</label>
-                      <input type="number" min="1" max="100" value={this.state.invitesPerPerson}
-                        onChange={(e) => this.setState({ invitesPerPerson: parseInt(e.target.value) || 5 }, this.saveDraft)}
-                        className="ml-2 w-20 border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-1 text-sm dark:bg-black" />
-                    </div>
-                    <label className="flex items-start gap-2 text-sm cursor-pointer">
-                      <input type="checkbox" checked={this.state.allowChainInvites}
-                        onChange={(e) => this.setState({ allowChainInvites: e.target.checked }, this.saveDraft)}
-                        className="mt-0.5" />
-                      <div>
-                        <span className="font-medium">{t('create.allow_chain_invites')}</span>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">{t('create.allow_chain_invites.desc')}</p>
-                      </div>
-                    </label>
-                  </>
-                )}
-
-                {this.state.restrictionMode === 'domain' && (
+                <label className="flex items-start gap-2 text-sm cursor-pointer">
+                  <input type="checkbox" checked={this.state.allowChainInvites}
+                    onChange={(e) => this.setState({ allowChainInvites: e.target.checked }, this.saveDraft)}
+                    className="mt-0.5" />
                   <div>
-                    <label className="text-sm font-medium block mb-1">{t('create.allowed_domains')}</label>
-                    <input type="text" placeholder="university.edu, company.com" value={this.state.allowedDomains}
-                      onChange={(e) => this.setState({ allowedDomains: e.target.value }, this.saveDraft)}
-                      className="w-full py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-lg text-sm dark:bg-black dark:text-white" />
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('create.allowed_domains.desc')}</p>
+                    <span className="font-medium">{t('create.allow_chain_invites')}</span>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{t('create.allow_chain_invites.desc')}</p>
                   </div>
-                )}
+                </label>
+              </div>
+            )}
+
+            {/* Settings for email domain restriction */}
+            {this.state.letterType === 'invite_only' && this.state.restrictionMode === 'domain' && (
+              <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                <label className="text-sm font-medium block mb-2">{t('create.allowed_domains')}</label>
+                <input type="text" placeholder="university.edu, company.com" value={this.state.allowedDomains}
+                  onChange={(e) => this.setState({ allowedDomains: e.target.value }, this.saveDraft)}
+                  className="w-full py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-lg text-sm dark:bg-black dark:text-white" />
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('create.allowed_domains.desc')}</p>
               </div>
             )}
           </div>
