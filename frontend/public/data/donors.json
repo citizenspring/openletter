@@ -1,9 +1,1901 @@
 {
-  "donors": [],
+  "donors": [
+    {
+      "name": "J W",
+      "amount": 35,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "jw77"
+    },
+    {
+      "name": "Ivan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 23:36:03 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-77bf1495"
+    },
+    {
+      "name": "Tracey",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 20:41:48 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-66e99fa4"
+    },
+    {
+      "name": "Marirose Cunningham",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 16:21:01 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-dce6bde9"
+    },
+    {
+      "name": "arlene",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 13:20:13 GM",
+      "source": "opencollective",
+      "ocSlug": "arlene"
+    },
+    {
+      "name": "Kerry Abel",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 12:53:38 GM",
+      "source": "opencollective",
+      "ocSlug": "kerry-abel-46d228e0"
+    },
+    {
+      "name": "OregonElfgiva",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Mar 29 2026 00:14:03 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-38161aa7"
+    },
+    {
+      "name": "David Blair-Reid",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 27 2026 16:50:36 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-da8b579e"
+    },
+    {
+      "name": "Roy Mobile",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 27 2026 11:32:42 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-91191d19"
+    },
+    {
+      "name": "Chris Watkin",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-d6f7ce16"
+    },
+    {
+      "name": "Dr Benson Ikini",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-1fbc34b1"
+    },
+    {
+      "name": "June Gibson",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-569c6cc9"
+    },
+    {
+      "name": "Christine",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Mar 25 2026 13:17:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6e6eced2"
+    },
+    {
+      "name": "Anthony Kelsall",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Mar 25 2026 08:53:15 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-537a6f99"
+    },
+    {
+      "name": "Sam",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-cb0e254c"
+    },
+    {
+      "name": "Charles",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Mar 23 2026 18:55:26 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-99b7965d"
+    },
+    {
+      "name": "Stephen Eaves",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Mar 23 2026 06:01:11 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-099e2b2e"
+    },
+    {
+      "name": "Janet Lancashire",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Mar 22 2026 07:57:21 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-2d6ba70d"
+    },
+    {
+      "name": "Anthony",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 20 2026 20:49:13 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-c17ec260"
+    },
+    {
+      "name": "Ian",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 20 2026 20:32:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-b37a96a3"
+    },
+    {
+      "name": "Keith lewis",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Mar 20 2026 15:39:23 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8bd46270"
+    },
+    {
+      "name": "Ian",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-a98d2ddb"
+    },
+    {
+      "name": "Deborah Staines",
+      "amount": 15,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-8b4a4312"
+    },
+    {
+      "name": "Heidi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-78e32082"
+    },
+    {
+      "name": "Umberto",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-14283df7"
+    },
+    {
+      "name": "Carla",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 13 2026 10:50:03 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-32099b31"
+    },
+    {
+      "name": "Elena von Saucken",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-563cf842"
+    },
+    {
+      "name": "Thomas Doherty",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Sat Mar 07 2026 11:05:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-607587fc"
+    },
+    {
+      "name": "Ruth",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Mar 06 2026 01:35:50 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-29cb239a"
+    },
+    {
+      "name": "Chantal",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-c70c0e62"
+    },
+    {
+      "name": "Sandra Nettelbeck",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-96be2105"
+    },
+    {
+      "name": "Nora Herne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-86aa1986"
+    },
+    {
+      "name": "Loes",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-317d5ae9"
+    },
+    {
+      "name": "Huw",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Feb 16 2026 21:50:18 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-afc83630"
+    },
+    {
+      "name": "Paul Sergent",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Feb 16 2026 20:17:31 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e0e0cb87"
+    },
+    {
+      "name": "Concerned Grandmother",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Feb 16 2026 16:01:11 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-c24f1ec4"
+    },
+    {
+      "name": "MARY",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Feb 16 2026 09:48:52 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-c391c206"
+    },
+    {
+      "name": "Trudi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Feb 15 2026 17:54:33 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-53eda9c1"
+    },
+    {
+      "name": "Linda Buttimer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-4e7594cc"
+    },
+    {
+      "name": "Mathias Oppermann",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:34:19 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-cabb5be1"
+    },
+    {
+      "name": "Harry Wagendorp",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:30:10 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-596a04a3"
+    },
+    {
+      "name": "Karl-Heinz Dellwo",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:27:50 GM",
+      "source": "opencollective",
+      "ocSlug": "karl-heinz-dellwo"
+    },
+    {
+      "name": "Benni",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:27:15 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-f601d221"
+    },
+    {
+      "name": "Hannes Wandt",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:26:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-735a0556"
+    },
+    {
+      "name": "Nina Goslar",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 14:25:54 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-b88d637f"
+    },
+    {
+      "name": "Dan McGlade",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed Feb 11 2026 10:32:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-31663d1f"
+    },
+    {
+      "name": "RÜBER",
+      "amount": 100,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-095153e2"
+    },
+    {
+      "name": "Edith von Heydebrand",
+      "amount": 12,
+      "currency": "EUR",
+      "date": "Mon Feb 09 2026 17:13:32 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d22fd779"
+    },
+    {
+      "name": "Christine Anne Warren",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Mon Feb 09 2026 16:12:23 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-2f04e8cb"
+    },
+    {
+      "name": "Hartmut",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Feb 09 2026 09:35:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d69fadd1"
+    },
+    {
+      "name": "Marianne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Feb 08 2026 14:53:01 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8544031a"
+    },
+    {
+      "name": "ADAM",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 06 2026 21:03:10 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-eb6d839f"
+    },
+    {
+      "name": "Paul morrissey",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 06 2026 20:29:59 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-0554e8b4"
+    },
+    {
+      "name": "Mairin",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 06 2026 19:17:29 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-41ef1e34"
+    },
+    {
+      "name": "Julie Rutterford",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Feb 06 2026 16:09:19 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-80da126e"
+    },
+    {
+      "name": "Jacqui",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-a9880aee"
+    },
+    {
+      "name": "Yagna",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-61cd739f"
+    },
+    {
+      "name": "Kaleab Woldegiorgis",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-46b726c4"
+    },
+    {
+      "name": "Bernhard",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "bernhard6"
+    },
+    {
+      "name": "Lotje Siffels",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-0511bb34"
+    },
+    {
+      "name": "Wouter Eggink",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Dec 15 2025 12:32:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6e04b48a"
+    },
+    {
+      "name": "Katie Kirk",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Dec 14 2025 14:06:09 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d178e560"
+    },
+    {
+      "name": "Olivia Guest",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Sat Dec 13 2025 07:13:17 GM",
+      "source": "opencollective",
+      "ocSlug": "olivia-guest"
+    },
+    {
+      "name": "Album Animator",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Nov 24 2025 08:08:20 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-472ccd80"
+    },
+    {
+      "name": "Denise",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Nov 23 2025 14:29:23 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-f9d47406"
+    },
+    {
+      "name": "William",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Nov 17 2025 10:51:24 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-353507c8"
+    },
+    {
+      "name": "mark",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Nov 17 2025 10:46:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-5e9c33f9"
+    },
+    {
+      "name": "Sally",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Nov 16 2025 15:34:14 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-eb8719f2"
+    },
+    {
+      "name": "Lucy",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Nov 14 2025 22:11:46 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e82c6f00"
+    },
+    {
+      "name": "Alice",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Nov 14 2025 06:36:33 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e1401b75"
+    },
+    {
+      "name": "Rosalind",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-d6de623a"
+    },
+    {
+      "name": "Will",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Nov 07 2025 19:16:27 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-23f3ce9f"
+    },
+    {
+      "name": "Laurent HOFNUNG",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Nov 02 2025 14:28:52 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-27e104b5"
+    },
+    {
+      "name": "Gerold",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Oct 25 2025 07:47:41 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-18cda4c7"
+    },
+    {
+      "name": "Matty",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Oct 20 2025 15:17:16 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6d57f3c1"
+    },
+    {
+      "name": "Mitch",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-d94eee7f"
+    },
+    {
+      "name": "Bernice Elaine Roust",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Oct 06 2025 19:30:19 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e6efd9f7"
+    },
+    {
+      "name": "Greg",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Oct 01 2025 20:39:54 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-63966c80"
+    },
+    {
+      "name": "Pierre Loustau",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Sep 29 2025 07:10:53 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-49d79571"
+    },
+    {
+      "name": "Adnan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Sep 26 2025 10:58:58 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8cfc7f46"
+    },
+    {
+      "name": "João",
+      "amount": 12,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-b47380a7"
+    },
+    {
+      "name": "Santi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-b616be2f"
+    },
+    {
+      "name": "Guillermo",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Sep 24 2025 20:22:41 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e2940598"
+    },
+    {
+      "name": "ju canavan",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Fri Sep 19 2025 17:50:30 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-4d10f291"
+    },
+    {
+      "name": "Zara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Sep 19 2025 16:08:46 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-79144b27"
+    },
+    {
+      "name": "Mike",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Sep 17 2025 16:54:10 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d0390c5e"
+    },
+    {
+      "name": "Masa Dolanc",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-e607bc96"
+    },
+    {
+      "name": "Lucy Treloar",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Sep 05 2025 10:52:57 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-1e17d085"
+    },
+    {
+      "name": "Harriet",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-3c14abab"
+    },
+    {
+      "name": "Joanna",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Sep 01 2025 16:30:30 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-291c5011"
+    },
+    {
+      "name": "Pier Paolo",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Aug 25 2025 16:31:54 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-74021be4"
+    },
+    {
+      "name": "Miriam Nervo",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Sat Aug 16 2025 13:10:01 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-fc0c8702"
+    },
+    {
+      "name": "Jim McGinley",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Aug 15 2025 09:08:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8d63bb7d"
+    },
+    {
+      "name": "Joseph",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Fri Aug 08 2025 21:27:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-57058adf"
+    },
+    {
+      "name": "Rick",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Aug 06 2025 17:01:19 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a23212bb"
+    },
+    {
+      "name": "Homayra Sellier",
+      "amount": 15,
+      "currency": "EUR",
+      "date": "Sat Aug 02 2025 13:06:52 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-4a4370ca"
+    },
+    {
+      "name": "Marco Cantiello",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Aug 01 2025 23:06:35 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-f26d7770"
+    },
+    {
+      "name": "Uri Horesh",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jul 21 2025 18:15:57 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-119d0a61"
+    },
+    {
+      "name": "Patrice",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jul 21 2025 13:50:03 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-4a4cf1b0"
+    },
+    {
+      "name": "Mirjana Pretnar",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jul 21 2025 10:32:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-bf219706"
+    },
+    {
+      "name": "June Hoerrmann",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Wed Jul 09 2025 20:16:56 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-01383413"
+    },
+    {
+      "name": "Marc",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-57b4936f"
+    },
+    {
+      "name": "M. Harenberg",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Sat Jul 05 2025 11:04:40 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-7bcd0c4a"
+    },
+    {
+      "name": "Abeba Birhane",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Jun 28 2025 03:50:24 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-755b4d8c"
+    },
+    {
+      "name": "Ruth Brandon",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Fri Jun 06 2025 08:55:28 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-83102f50"
+    },
+    {
+      "name": "Jan Hrdlička",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-20eddbed"
+    },
+    {
+      "name": "Gavin Greenaway",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat May 31 2025 19:17:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a1688ad2"
+    },
+    {
+      "name": "Mohini Frankel-Hutton",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat May 31 2025 14:07:14 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-4e284e94"
+    },
+    {
+      "name": "Vojtech Hadzhi",
+      "amount": 5.7,
+      "currency": "EUR",
+      "date": "Sat May 31 2025 13:41:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-acdfc9dd"
+    },
+    {
+      "name": "Nora",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat May 31 2025 11:28:08 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-7c4ea7e1"
+    },
+    {
+      "name": "Huma",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat May 31 2025 08:30:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-76162139"
+    },
+    {
+      "name": "Francisca",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-586d71be"
+    },
+    {
+      "name": "Kevin",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-d9a9f9fe"
+    },
+    {
+      "name": "Otto Hauser",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "otto-hauser"
+    },
+    {
+      "name": "Hannah Quinn",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed May 07 2025 22:14:46 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6fa0df9f"
+    },
+    {
+      "name": "Neil Barton",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-925b47f2"
+    },
+    {
+      "name": "Sarah",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Apr 16 2025 03:05:18 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-18d517d6"
+    },
+    {
+      "name": "Seamus",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Mar 19 2025 13:58:23 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-7108d15b"
+    },
+    {
+      "name": "John MacKay",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-c573df04"
+    },
+    {
+      "name": "Dr. Michael C. Klein",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Mar 17 2025 21:21:16 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-92fec6d3"
+    },
+    {
+      "name": "Sylvia",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Mar 03 2025 02:17:25 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-63ca1656"
+    },
+    {
+      "name": "Barbara Lampe",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Sun Feb 23 2025 20:19:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6e879daf"
+    },
+    {
+      "name": "Walter Belser",
+      "amount": 23,
+      "currency": "EUR",
+      "date": "Fri Feb 21 2025 09:30:33 GM",
+      "source": "opencollective",
+      "ocSlug": "711384-walter-belser-8070a8df"
+    },
+    {
+      "name": "Christiane Hesse",
+      "amount": 23,
+      "currency": "EUR",
+      "date": "Wed Feb 19 2025 16:37:00 GM",
+      "source": "opencollective",
+      "ocSlug": "711384-christiane-hesse-ebee8b7e"
+    },
+    {
+      "name": "Ursula Kolb",
+      "amount": 11.5,
+      "currency": "EUR",
+      "date": "Wed Feb 19 2025 16:35:57 GM",
+      "source": "opencollective",
+      "ocSlug": "711384-ursula-kolb-91cccff7"
+    },
+    {
+      "name": "Stephan Kurz",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-873123a6"
+    },
+    {
+      "name": "Jorn Pinger",
+      "amount": 11.5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "711384-jorn-pinger-370ff124"
+    },
+    {
+      "name": "Sandra Doll",
+      "amount": 5.75,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "711384-sandra-doll-b904fc0a"
+    },
+    {
+      "name": "TORSTEN KARWOTH",
+      "amount": 57.5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "711384-torsten-karwoth-46006616"
+    },
+    {
+      "name": "Rotraut",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Feb 17 2025 21:50:56 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d0056dae"
+    },
+    {
+      "name": "Judith",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Feb 17 2025 18:44:40 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-40375bd6"
+    },
+    {
+      "name": "Jessica O'Gorman",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-de573dca"
+    },
+    {
+      "name": "Rajeev",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Sun Feb 09 2025 10:19:44 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-cc80ef12"
+    },
+    {
+      "name": "Jo Moores",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Feb 09 2025 09:24:02 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ed8d73cb"
+    },
+    {
+      "name": "Mussarat Abidi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Feb 08 2025 20:17:08 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-89701768"
+    },
+    {
+      "name": "Sava",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-8de08ffe"
+    },
+    {
+      "name": "Andreas Schäfer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jan 06 2025 16:55:17 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-800ea943"
+    },
+    {
+      "name": "Harald",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Jan 05 2025 22:30:31 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-acdc9192"
+    },
+    {
+      "name": "Jenny",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Jan 05 2025 15:24:39 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a6caa9d2"
+    },
+    {
+      "name": "Sabena",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Dec 28 2024 06:54:01 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ad7a38b4"
+    },
+    {
+      "name": "NOBUYUKI KOKAI",
+      "amount": 30,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-f2b164db"
+    },
+    {
+      "name": "Amrit",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Nov 18 2024 16:45:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-09604a12"
+    },
+    {
+      "name": "Wijith Wijeratne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Nov 10 2024 17:59:16 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-5817bb25"
+    },
+    {
+      "name": "Karsten",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Nov 06 2024 09:34:05 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-d2dc61a6"
+    },
+    {
+      "name": "Ivan",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Nov 06 2024 09:33:21 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-81b53be3"
+    },
+    {
+      "name": "Antje Linke",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-a009b433"
+    },
+    {
+      "name": "Burkhart Braunbehrens",
+      "amount": 200,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-66262468"
+    },
+    {
+      "name": "Christopher",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-5de08aeb"
+    },
+    {
+      "name": "chiara",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-a1df066e"
+    },
+    {
+      "name": "Claire",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-8eaf8176"
+    },
+    {
+      "name": "Suzi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-9fed9ab6"
+    },
+    {
+      "name": "Franco Smargias",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "francosmargias"
+    },
+    {
+      "name": "Richard",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Aug 10 2024 15:51:09 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-47bf2c12"
+    },
+    {
+      "name": "Andreas Flückiger",
+      "amount": 300,
+      "currency": "EUR",
+      "date": "Fri Jul 05 2024 15:00:14 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-f8ae625f"
+    },
+    {
+      "name": "Shahid Ahmed",
+      "amount": 100,
+      "currency": "EUR",
+      "date": "Wed Jun 12 2024 03:36:39 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-797ab102"
+    },
+    {
+      "name": "Gustavo",
+      "amount": 25,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-ca51d9a5"
+    },
+    {
+      "name": "AlbertH",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Jun 08 2024 00:16:42 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-497b9bff"
+    },
+    {
+      "name": "Muhammad",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed May 15 2024 16:19:18 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-25f2e0ea"
+    },
+    {
+      "name": "Amr Mobarak",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-292e3d6d"
+    },
+    {
+      "name": "Tania Rodrigues",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat May 11 2024 10:17:31 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-83b8ed3f"
+    },
+    {
+      "name": "Enny",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Fri May 10 2024 20:10:44 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-f60615fa"
+    },
+    {
+      "name": "Jan Erik Noske",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed May 08 2024 13:30:41 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-237c03d8"
+    },
+    {
+      "name": "Elpida Tsitsiridi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed May 08 2024 07:27:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-418b7177"
+    },
+    {
+      "name": "Ginny",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun May 05 2024 16:39:45 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6085faac"
+    },
+    {
+      "name": "junjie wang",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun May 05 2024 04:05:20 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ec44132e"
+    },
+    {
+      "name": "Jayne Heaford",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Apr 29 2024 09:52:15 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-dba950e4"
+    },
+    {
+      "name": "Ann",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Apr 27 2024 15:31:25 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8c3f7e5c"
+    },
+    {
+      "name": "Fiona Wood",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Apr 27 2024 11:39:05 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-410d6260"
+    },
+    {
+      "name": "Nicky Proctor",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Apr 27 2024 10:13:24 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-7fe77a2c"
+    },
+    {
+      "name": "Nix Maria",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Apr 27 2024 08:01:01 GM",
+      "source": "opencollective",
+      "ocSlug": "nix-maria"
+    },
+    {
+      "name": "Adrienne Coward",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Apr 24 2024 17:21:25 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ad9e447b"
+    },
+    {
+      "name": "Bob Johnson",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Mon Apr 22 2024 10:31:10 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a1990c74"
+    },
+    {
+      "name": "Dr Brian Solts",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Apr 20 2024 11:56:27 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-cb047037"
+    },
+    {
+      "name": "Ian",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Apr 08 2024 10:20:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-9f17da5b"
+    },
+    {
+      "name": "Pam Campbell",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Apr 07 2024 13:23:53 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-33121c05"
+    },
+    {
+      "name": "Michelle",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Apr 06 2024 11:15:07 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-7bf02ca1"
+    },
+    {
+      "name": "Karen Partridge",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Apr 06 2024 10:34:02 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-981985c9"
+    },
+    {
+      "name": "Eliza",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Fri Apr 05 2024 19:45:58 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-9b206110"
+    },
+    {
+      "name": "Sarah",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Apr 03 2024 08:15:25 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8ef4c0a1"
+    },
+    {
+      "name": "Trish",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed Apr 03 2024 03:58:49 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-9d3a49da"
+    },
+    {
+      "name": "C M Cochrane",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Mar 18 2024 16:01:32 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-5fbf74db"
+    },
+    {
+      "name": "Catherine",
+      "amount": 40,
+      "currency": "EUR",
+      "date": "Fri Mar 15 2024 02:39:16 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-430cab96"
+    },
+    {
+      "name": "Sérgio",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-501aa9e3"
+    },
+    {
+      "name": "Riaz Khan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-7a4b96e5"
+    },
+    {
+      "name": "Anaïs",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Mar 13 2024 17:07:23 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-2a84080f"
+    },
+    {
+      "name": "Kerstin Voigt",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Mar 11 2024 13:49:20 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-bd49be17"
+    },
+    {
+      "name": "Ana Cristina",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Feb 24 2024 09:39:20 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-6b9a252f"
+    },
+    {
+      "name": "Michael Rowan",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Sat Feb 24 2024 01:32:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-1a02a002"
+    },
+    {
+      "name": "Paulo Ribeiro",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Feb 19 2024 01:06:32 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-4997ac04"
+    },
+    {
+      "name": "Nollaig",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 16 2024 20:56:29 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ff4436e2"
+    },
+    {
+      "name": "Selena Dolderer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-c953e4dc"
+    },
+    {
+      "name": "Mohamed",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Wed Feb 14 2024 11:27:55 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-3c7374a9"
+    },
+    {
+      "name": "Erin Caruso",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed Feb 14 2024 04:18:24 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-0c4a7540"
+    },
+    {
+      "name": "Courtney",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-244a70af"
+    },
+    {
+      "name": "H",
+      "amount": 2,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-ed17dd33"
+    },
+    {
+      "name": "Abdulrhman",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-42e16431"
+    },
+    {
+      "name": "Thomas Rollmann",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-1ac7eee8"
+    },
+    {
+      "name": "Sylvia Aguilar",
+      "amount": 105,
+      "currency": "EUR",
+      "date": "Mon Feb 12 2024 07:40:02 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-1fbf204c"
+    },
+    {
+      "name": "Arelis Sierra Alameda",
+      "amount": 11,
+      "currency": "EUR",
+      "date": "Sun Feb 11 2024 02:50:04 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-1d6b72ea"
+    },
+    {
+      "name": "Waleed Doany",
+      "amount": 200,
+      "currency": "EUR",
+      "date": "Sat Feb 10 2024 23:38:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-47d89882"
+    },
+    {
+      "name": "Claude PROST",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "Sat Feb 10 2024 14:07:56 GM",
+      "source": "opencollective",
+      "ocSlug": "claude-prost"
+    },
+    {
+      "name": "Jane Williams",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sat Feb 10 2024 05:31:01 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a4082580"
+    },
+    {
+      "name": "Natalie M",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 09 2024 20:47:27 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-52458f9b"
+    },
+    {
+      "name": "Mila",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Fri Feb 09 2024 12:00:20 GM",
+      "source": "opencollective",
+      "ocSlug": "mila2"
+    },
+    {
+      "name": "Alice rose",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Wed Feb 07 2024 15:47:48 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-8f3aaaac"
+    },
+    {
+      "name": "Jack",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-3a8dbca9"
+    },
+    {
+      "name": "Marc Lange",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Feb 03 2024 14:37:13 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-3a02560d"
+    },
+    {
+      "name": "Jemima",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jan 22 2024 20:52:21 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-ee4a3c51"
+    },
+    {
+      "name": "Tara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Jan 22 2024 11:13:24 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-56705e52"
+    },
+    {
+      "name": "Nabil Hasan",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon Jan 22 2024 04:51:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-dc3a8d59"
+    },
+    {
+      "name": "Ayaz",
+      "amount": 1,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 23:22:17 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-90e39e02"
+    },
+    {
+      "name": "Tracy",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 19:13:03 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-91944313"
+    },
+    {
+      "name": "Ilse",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 13:55:58 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-c0e92664"
+    },
+    {
+      "name": "Agrita",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 13:54:57 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-2e5dca91"
+    },
+    {
+      "name": "NAJIHAH",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 12:44:14 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-a120ed2b"
+    },
+    {
+      "name": "Alberto De Rossi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Sun Jan 21 2024 08:05:29 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-711eefca"
+    },
+    {
+      "name": "MOHAMMAD",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-0510b196"
+    },
+    {
+      "name": "Laila Sofianty",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-ed74a0c5"
+    },
+    {
+      "name": "Saime",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-694ce787"
+    },
+    {
+      "name": "Sim",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-9d9a676c"
+    },
+    {
+      "name": "Clara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Mon Dec 11 2023 07:43:41 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-74d3aa36"
+    },
+    {
+      "name": "Ciara Smith",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Dec 09 2023 14:06:48 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-57bc7d3e"
+    },
+    {
+      "name": "Danièle Pomeranz",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Fri Jun 30 2023 07:42:05 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-2a57b606"
+    },
+    {
+      "name": "Sandra Stone",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "Sat Nov 19 2022 13:14:37 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-e17529f9"
+    },
+    {
+      "name": "Tanya Smith-Millican",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-93903f13"
+    },
+    {
+      "name": "GYNA TORRES",
+      "amount": 4,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-fedf84b2"
+    },
+    {
+      "name": "Incognito",
+      "amount": 2,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "user-33445b6a"
+    },
+    {
+      "name": "Daniel Good",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "Mon May 09 2022 17:15:32 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-fce9ce2a"
+    },
+    {
+      "name": "Adam Green",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-fe3d84eb"
+    },
+    {
+      "name": "John G",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "Wed Oct 27 2021 21:31:53 GM",
+      "source": "opencollective",
+      "ocSlug": "guest-0988a638"
+    },
+    {
+      "name": "Ed Robson",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "",
+      "source": "opencollective",
+      "ocSlug": "guest-fc0a553b"
+    }
+  ],
   "stats": {
-    "total": 0,
+    "total": 231,
     "stripe": 0,
-    "opencollective": 0
+    "opencollective": 231
   },
-  "lastUpdated": null
+  "ocLegacy": {
+    "currency": "EUR",
+    "balance": 286146,
+    "totalReceived": 605891,
+    "totalSpent": 289441
+  },
+  "expenses": [
+    {
+      "id": 263634,
+      "description": "POSTMARKAPP.COM",
+      "amount": 25.47,
+      "status": "PAID",
+      "date": "Mon Sep 01 2025 09:36:13 GM"
+    },
+    {
+      "id": 263628,
+      "description": "HEROKU June",
+      "amount": 9.31,
+      "status": "PAID",
+      "date": "Mon Sep 01 2025 09:29:33 GM"
+    },
+    {
+      "id": 263627,
+      "description": "Postmark",
+      "amount": 11.02,
+      "status": "PAID",
+      "date": "Mon Sep 01 2025 09:28:33 GM"
+    },
+    {
+      "id": 254840,
+      "description": "Openletter Nostr V1",
+      "amount": 641,
+      "status": "PAID",
+      "date": "Wed Jun 25 2025 15:29:17 GM"
+    },
+    {
+      "id": 254221,
+      "description": "Email server May 2025",
+      "amount": 12.79,
+      "status": "PAID",
+      "date": ""
+    }
+  ],
+  "lastUpdated": "2026-04-05T09:30:38.644Z"
 }
