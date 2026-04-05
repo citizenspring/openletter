@@ -39,3 +39,8 @@ Route.post('passkey/register-verify', 'PasskeyController.registerVerify');
 Route.post('letters/:slug/invitations', 'InvitationController.create');
 Route.get('letters/:slug/invitations', 'InvitationController.list');
 Route.get('invitations/:token', 'InvitationController.validate');
+
+// Stripe payments
+Route.post('letters/:slug/checkout', 'StripeController.createCheckout');
+Route.post('letters/:slug/verify-payment', 'StripeController.verifyPayment');
+Route.post('webhooks/stripe', 'StripeController.webhook');
