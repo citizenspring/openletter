@@ -10,6 +10,7 @@ Logger.level = 'info';
 
 const availableLocales = require('../../../locales.json');
 
+const Invitation = use('App/Models/Invitation');
 const { sendEmail } = use('App/Libs/email');
 const { getImageSize } = use('App/Libs/image');
 
@@ -107,6 +108,14 @@ class LetterController {
       }
       res.locales = locales;
       res.type = res.parent_letter_id ? 'update' : 'letter';
+      // Include invite-only fields
+      res.letter_type = res.letter_type || 'public';
+      res.restriction_mode = res.restriction_mode || null;
+      res.is_paid = res.is_paid || false;
+      res.allowed_domains = res.allowed_domains ? JSON.parse(res.allowed_domains) : null;
+      res.invites_per_person = res.invites_per_person || 5;
+      res.allow_chain_invites = res.allow_chain_invites || false;
+
       if (res.updates) {
         res.updates = res.updates.filter((u) => u.locale === locale);
       }
@@ -304,6 +313,45 @@ class LetterController {
       .where('locale', request.params.locale)
       .first();
 
+    // ── Invite-only checks ──────────────────────────────────────
+    if (letter.letter_type === 'invite_only') {
+      if (!letter.is_paid) {
+        return { error: { code: 402, message: 'This letter has not been activated yet' } };
+      }
+
+      if (letter.restriction_mode === 'invite') {
+        const inviteToken = request.body.invite_token;
+        if (!inviteToken) {
+          return { error: { code: 403, message: 'An invitation is required to sign this letter' } };
+        }
+        const invitation = await Invitation.query()
+          .where('token', inviteToken)
+          .where('letter_id', letter.id)
+          .first();
+        if (!invitation) {
+          return { error: { code: 403, message: 'Invalid invitation' } };
+        }
+        if (invitation.used_at) {
+          return { error: { code: 400, message: 'This invitation has already been used' } };
+        }
+        // Store invitation reference to link after signature is created
+        request._invitation = invitation;
+      }
+
+      if (letter.restriction_mode === 'domain') {
+        const signerEmail = request.body.email;
+        if (!signerEmail) {
+          return { error: { code: 400, message: 'Email is required for domain-restricted letters' } };
+        }
+        const allowedDomains = JSON.parse(letter.allowed_domains || '[]');
+        const emailDomain = signerEmail.split('@')[1]?.toLowerCase();
+        if (!allowedDomains.some(d => emailDomain === d.toLowerCase())) {
+          return { error: { code: 403, message: `Only email addresses from ${allowedDomains.join(', ')} can sign this letter` } };
+        }
+      }
+    }
+    // ── End invite-only checks ──────────────────────────────────
+
     const usePasskey = request.body.use_passkey;
     const email = request.body.email;
 
@@ -343,6 +391,13 @@ class LetterController {
       } else {
         console.error('error', e);
       }
+    }
+
+    // Link invitation to signature (for invite-only letters)
+    if (request._invitation && signature) {
+      request._invitation.signature_id = signature.id;
+      request._invitation.used_at = new Date();
+      await request._invitation.save();
     }
 
     // If using passkey, skip email confirmation — return signature ID for WebAuthn flow
