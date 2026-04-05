@@ -76,6 +76,26 @@ class CreateLetterPage extends Component {
       });
       const json = await res.json();
       console.log('>>> json', json);
+
+      // If invite-only, redirect to Stripe Checkout
+      if (letters[0].letter_type === 'invite_only') {
+        try {
+          const checkoutRes = await fetch(`${process.env.API_URL}/letters/${json.slug}/checkout`, {
+            method: 'post',
+            body: JSON.stringify({ token: json.token }),
+            headers: { 'Content-Type': 'application/json' },
+          });
+          const checkoutJson = await checkoutRes.json();
+          if (checkoutJson.checkout_url) {
+            window.location.href = checkoutJson.checkout_url;
+            return;
+          }
+        } catch (e) {
+          console.error('>>> Stripe checkout error', e);
+          // Fall through to regular redirect
+        }
+      }
+
       Router.push(`/${json.slug}`);
     } catch (e) {
       console.error('>>> API error', e);

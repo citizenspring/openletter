@@ -81,6 +81,11 @@ class LetterForm extends Component {
     super(props);
     this.state = {
       loading: false,
+      letterType: 'public',
+      restrictionMode: 'invite',
+      allowedDomains: '',
+      invitesPerPerson: 5,
+      allowChainInvites: false,
       form: [
         {
           locale: props.locale,
@@ -117,7 +122,23 @@ class LetterForm extends Component {
   async handleSubmit(event) {
     this.setState({ loading: true });
     event.preventDefault();
-    await this.props.onSubmit(this.state.form);
+
+    // Attach invite-only settings to the first form entry
+    const formData = [...this.state.form];
+    if (this.state.letterType === 'invite_only') {
+      formData[0].letter_type = 'invite_only';
+      formData[0].restriction_mode = this.state.restrictionMode;
+      if (this.state.restrictionMode === 'invite') {
+        formData[0].invites_per_person = this.state.invitesPerPerson;
+        formData[0].allow_chain_invites = this.state.allowChainInvites;
+      }
+      if (this.state.restrictionMode === 'domain') {
+        const domains = this.state.allowedDomains.split(',').map(d => d.trim().toLowerCase()).filter(Boolean);
+        formData[0].allowed_domains = JSON.stringify(domains);
+      }
+    }
+
+    await this.props.onSubmit(formData);
 
     // just in case
     setTimeout(() => {
@@ -218,9 +239,116 @@ class LetterForm extends Component {
             />
           </div>
         )}
+
+        {/* Letter type selector */}
+        {!parentLetter && (
+          <div className="mt-6 p-4 border border-gray-200 rounded-lg dark:border-gray-700">
+            <h3 className="text-lg font-semibold mb-3">{t('create.type.title')}</h3>
+            <div className="flex gap-3 mb-4">
+              <button
+                type="button"
+                onClick={() => this.setState({ letterType: 'public' })}
+                className={`flex-1 p-3 rounded-lg border-2 transition-colors text-left ${
+                  this.state.letterType === 'public'
+                    ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-800'
+                    : 'border-gray-200 dark:border-gray-700'
+                }`}
+              >
+                <div className="font-semibold">📢 {t('create.type.public')}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{t('create.type.public.desc')}</div>
+              </button>
+              <button
+                type="button"
+                onClick={() => this.setState({ letterType: 'invite_only' })}
+                className={`flex-1 p-3 rounded-lg border-2 transition-colors text-left ${
+                  this.state.letterType === 'invite_only'
+                    ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-800'
+                    : 'border-gray-200 dark:border-gray-700'
+                }`}
+              >
+                <div className="font-semibold">🔒 {t('create.type.invite_only')} <span className="text-sm font-normal text-gray-500">€10</span></div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{t('create.type.invite_only.desc')}</div>
+              </button>
+            </div>
+
+            {/* Invite-only settings */}
+            {this.state.letterType === 'invite_only' && (
+              <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg space-y-3">
+                <div>
+                  <label className="text-sm font-medium">{t('create.restriction.title')}</label>
+                  <div className="flex gap-2 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => this.setState({ restrictionMode: 'invite' })}
+                      className={`px-3 py-1.5 rounded-lg border text-sm ${
+                        this.state.restrictionMode === 'invite'
+                          ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black'
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
+                    >
+                      🔗 {t('create.restriction.invite')}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => this.setState({ restrictionMode: 'domain' })}
+                      className={`px-3 py-1.5 rounded-lg border text-sm ${
+                        this.state.restrictionMode === 'domain'
+                          ? 'bg-gray-900 text-white border-gray-900 dark:bg-white dark:text-black'
+                          : 'border-gray-300 dark:border-gray-600'
+                      }`}
+                    >
+                      📧 {t('create.restriction.domain')}
+                    </button>
+                  </div>
+                </div>
+
+                {this.state.restrictionMode === 'invite' && (
+                  <>
+                    <div>
+                      <label className="text-sm font-medium">{t('create.invites_per_person')}</label>
+                      <input
+                        type="number"
+                        min="1"
+                        max="100"
+                        value={this.state.invitesPerPerson}
+                        onChange={(e) => this.setState({ invitesPerPerson: parseInt(e.target.value) || 5 })}
+                        className="ml-2 w-20 border border-gray-300 rounded px-2 py-1 text-sm dark:bg-black dark:border-gray-600"
+                      />
+                    </div>
+                    <div>
+                      <label className="flex items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={this.state.allowChainInvites}
+                          onChange={(e) => this.setState({ allowChainInvites: e.target.checked })}
+                        />
+                        {t('create.allow_chain_invites')}
+                      </label>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 ml-5">{t('create.allow_chain_invites.desc')}</p>
+                    </div>
+                  </>
+                )}
+
+                {this.state.restrictionMode === 'domain' && (
+                  <div>
+                    <label className="text-sm font-medium">{t('create.allowed_domains')}</label>
+                    <StyledInput
+                      type="text"
+                      placeholder="university.edu, company.com"
+                      value={this.state.allowedDomains}
+                      onChange={(e) => this.setState({ allowedDomains: e.target.value })}
+                    />
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{t('create.allowed_domains.desc')}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
         <div>
           <StyledButton disabled={this.state.loading}>
-            {t(parentLetter ? 'create.publish_update' : 'create.publish')}
+            {t(parentLetter ? 'create.publish_update' : this.state.letterType === 'invite_only' ? 'create.publish_invite' : 'create.publish')}
           </StyledButton>
         </div>
       </form>
