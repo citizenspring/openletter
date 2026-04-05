@@ -154,6 +154,28 @@
   "pricing.why.trust.title": "Web of trust",
   "pricing.why.trust.desc": "See who invited whom. Each signer can invite others, creating a transparent chain of trust that strengthens your letter.",
 
+  "home.hero.title": "Create an open letter and sign it together",
+  "home.hero.subtitle": "A free, open civic tool for collective action. No cookies, no trackers. 3,600+ open letters, 490,000+ signatures.",
+  "home.cta.public": "Create a public letter",
+  "home.cta.invite": "Invitation only — €10",
+  "home.invite.title": "Invitation-only letters",
+  "home.invite.subtitle": "Need to make sure every signature is genuine? Limit who can sign with personal invite links or email domain restrictions.",
+  "home.invite.bot.title": "Stop AI bots",
+  "home.invite.bot.desc": "AI can generate thousands of fake signatures in seconds. Invitation-only letters ensure every signer is a real person.",
+  "home.invite.trust.title": "Web of trust",
+  "home.invite.trust.desc": "Each signer can invite others. See who invited whom — a transparent chain that strengthens your letter.",
+  "home.invite.weight.title": "More weight",
+  "home.invite.weight.desc": "100 verified, invited signers carry more weight than 10,000 anonymous ones.",
+  "home.invite.learn_more": "Learn more about pricing →",
+  "home.step1.title": "Write your letter",
+  "home.step1.desc": "Create your open letter in one or multiple languages. Add images and format with markdown.",
+  "home.step2.title": "Choose public or invitation-only",
+  "home.step2.desc": "Public is free and open to everyone. Invitation-only (€10) lets you control who can sign.",
+  "home.step3.title": "Share and collect signatures",
+  "home.step3.desc": "Share the URL or send personal invitations. Signatures are verified via email or passkey.",
+  "home.step4.title": "Make an impact",
+  "home.step4.desc": "Send your letter to decision-makers with verified signatures that carry real weight.",
+
   "faq.q3.response": "Yes! With our invitation-only letters (€10), you can control exactly who signs your letter using personal invitation links or email domain restrictions. Public letters remain free and open to everyone.",
   "faq.q5.response": "Yes! With our invitation-only letters (€10), you can control exactly who signs your letter using personal invitation links or email domain restrictions. Public letters remain free and open to everyone."
 }
