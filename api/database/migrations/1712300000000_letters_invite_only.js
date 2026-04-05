@@ -13,7 +13,6 @@ class LettersInviteOnlySchema extends Schema {
       table.boolean('allow_chain_invites').defaultTo(false)
       table.boolean('is_paid').defaultTo(false)
       table.string('stripe_session_id', 255).defaultTo(null)
-      table.timestamp('deleted_at').defaultTo(null)
     })
   }
 
@@ -26,7 +25,6 @@ class LettersInviteOnlySchema extends Schema {
       table.dropColumn('allow_chain_invites')
       table.dropColumn('is_paid')
       table.dropColumn('stripe_session_id')
-      table.dropColumn('deleted_at')
     })
   }
 }
