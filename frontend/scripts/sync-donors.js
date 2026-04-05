@@ -75,12 +75,11 @@ async function fetchStripeDonors() {
   return donors;
 }
 
-function loadExistingDonors() {
+function loadExisting() {
   try {
-    const data = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
-    return data.donors || [];
+    return JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'));
   } catch {
-    return [];
+    return {};
   }
 }
 
@@ -98,9 +97,9 @@ function deduplicateDonors(donors) {
 async function main() {
   const stripeDonors = await fetchStripeDonors();
 
-  // Keep existing OC donors from the file
-  const existing = loadExistingDonors();
-  const ocDonors = existing.filter((d) => d.source === 'opencollective');
+  // Keep existing data from the file (OC donors, expenses, ocLegacy)
+  const existing = loadExisting();
+  const ocDonors = (existing.donors || []).filter((d) => d.source === 'opencollective');
 
   const allDonors = deduplicateDonors([...stripeDonors, ...ocDonors]);
 
@@ -114,6 +113,9 @@ async function main() {
       stripe: allDonors.filter((d) => d.source === 'stripe').length,
       opencollective: allDonors.filter((d) => d.source === 'opencollective').length,
     },
+    // Preserve OC legacy data (expenses, balance, etc.) from seed-oc-donors.js
+    ...(existing.ocLegacy ? { ocLegacy: existing.ocLegacy } : {}),
+    ...(existing.expenses ? { expenses: existing.expenses } : {}),
     lastUpdated: new Date().toISOString(),
   };
 
