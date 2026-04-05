@@ -4,6 +4,7 @@
   "description": "Description ",
   "main": "index.js",
   "scripts": {
+    "prebuild": "node scripts/seed-oc-donors.js || true",
     "build": "next build",
     "build:langs": "sync-i18n --files 'public/locales/*.json' --primary en --space 2",
     "test": "echo \"Error: no test specified\" && exit 1",
