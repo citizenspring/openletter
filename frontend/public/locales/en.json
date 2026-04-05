@@ -1,4 +1,11 @@
 {
+  "create.page.title": "Create an Open Letter",
+  "create.page.heading": "Create an open letter",
+  "create.page.subheading": "Write your letter, choose who can sign it, and publish.",
+  "create.preview.show": "Show preview",
+  "create.preview.hide": "Hide preview",
+  "create.preview.label": "Preview",
+  "create.preview.empty": "Start writing to see a preview...",
   "create.addLanguage": "Add another language",
   "create.admin_info.description": "Please provide an email address to make sure you can edit or update this open letter.",
   "create.email": "Your email address",
