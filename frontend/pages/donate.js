@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Footer from '../components/Footer';
-import OpenCollectiveData from '../components/OpenCollectiveData';
+import DonorsList from '../components/DonorsList';
 import { withIntl } from '../lib/i18n';
 
 function DonatePage({ t }) {
@@ -28,7 +28,7 @@ function DonatePage({ t }) {
               {t('notification.signed.donate.button')}
             </a>
           </div>
-          <OpenCollectiveData collectiveSlug="openletter" />
+          <DonorsList />
         </div>
       </div>
       <Footer />

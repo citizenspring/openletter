@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 import Notification from '../../components/Notification';
 import Router, { withRouter } from 'next/router';
 import { withIntl } from '../../lib/i18n';
-import OpenCollectiveData from '../../components/OpenCollectiveData';
+import DonorsList from '../../components/DonorsList';
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -12,8 +12,8 @@ function sleep(ms) {
 class ConfirmSignaturePage extends Component {
   constructor(props) {
     super(props);
-    const { status, token } = this.props.router.query;
-    this.state = { status: status || null, token: token || null };
+    const { status, token, preview } = this.props.router.query;
+    this.state = { status: status || (preview === 'confirmed' ? 'signature_confirmed' : null), token: token || null };
     this.confirmSignature = this.confirmSignature.bind(this);
   }
 
@@ -84,7 +84,7 @@ class ConfirmSignaturePage extends Component {
                   {t('notification.signed.donate.button')}
                 </a>
               </div>
-              <OpenCollectiveData collectiveSlug="openletter" />
+              <DonorsList compact />
             </>
           )}
           {!status && (

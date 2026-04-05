@@ -1,0 +1,1901 @@
+{
+  "donors": [
+    {
+      "name": "J W",
+      "amount": 35,
+      "currency": "EUR",
+      "date": "2025-09-19",
+      "source": "opencollective",
+      "ocSlug": "jw77"
+    },
+    {
+      "name": "Ivan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "guest-77bf1495"
+    },
+    {
+      "name": "Tracey",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "guest-66e99fa4"
+    },
+    {
+      "name": "Marirose Cunningham",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "guest-dce6bde9"
+    },
+    {
+      "name": "arlene",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "arlene"
+    },
+    {
+      "name": "Kerry Abel",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "kerry-abel-46d228e0"
+    },
+    {
+      "name": "OregonElfgiva",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-29",
+      "source": "opencollective",
+      "ocSlug": "guest-38161aa7"
+    },
+    {
+      "name": "David Blair-Reid",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-27",
+      "source": "opencollective",
+      "ocSlug": "guest-da8b579e"
+    },
+    {
+      "name": "Roy Mobile",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-27",
+      "source": "opencollective",
+      "ocSlug": "guest-91191d19"
+    },
+    {
+      "name": "Chris Watkin",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-26",
+      "source": "opencollective",
+      "ocSlug": "guest-d6f7ce16"
+    },
+    {
+      "name": "Dr Benson Ikini",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-26",
+      "source": "opencollective",
+      "ocSlug": "guest-1fbc34b1"
+    },
+    {
+      "name": "June Gibson",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-26",
+      "source": "opencollective",
+      "ocSlug": "guest-569c6cc9"
+    },
+    {
+      "name": "Christine",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-25",
+      "source": "opencollective",
+      "ocSlug": "guest-6e6eced2"
+    },
+    {
+      "name": "Anthony Kelsall",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-25",
+      "source": "opencollective",
+      "ocSlug": "guest-537a6f99"
+    },
+    {
+      "name": "Sam",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-24",
+      "source": "opencollective",
+      "ocSlug": "guest-cb0e254c"
+    },
+    {
+      "name": "Charles",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-23",
+      "source": "opencollective",
+      "ocSlug": "guest-99b7965d"
+    },
+    {
+      "name": "Stephen Eaves",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-23",
+      "source": "opencollective",
+      "ocSlug": "guest-099e2b2e"
+    },
+    {
+      "name": "Janet Lancashire",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-22",
+      "source": "opencollective",
+      "ocSlug": "guest-2d6ba70d"
+    },
+    {
+      "name": "Anthony",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-20",
+      "source": "opencollective",
+      "ocSlug": "guest-c17ec260"
+    },
+    {
+      "name": "Ian",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-20",
+      "source": "opencollective",
+      "ocSlug": "guest-b37a96a3"
+    },
+    {
+      "name": "Keith lewis",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-20",
+      "source": "opencollective",
+      "ocSlug": "guest-8bd46270"
+    },
+    {
+      "name": "Ian",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-19",
+      "source": "opencollective",
+      "ocSlug": "guest-a98d2ddb"
+    },
+    {
+      "name": "Deborah Staines",
+      "amount": 15,
+      "currency": "EUR",
+      "date": "2026-03-19",
+      "source": "opencollective",
+      "ocSlug": "guest-8b4a4312"
+    },
+    {
+      "name": "Heidi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-19",
+      "source": "opencollective",
+      "ocSlug": "guest-78e32082"
+    },
+    {
+      "name": "Umberto",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-17",
+      "source": "opencollective",
+      "ocSlug": "guest-14283df7"
+    },
+    {
+      "name": "Carla",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-13",
+      "source": "opencollective",
+      "ocSlug": "guest-32099b31"
+    },
+    {
+      "name": "Elena von Saucken",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-03-10",
+      "source": "opencollective",
+      "ocSlug": "guest-563cf842"
+    },
+    {
+      "name": "Thomas Doherty",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-03-07",
+      "source": "opencollective",
+      "ocSlug": "guest-607587fc"
+    },
+    {
+      "name": "Ruth",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-06",
+      "source": "opencollective",
+      "ocSlug": "guest-29cb239a"
+    },
+    {
+      "name": "Chantal",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-03-03",
+      "source": "opencollective",
+      "ocSlug": "guest-c70c0e62"
+    },
+    {
+      "name": "Sandra Nettelbeck",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-26",
+      "source": "opencollective",
+      "ocSlug": "guest-96be2105"
+    },
+    {
+      "name": "Nora Herne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-19",
+      "source": "opencollective",
+      "ocSlug": "guest-86aa1986"
+    },
+    {
+      "name": "Loes",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-02-19",
+      "source": "opencollective",
+      "ocSlug": "guest-317d5ae9"
+    },
+    {
+      "name": "Huw",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-16",
+      "source": "opencollective",
+      "ocSlug": "guest-afc83630"
+    },
+    {
+      "name": "Paul Sergent",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-02-16",
+      "source": "opencollective",
+      "ocSlug": "guest-e0e0cb87"
+    },
+    {
+      "name": "Concerned Grandmother",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-16",
+      "source": "opencollective",
+      "ocSlug": "guest-c24f1ec4"
+    },
+    {
+      "name": "MARY",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-16",
+      "source": "opencollective",
+      "ocSlug": "guest-c391c206"
+    },
+    {
+      "name": "Trudi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-15",
+      "source": "opencollective",
+      "ocSlug": "guest-53eda9c1"
+    },
+    {
+      "name": "Linda Buttimer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-12",
+      "source": "opencollective",
+      "ocSlug": "guest-4e7594cc"
+    },
+    {
+      "name": "Mathias Oppermann",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-cabb5be1"
+    },
+    {
+      "name": "Harry Wagendorp",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-596a04a3"
+    },
+    {
+      "name": "Karl-Heinz Dellwo",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "karl-heinz-dellwo"
+    },
+    {
+      "name": "Benni",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-f601d221"
+    },
+    {
+      "name": "Hannes Wandt",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-735a0556"
+    },
+    {
+      "name": "Nina Goslar",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-b88d637f"
+    },
+    {
+      "name": "Dan McGlade",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-31663d1f"
+    },
+    {
+      "name": "RÜBER",
+      "amount": 100,
+      "currency": "EUR",
+      "date": "2026-02-10",
+      "source": "opencollective",
+      "ocSlug": "guest-095153e2"
+    },
+    {
+      "name": "Edith von Heydebrand",
+      "amount": 12,
+      "currency": "EUR",
+      "date": "2026-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-d22fd779"
+    },
+    {
+      "name": "Christine Anne Warren",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2026-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-2f04e8cb"
+    },
+    {
+      "name": "Hartmut",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-d69fadd1"
+    },
+    {
+      "name": "Marianne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-08",
+      "source": "opencollective",
+      "ocSlug": "guest-8544031a"
+    },
+    {
+      "name": "ADAM",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-06",
+      "source": "opencollective",
+      "ocSlug": "guest-eb6d839f"
+    },
+    {
+      "name": "Paul morrissey",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-06",
+      "source": "opencollective",
+      "ocSlug": "guest-0554e8b4"
+    },
+    {
+      "name": "Mairin",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-02-06",
+      "source": "opencollective",
+      "ocSlug": "guest-41ef1e34"
+    },
+    {
+      "name": "Julie Rutterford",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-02-06",
+      "source": "opencollective",
+      "ocSlug": "guest-80da126e"
+    },
+    {
+      "name": "Jacqui",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-01-20",
+      "source": "opencollective",
+      "ocSlug": "guest-a9880aee"
+    },
+    {
+      "name": "Yagna",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2026-01-13",
+      "source": "opencollective",
+      "ocSlug": "guest-61cd739f"
+    },
+    {
+      "name": "Kaleab Woldegiorgis",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2026-01-13",
+      "source": "opencollective",
+      "ocSlug": "guest-46b726c4"
+    },
+    {
+      "name": "Bernhard",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-12-23",
+      "source": "opencollective",
+      "ocSlug": "bernhard6"
+    },
+    {
+      "name": "Lotje Siffels",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-12-16",
+      "source": "opencollective",
+      "ocSlug": "guest-0511bb34"
+    },
+    {
+      "name": "Wouter Eggink",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-12-15",
+      "source": "opencollective",
+      "ocSlug": "guest-6e04b48a"
+    },
+    {
+      "name": "Katie Kirk",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-12-14",
+      "source": "opencollective",
+      "ocSlug": "guest-d178e560"
+    },
+    {
+      "name": "Olivia Guest",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2025-12-13",
+      "source": "opencollective",
+      "ocSlug": "olivia-guest"
+    },
+    {
+      "name": "Album Animator",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-24",
+      "source": "opencollective",
+      "ocSlug": "guest-472ccd80"
+    },
+    {
+      "name": "Denise",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-23",
+      "source": "opencollective",
+      "ocSlug": "guest-f9d47406"
+    },
+    {
+      "name": "William",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-11-17",
+      "source": "opencollective",
+      "ocSlug": "guest-353507c8"
+    },
+    {
+      "name": "mark",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-11-17",
+      "source": "opencollective",
+      "ocSlug": "guest-5e9c33f9"
+    },
+    {
+      "name": "Sally",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-11-16",
+      "source": "opencollective",
+      "ocSlug": "guest-eb8719f2"
+    },
+    {
+      "name": "Lucy",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-14",
+      "source": "opencollective",
+      "ocSlug": "guest-e82c6f00"
+    },
+    {
+      "name": "Alice",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-14",
+      "source": "opencollective",
+      "ocSlug": "guest-e1401b75"
+    },
+    {
+      "name": "Rosalind",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-13",
+      "source": "opencollective",
+      "ocSlug": "guest-d6de623a"
+    },
+    {
+      "name": "Will",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-11-07",
+      "source": "opencollective",
+      "ocSlug": "guest-23f3ce9f"
+    },
+    {
+      "name": "Laurent HOFNUNG",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-11-02",
+      "source": "opencollective",
+      "ocSlug": "guest-27e104b5"
+    },
+    {
+      "name": "Gerold",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-10-25",
+      "source": "opencollective",
+      "ocSlug": "guest-18cda4c7"
+    },
+    {
+      "name": "Matty",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-10-20",
+      "source": "opencollective",
+      "ocSlug": "guest-6d57f3c1"
+    },
+    {
+      "name": "Mitch",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-10-16",
+      "source": "opencollective",
+      "ocSlug": "guest-d94eee7f"
+    },
+    {
+      "name": "Bernice Elaine Roust",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-10-06",
+      "source": "opencollective",
+      "ocSlug": "guest-e6efd9f7"
+    },
+    {
+      "name": "Greg",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-10-01",
+      "source": "opencollective",
+      "ocSlug": "guest-63966c80"
+    },
+    {
+      "name": "Pierre Loustau",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-09-29",
+      "source": "opencollective",
+      "ocSlug": "guest-49d79571"
+    },
+    {
+      "name": "Adnan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-26",
+      "source": "opencollective",
+      "ocSlug": "guest-8cfc7f46"
+    },
+    {
+      "name": "João",
+      "amount": 12,
+      "currency": "EUR",
+      "date": "2025-09-25",
+      "source": "opencollective",
+      "ocSlug": "guest-b47380a7"
+    },
+    {
+      "name": "Santi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-25",
+      "source": "opencollective",
+      "ocSlug": "guest-b616be2f"
+    },
+    {
+      "name": "Guillermo",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-09-24",
+      "source": "opencollective",
+      "ocSlug": "guest-e2940598"
+    },
+    {
+      "name": "ju canavan",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-09-19",
+      "source": "opencollective",
+      "ocSlug": "guest-4d10f291"
+    },
+    {
+      "name": "Zara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-19",
+      "source": "opencollective",
+      "ocSlug": "guest-79144b27"
+    },
+    {
+      "name": "Mike",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-09-17",
+      "source": "opencollective",
+      "ocSlug": "guest-d0390c5e"
+    },
+    {
+      "name": "Masa Dolanc",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-09-09",
+      "source": "opencollective",
+      "ocSlug": "guest-e607bc96"
+    },
+    {
+      "name": "Lucy Treloar",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-05",
+      "source": "opencollective",
+      "ocSlug": "guest-1e17d085"
+    },
+    {
+      "name": "Harriet",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-02",
+      "source": "opencollective",
+      "ocSlug": "guest-3c14abab"
+    },
+    {
+      "name": "Joanna",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-09-01",
+      "source": "opencollective",
+      "ocSlug": "guest-291c5011"
+    },
+    {
+      "name": "Pier Paolo",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-08-25",
+      "source": "opencollective",
+      "ocSlug": "guest-74021be4"
+    },
+    {
+      "name": "Miriam Nervo",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2025-08-16",
+      "source": "opencollective",
+      "ocSlug": "guest-fc0c8702"
+    },
+    {
+      "name": "Jim McGinley",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-08-15",
+      "source": "opencollective",
+      "ocSlug": "guest-8d63bb7d"
+    },
+    {
+      "name": "Joseph",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-08-08",
+      "source": "opencollective",
+      "ocSlug": "guest-57058adf"
+    },
+    {
+      "name": "Rick",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-08-06",
+      "source": "opencollective",
+      "ocSlug": "guest-a23212bb"
+    },
+    {
+      "name": "Homayra Sellier",
+      "amount": 15,
+      "currency": "EUR",
+      "date": "2025-06-07",
+      "source": "opencollective",
+      "ocSlug": "guest-4a4370ca"
+    },
+    {
+      "name": "Marco Cantiello",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-08-01",
+      "source": "opencollective",
+      "ocSlug": "guest-f26d7770"
+    },
+    {
+      "name": "Uri Horesh",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-07-21",
+      "source": "opencollective",
+      "ocSlug": "guest-119d0a61"
+    },
+    {
+      "name": "Patrice",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-07-21",
+      "source": "opencollective",
+      "ocSlug": "guest-4a4cf1b0"
+    },
+    {
+      "name": "Mirjana Pretnar",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-07-21",
+      "source": "opencollective",
+      "ocSlug": "guest-bf219706"
+    },
+    {
+      "name": "June Hoerrmann",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2025-07-09",
+      "source": "opencollective",
+      "ocSlug": "guest-01383413"
+    },
+    {
+      "name": "Marc",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-07-08",
+      "source": "opencollective",
+      "ocSlug": "guest-57b4936f"
+    },
+    {
+      "name": "M. Harenberg",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2025-07-05",
+      "source": "opencollective",
+      "ocSlug": "guest-7bcd0c4a"
+    },
+    {
+      "name": "Abeba Birhane",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-06-28",
+      "source": "opencollective",
+      "ocSlug": "guest-755b4d8c"
+    },
+    {
+      "name": "Ruth Brandon",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-06-06",
+      "source": "opencollective",
+      "ocSlug": "guest-83102f50"
+    },
+    {
+      "name": "Jan Hrdlička",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-06-03",
+      "source": "opencollective",
+      "ocSlug": "guest-20eddbed"
+    },
+    {
+      "name": "Gavin Greenaway",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-31",
+      "source": "opencollective",
+      "ocSlug": "guest-a1688ad2"
+    },
+    {
+      "name": "Mohini Frankel-Hutton",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-31",
+      "source": "opencollective",
+      "ocSlug": "guest-4e284e94"
+    },
+    {
+      "name": "Vojtech Hadzhi",
+      "amount": 5.7,
+      "currency": "EUR",
+      "date": "2025-05-31",
+      "source": "opencollective",
+      "ocSlug": "guest-acdfc9dd"
+    },
+    {
+      "name": "Nora",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-31",
+      "source": "opencollective",
+      "ocSlug": "guest-7c4ea7e1"
+    },
+    {
+      "name": "Huma",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-05-31",
+      "source": "opencollective",
+      "ocSlug": "guest-76162139"
+    },
+    {
+      "name": "Francisca",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-20",
+      "source": "opencollective",
+      "ocSlug": "guest-586d71be"
+    },
+    {
+      "name": "Kevin",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-20",
+      "source": "opencollective",
+      "ocSlug": "guest-d9a9f9fe"
+    },
+    {
+      "name": "Otto Hauser",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-08",
+      "source": "opencollective",
+      "ocSlug": "otto-hauser"
+    },
+    {
+      "name": "Hannah Quinn",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-05-07",
+      "source": "opencollective",
+      "ocSlug": "guest-6fa0df9f"
+    },
+    {
+      "name": "Neil Barton",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-05-01",
+      "source": "opencollective",
+      "ocSlug": "guest-925b47f2"
+    },
+    {
+      "name": "Sarah",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-04-16",
+      "source": "opencollective",
+      "ocSlug": "guest-18d517d6"
+    },
+    {
+      "name": "Seamus",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-03-19",
+      "source": "opencollective",
+      "ocSlug": "guest-7108d15b"
+    },
+    {
+      "name": "John MacKay",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-03-18",
+      "source": "opencollective",
+      "ocSlug": "guest-c573df04"
+    },
+    {
+      "name": "Dr. Michael C. Klein",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-03-17",
+      "source": "opencollective",
+      "ocSlug": "guest-92fec6d3"
+    },
+    {
+      "name": "Sylvia",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-03-03",
+      "source": "opencollective",
+      "ocSlug": "guest-63ca1656"
+    },
+    {
+      "name": "Barbara Lampe",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-02-23",
+      "source": "opencollective",
+      "ocSlug": "guest-6e879daf"
+    },
+    {
+      "name": "Walter Belser",
+      "amount": 23,
+      "currency": "EUR",
+      "date": "2025-02-21",
+      "source": "opencollective",
+      "ocSlug": "711384-walter-belser-8070a8df"
+    },
+    {
+      "name": "Christiane Hesse",
+      "amount": 23,
+      "currency": "EUR",
+      "date": "2025-02-19",
+      "source": "opencollective",
+      "ocSlug": "711384-christiane-hesse-ebee8b7e"
+    },
+    {
+      "name": "Ursula Kolb",
+      "amount": 11.5,
+      "currency": "EUR",
+      "date": "2025-02-19",
+      "source": "opencollective",
+      "ocSlug": "711384-ursula-kolb-91cccff7"
+    },
+    {
+      "name": "Stephan Kurz",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-02-18",
+      "source": "opencollective",
+      "ocSlug": "guest-873123a6"
+    },
+    {
+      "name": "Jorn Pinger",
+      "amount": 11.5,
+      "currency": "EUR",
+      "date": "2025-02-18",
+      "source": "opencollective",
+      "ocSlug": "711384-jorn-pinger-370ff124"
+    },
+    {
+      "name": "Sandra Doll",
+      "amount": 5.75,
+      "currency": "EUR",
+      "date": "2025-02-18",
+      "source": "opencollective",
+      "ocSlug": "711384-sandra-doll-b904fc0a"
+    },
+    {
+      "name": "TORSTEN KARWOTH",
+      "amount": 57.5,
+      "currency": "EUR",
+      "date": "2025-02-18",
+      "source": "opencollective",
+      "ocSlug": "711384-torsten-karwoth-46006616"
+    },
+    {
+      "name": "Rotraut",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-02-17",
+      "source": "opencollective",
+      "ocSlug": "guest-d0056dae"
+    },
+    {
+      "name": "Judith",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-02-17",
+      "source": "opencollective",
+      "ocSlug": "guest-40375bd6"
+    },
+    {
+      "name": "Jessica O'Gorman",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-02-13",
+      "source": "opencollective",
+      "ocSlug": "guest-de573dca"
+    },
+    {
+      "name": "Rajeev",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2025-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-cc80ef12"
+    },
+    {
+      "name": "Jo Moores",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-ed8d73cb"
+    },
+    {
+      "name": "Mussarat Abidi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-02-08",
+      "source": "opencollective",
+      "ocSlug": "guest-89701768"
+    },
+    {
+      "name": "Sava",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-01-30",
+      "source": "opencollective",
+      "ocSlug": "guest-8de08ffe"
+    },
+    {
+      "name": "Andreas Schäfer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2025-01-06",
+      "source": "opencollective",
+      "ocSlug": "guest-800ea943"
+    },
+    {
+      "name": "Harald",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-01-05",
+      "source": "opencollective",
+      "ocSlug": "guest-acdc9192"
+    },
+    {
+      "name": "Jenny",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2025-01-05",
+      "source": "opencollective",
+      "ocSlug": "guest-a6caa9d2"
+    },
+    {
+      "name": "Sabena",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-12-28",
+      "source": "opencollective",
+      "ocSlug": "guest-ad7a38b4"
+    },
+    {
+      "name": "NOBUYUKI KOKAI",
+      "amount": 30,
+      "currency": "EUR",
+      "date": "2024-12-12",
+      "source": "opencollective",
+      "ocSlug": "guest-f2b164db"
+    },
+    {
+      "name": "Amrit",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-11-18",
+      "source": "opencollective",
+      "ocSlug": "guest-09604a12"
+    },
+    {
+      "name": "Wijith Wijeratne",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-11-10",
+      "source": "opencollective",
+      "ocSlug": "guest-5817bb25"
+    },
+    {
+      "name": "Karsten",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-11-06",
+      "source": "opencollective",
+      "ocSlug": "guest-d2dc61a6"
+    },
+    {
+      "name": "Ivan",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-11-06",
+      "source": "opencollective",
+      "ocSlug": "guest-81b53be3"
+    },
+    {
+      "name": "Antje Linke",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-11-05",
+      "source": "opencollective",
+      "ocSlug": "guest-a009b433"
+    },
+    {
+      "name": "Burkhart Braunbehrens",
+      "amount": 200,
+      "currency": "EUR",
+      "date": "2024-10-31",
+      "source": "opencollective",
+      "ocSlug": "guest-66262468"
+    },
+    {
+      "name": "Christopher",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-09-24",
+      "source": "opencollective",
+      "ocSlug": "guest-5de08aeb"
+    },
+    {
+      "name": "chiara",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-09-12",
+      "source": "opencollective",
+      "ocSlug": "guest-a1df066e"
+    },
+    {
+      "name": "Claire",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-09-05",
+      "source": "opencollective",
+      "ocSlug": "guest-8eaf8176"
+    },
+    {
+      "name": "Suzi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-09-03",
+      "source": "opencollective",
+      "ocSlug": "guest-9fed9ab6"
+    },
+    {
+      "name": "Franco Smargias",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-08-20",
+      "source": "opencollective",
+      "ocSlug": "francosmargias"
+    },
+    {
+      "name": "Richard",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-08-10",
+      "source": "opencollective",
+      "ocSlug": "guest-47bf2c12"
+    },
+    {
+      "name": "Andreas Flückiger",
+      "amount": 300,
+      "currency": "EUR",
+      "date": "2024-07-05",
+      "source": "opencollective",
+      "ocSlug": "guest-f8ae625f"
+    },
+    {
+      "name": "Shahid Ahmed",
+      "amount": 100,
+      "currency": "EUR",
+      "date": "2024-06-12",
+      "source": "opencollective",
+      "ocSlug": "guest-797ab102"
+    },
+    {
+      "name": "Gustavo",
+      "amount": 25,
+      "currency": "EUR",
+      "date": "2024-01-22",
+      "source": "opencollective",
+      "ocSlug": "guest-ca51d9a5"
+    },
+    {
+      "name": "AlbertH",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-06-08",
+      "source": "opencollective",
+      "ocSlug": "guest-497b9bff"
+    },
+    {
+      "name": "Muhammad",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-05-15",
+      "source": "opencollective",
+      "ocSlug": "guest-25f2e0ea"
+    },
+    {
+      "name": "Amr Mobarak",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-05-14",
+      "source": "opencollective",
+      "ocSlug": "guest-292e3d6d"
+    },
+    {
+      "name": "Tania Rodrigues",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-05-11",
+      "source": "opencollective",
+      "ocSlug": "guest-83b8ed3f"
+    },
+    {
+      "name": "Enny",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-05-10",
+      "source": "opencollective",
+      "ocSlug": "guest-f60615fa"
+    },
+    {
+      "name": "Jan Erik Noske",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-05-08",
+      "source": "opencollective",
+      "ocSlug": "guest-237c03d8"
+    },
+    {
+      "name": "Elpida Tsitsiridi",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-05-08",
+      "source": "opencollective",
+      "ocSlug": "guest-418b7177"
+    },
+    {
+      "name": "Ginny",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-05-05",
+      "source": "opencollective",
+      "ocSlug": "guest-6085faac"
+    },
+    {
+      "name": "junjie wang",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-05-05",
+      "source": "opencollective",
+      "ocSlug": "guest-ec44132e"
+    },
+    {
+      "name": "Jayne Heaford",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-04-29",
+      "source": "opencollective",
+      "ocSlug": "guest-dba950e4"
+    },
+    {
+      "name": "Ann",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-04-27",
+      "source": "opencollective",
+      "ocSlug": "guest-8c3f7e5c"
+    },
+    {
+      "name": "Fiona Wood",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-27",
+      "source": "opencollective",
+      "ocSlug": "guest-410d6260"
+    },
+    {
+      "name": "Nicky Proctor",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-27",
+      "source": "opencollective",
+      "ocSlug": "guest-7fe77a2c"
+    },
+    {
+      "name": "Nix Maria",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-04-27",
+      "source": "opencollective",
+      "ocSlug": "nix-maria"
+    },
+    {
+      "name": "Adrienne Coward",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-24",
+      "source": "opencollective",
+      "ocSlug": "guest-ad9e447b"
+    },
+    {
+      "name": "Bob Johnson",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-04-22",
+      "source": "opencollective",
+      "ocSlug": "guest-a1990c74"
+    },
+    {
+      "name": "Dr Brian Solts",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-20",
+      "source": "opencollective",
+      "ocSlug": "guest-cb047037"
+    },
+    {
+      "name": "Ian",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-08",
+      "source": "opencollective",
+      "ocSlug": "guest-9f17da5b"
+    },
+    {
+      "name": "Pam Campbell",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-07",
+      "source": "opencollective",
+      "ocSlug": "guest-33121c05"
+    },
+    {
+      "name": "Michelle",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-04-06",
+      "source": "opencollective",
+      "ocSlug": "guest-7bf02ca1"
+    },
+    {
+      "name": "Karen Partridge",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-06",
+      "source": "opencollective",
+      "ocSlug": "guest-981985c9"
+    },
+    {
+      "name": "Eliza",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-04-05",
+      "source": "opencollective",
+      "ocSlug": "guest-9b206110"
+    },
+    {
+      "name": "Sarah",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-04-03",
+      "source": "opencollective",
+      "ocSlug": "guest-8ef4c0a1"
+    },
+    {
+      "name": "Trish",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-04-03",
+      "source": "opencollective",
+      "ocSlug": "guest-9d3a49da"
+    },
+    {
+      "name": "C M Cochrane",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-03-18",
+      "source": "opencollective",
+      "ocSlug": "guest-5fbf74db"
+    },
+    {
+      "name": "Catherine",
+      "amount": 40,
+      "currency": "EUR",
+      "date": "2024-01-16",
+      "source": "opencollective",
+      "ocSlug": "guest-430cab96"
+    },
+    {
+      "name": "Sérgio",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-03-14",
+      "source": "opencollective",
+      "ocSlug": "guest-501aa9e3"
+    },
+    {
+      "name": "Riaz Khan",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-03-14",
+      "source": "opencollective",
+      "ocSlug": "guest-7a4b96e5"
+    },
+    {
+      "name": "Anaïs",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-03-13",
+      "source": "opencollective",
+      "ocSlug": "guest-2a84080f"
+    },
+    {
+      "name": "Kerstin Voigt",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-03-11",
+      "source": "opencollective",
+      "ocSlug": "guest-bd49be17"
+    },
+    {
+      "name": "Ana Cristina",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-24",
+      "source": "opencollective",
+      "ocSlug": "guest-6b9a252f"
+    },
+    {
+      "name": "Michael Rowan",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2024-02-24",
+      "source": "opencollective",
+      "ocSlug": "guest-1a02a002"
+    },
+    {
+      "name": "Paulo Ribeiro",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-19",
+      "source": "opencollective",
+      "ocSlug": "guest-4997ac04"
+    },
+    {
+      "name": "Nollaig",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-16",
+      "source": "opencollective",
+      "ocSlug": "guest-ff4436e2"
+    },
+    {
+      "name": "Selena Dolderer",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-02-15",
+      "source": "opencollective",
+      "ocSlug": "guest-c953e4dc"
+    },
+    {
+      "name": "Mohamed",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-02-14",
+      "source": "opencollective",
+      "ocSlug": "guest-3c7374a9"
+    },
+    {
+      "name": "Erin Caruso",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-14",
+      "source": "opencollective",
+      "ocSlug": "guest-0c4a7540"
+    },
+    {
+      "name": "Courtney",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-02-13",
+      "source": "opencollective",
+      "ocSlug": "guest-244a70af"
+    },
+    {
+      "name": "H",
+      "amount": 2,
+      "currency": "EUR",
+      "date": "2024-02-13",
+      "source": "opencollective",
+      "ocSlug": "guest-ed17dd33"
+    },
+    {
+      "name": "Abdulrhman",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-13",
+      "source": "opencollective",
+      "ocSlug": "guest-42e16431"
+    },
+    {
+      "name": "Thomas Rollmann",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2024-02-13",
+      "source": "opencollective",
+      "ocSlug": "guest-1ac7eee8"
+    },
+    {
+      "name": "Sylvia Aguilar",
+      "amount": 105,
+      "currency": "EUR",
+      "date": "2024-01-17",
+      "source": "opencollective",
+      "ocSlug": "guest-1fbf204c"
+    },
+    {
+      "name": "Arelis Sierra Alameda",
+      "amount": 11,
+      "currency": "EUR",
+      "date": "2024-02-11",
+      "source": "opencollective",
+      "ocSlug": "guest-1d6b72ea"
+    },
+    {
+      "name": "Waleed Doany",
+      "amount": 200,
+      "currency": "EUR",
+      "date": "2024-02-10",
+      "source": "opencollective",
+      "ocSlug": "guest-47d89882"
+    },
+    {
+      "name": "Claude PROST",
+      "amount": 50,
+      "currency": "EUR",
+      "date": "2024-02-10",
+      "source": "opencollective",
+      "ocSlug": "claude-prost"
+    },
+    {
+      "name": "Jane Williams",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-02-10",
+      "source": "opencollective",
+      "ocSlug": "guest-a4082580"
+    },
+    {
+      "name": "Natalie M",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-09",
+      "source": "opencollective",
+      "ocSlug": "guest-52458f9b"
+    },
+    {
+      "name": "Mila",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-09",
+      "source": "opencollective",
+      "ocSlug": "mila2"
+    },
+    {
+      "name": "Alice rose",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-07",
+      "source": "opencollective",
+      "ocSlug": "guest-8f3aaaac"
+    },
+    {
+      "name": "Jack",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2024-02-06",
+      "source": "opencollective",
+      "ocSlug": "guest-3a8dbca9"
+    },
+    {
+      "name": "Marc Lange",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-02-03",
+      "source": "opencollective",
+      "ocSlug": "guest-3a02560d"
+    },
+    {
+      "name": "Jemima",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-01-22",
+      "source": "opencollective",
+      "ocSlug": "guest-ee4a3c51"
+    },
+    {
+      "name": "Tara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-22",
+      "source": "opencollective",
+      "ocSlug": "guest-56705e52"
+    },
+    {
+      "name": "Nabil Hasan",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-01-22",
+      "source": "opencollective",
+      "ocSlug": "guest-dc3a8d59"
+    },
+    {
+      "name": "Ayaz",
+      "amount": 1,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-90e39e02"
+    },
+    {
+      "name": "Tracy",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-91944313"
+    },
+    {
+      "name": "Ilse",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-c0e92664"
+    },
+    {
+      "name": "Agrita",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-2e5dca91"
+    },
+    {
+      "name": "NAJIHAH",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-a120ed2b"
+    },
+    {
+      "name": "Alberto De Rossi",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-01-21",
+      "source": "opencollective",
+      "ocSlug": "guest-711eefca"
+    },
+    {
+      "name": "MOHAMMAD",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-16",
+      "source": "opencollective",
+      "ocSlug": "guest-0510b196"
+    },
+    {
+      "name": "Laila Sofianty",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2024-01-16",
+      "source": "opencollective",
+      "ocSlug": "guest-ed74a0c5"
+    },
+    {
+      "name": "Saime",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2024-01-16",
+      "source": "opencollective",
+      "ocSlug": "guest-694ce787"
+    },
+    {
+      "name": "Sim",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2023-12-19",
+      "source": "opencollective",
+      "ocSlug": "guest-9d9a676c"
+    },
+    {
+      "name": "Clara",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2023-12-11",
+      "source": "opencollective",
+      "ocSlug": "guest-74d3aa36"
+    },
+    {
+      "name": "Ciara Smith",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2023-12-09",
+      "source": "opencollective",
+      "ocSlug": "guest-57bc7d3e"
+    },
+    {
+      "name": "Danièle Pomeranz",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2023-06-30",
+      "source": "opencollective",
+      "ocSlug": "guest-2a57b606"
+    },
+    {
+      "name": "Sandra Stone",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2022-11-19",
+      "source": "opencollective",
+      "ocSlug": "guest-e17529f9"
+    },
+    {
+      "name": "Tanya Smith-Millican",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2022-11-17",
+      "source": "opencollective",
+      "ocSlug": "guest-93903f13"
+    },
+    {
+      "name": "GYNA TORRES",
+      "amount": 4,
+      "currency": "EUR",
+      "date": "2022-11-17",
+      "source": "opencollective",
+      "ocSlug": "guest-fedf84b2"
+    },
+    {
+      "name": "Incognito",
+      "amount": 2,
+      "currency": "EUR",
+      "date": "2022-09-08",
+      "source": "opencollective",
+      "ocSlug": "user-33445b6a"
+    },
+    {
+      "name": "Daniel Good",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2022-05-09",
+      "source": "opencollective",
+      "ocSlug": "guest-fce9ce2a"
+    },
+    {
+      "name": "Adam Green",
+      "amount": 20,
+      "currency": "EUR",
+      "date": "2022-04-07",
+      "source": "opencollective",
+      "ocSlug": "guest-fe3d84eb"
+    },
+    {
+      "name": "John G",
+      "amount": 10,
+      "currency": "EUR",
+      "date": "2021-10-27",
+      "source": "opencollective",
+      "ocSlug": "guest-0988a638"
+    },
+    {
+      "name": "Ed Robson",
+      "amount": 5,
+      "currency": "EUR",
+      "date": "2021-10-26",
+      "source": "opencollective",
+      "ocSlug": "guest-fc0a553b"
+    }
+  ],
+  "stats": {
+    "total": 231,
+    "stripe": 0,
+    "opencollective": 231
+  },
+  "ocLegacy": {
+    "currency": "EUR",
+    "balance": 286146,
+    "totalReceived": 605891,
+    "totalSpent": 289441
+  },
+  "expenses": [
+    {
+      "id": 263634,
+      "description": "POSTMARKAPP.COM",
+      "amount": 25.47,
+      "status": "PAID",
+      "date": "2025-09-01"
+    },
+    {
+      "id": 263628,
+      "description": "HEROKU June",
+      "amount": 9.31,
+      "status": "PAID",
+      "date": "2025-09-01"
+    },
+    {
+      "id": 263627,
+      "description": "Postmark",
+      "amount": 11.02,
+      "status": "PAID",
+      "date": "2025-09-01"
+    },
+    {
+      "id": 254840,
+      "description": "Openletter Nostr V1",
+      "amount": 641,
+      "status": "PAID",
+      "date": "2025-06-25"
+    },
+    {
+      "id": 254221,
+      "description": "Email server May 2025",
+      "amount": 12.79,
+      "status": "PAID",
+      "date": "2025-06-19"
+    }
+  ],
+  "lastUpdated": "2026-04-05T09:46:17.138Z"
+}
