@@ -37,9 +37,10 @@ class SignatureForm extends Component {
   }
 
   async componentDidMount() {
-    // Only enable passkey when ?passkey=true is in the URL
+    // Only enable passkey when the feature flag is enabled and ?passkey=true is in the URL
     const params = new URLSearchParams(window.location.search);
-    if (params.get('passkey') === 'true' && isPasskeySupported()) {
+    const enablePasskey = process.env.NEXT_PUBLIC_ENABLE_PASSKEY === 'true';
+    if (enablePasskey && params.get('passkey') === 'true' && isPasskeySupported()) {
       const available = await isPlatformAuthenticatorAvailable();
       this.setState({ passkeyAvailable: available, usePasskey: available });
     }

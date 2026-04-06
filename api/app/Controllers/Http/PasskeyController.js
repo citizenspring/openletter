@@ -21,6 +21,10 @@ class PasskeyController {
    * Body: { signature_id }
    */
   async registerOptions({ request, response }) {
+    if (process.env.ENABLE_PASSKEY !== 'true') {
+      return response.status(403).json({ error: 'Passkey is not enabled' });
+    }
+
     const { signature_id } = request.only(['signature_id']);
 
     if (!signature_id) {
@@ -71,6 +75,10 @@ class PasskeyController {
    * Body: { signature_id, credential }
    */
   async registerVerify({ request, response }) {
+    if (process.env.ENABLE_PASSKEY !== 'true') {
+      return response.status(403).json({ error: 'Passkey is not enabled' });
+    }
+
     const { signature_id, credential } = request.only(['signature_id', 'credential']);
 
     if (!signature_id || !credential) {
