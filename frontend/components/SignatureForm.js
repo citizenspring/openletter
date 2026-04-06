@@ -20,7 +20,7 @@ class SignatureForm extends Component {
     this.state = {
       loading: false,
       passkeyAvailable: false,
-      usePasskey: true, // default to passkey when available
+      usePasskey: false, // disabled by default; enabled only when ?passkey=true in URL
       form: {
         name: null,
         occupation: null,
@@ -75,7 +75,7 @@ class SignatureForm extends Component {
     const { error, t, letter } = this.props;
     const { passkeyAvailable, usePasskey } = this.state;
     const showEmailField = !this.updatingSignature && !usePasskey;
-    const showEmailOptional = !this.updatingSignature && usePasskey;
+    const showEmailOptional = !this.updatingSignature && usePasskey && passkeyAvailable;
 
     return (
       <form onSubmit={this.handleSubmit}>
