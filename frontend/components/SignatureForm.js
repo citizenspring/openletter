@@ -20,7 +20,7 @@ class SignatureForm extends Component {
     this.state = {
       loading: false,
       passkeyAvailable: false,
-      usePasskey: true, // default to passkey when available
+      usePasskey: false, // only enabled when passkey is available and flag is on
       form: {
         name: null,
         occupation: null,
@@ -37,9 +37,10 @@ class SignatureForm extends Component {
   }
 
   async componentDidMount() {
-    // Only enable passkey when ?passkey=true is in the URL
+    // Only enable passkey when the feature flag is on AND ?passkey=true is in the URL
+    const enablePasskey = process.env.NEXT_PUBLIC_ENABLE_PASSKEY === 'true';
     const params = new URLSearchParams(window.location.search);
-    if (params.get('passkey') === 'true' && isPasskeySupported()) {
+    if (enablePasskey && params.get('passkey') === 'true' && isPasskeySupported()) {
       const available = await isPlatformAuthenticatorAvailable();
       this.setState({ passkeyAvailable: available, usePasskey: available });
     }
@@ -74,8 +75,9 @@ class SignatureForm extends Component {
   render() {
     const { error, t, letter } = this.props;
     const { passkeyAvailable, usePasskey } = this.state;
+    // Email is optional only when using passkey (which requires the feature flag to be enabled)
     const showEmailField = !this.updatingSignature && !usePasskey;
-    const showEmailOptional = !this.updatingSignature && usePasskey;
+    const showEmailOptional = !this.updatingSignature && usePasskey && passkeyAvailable;
 
     return (
       <form onSubmit={this.handleSubmit}>

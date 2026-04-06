@@ -307,6 +307,11 @@ class LetterController {
     const usePasskey = request.body.use_passkey;
     const email = request.body.email;
 
+    // Reject passkey unless the feature flag is enabled
+    if (usePasskey && process.env.ENABLE_PASSKEY !== 'true') {
+      return { error: { code: 400, message: 'Passkey is not enabled' } };
+    }
+
     if (!usePasskey && !email) {
       return { error: { code: 400, message: 'Email is required when not using passkey' } };
     }
