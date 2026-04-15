@@ -47,6 +47,10 @@ class Letter extends Component {
   }
 
   async submitSignature(signature) {
+    // Attach invite token if present
+    if (this.props.inviteToken) {
+      signature.invite_token = this.props.inviteToken;
+    }
     console.log('>>> submitting ', signature, 'headers', this.props.headers);
     const apiCall = `${process.env.API_URL}/letters/${this.props.letter.slug}/${this.props.letter.locale}/sign`;
 
@@ -161,11 +165,43 @@ class Letter extends Component {
             {letter.type === 'letter' && (
               <Box width={[1, 1 / 3]} p={3}>
                 <SignaturesCount signatures={letter.signatures} stats={letter.signatures_stats} />
-                {[null, 'created', 'error'].includes(status) && (
+
+                {/* Invite-only gate */}
+                {letter.letter_type === 'invite_only' && !letter.is_paid && (
+                  <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg my-4 text-center">
+                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                      {t('invite.not_activated')}
+                    </p>
+                  </div>
+                )}
+
+                {letter.letter_type === 'invite_only' && letter.is_paid && !this.props.inviteToken && letter.restriction_mode === 'invite' && (
+                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg my-4 text-center">
+                    <div className="text-2xl mb-2">🔒</div>
+                    <p className="font-semibold">{t('invite.required.title')}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      {t('invite.required.desc')}
+                    </p>
+                  </div>
+                )}
+
+                {letter.letter_type === 'invite_only' && letter.is_paid && letter.restriction_mode === 'domain' && letter.allowed_domains && (
+                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg my-4 text-center text-sm">
+                    <span className="font-medium">{t('invite.domain_only')}</span>{' '}
+                    {letter.allowed_domains.join(', ')}
+                  </div>
+                )}
+
+                {/* Show signing form only if allowed */}
+                {(letter.letter_type !== 'invite_only' || !letter.is_paid
+                  ? (letter.letter_type !== 'invite_only') // public letters always show form
+                  : (letter.restriction_mode === 'domain' || this.props.inviteToken)
+                ) && [null, 'created', 'error'].includes(status) && (
                   <SignatureForm
                     letter={letter}
                     error={this.state.error}
                     signature={this.props.signature}
+                    inviteToken={this.props.inviteToken}
                     onSubmit={(signature) => this.submitSignature(signature)}
                   />
                 )}
@@ -230,6 +266,8 @@ export async function getServerSideProps({ params, req, res, locale }) {
   const parsedUrl = url.parse(req.url, true);
   const limit = parsedUrl.query.limit || 100;
   const token = parsedUrl.query.token || null;
+  const inviteToken = parsedUrl.query.invite || null;
+  props.inviteToken = inviteToken;
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
   console.log('>>> apiCall', apiCall);
 
