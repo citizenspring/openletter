@@ -26,7 +26,12 @@ const latestSignatureTimestampByIpAddress = {};
 console.log('>>> Setting up latestSignatureTimestampByIpAddress');
 setInterval(() => {
   console.log('>>> Resetting latestSignatureTimestampByIpAddress');
-  latestSignatureTimestampByIpAddress = {};
+  // Clear the keys instead of reassigning: the binding is a const, and the
+  // reassignment threw "TypeError: Assignment to constant variable" once a day,
+  // inside a timer where nothing could catch it — killing the whole API.
+  for (const ipAddress of Object.keys(latestSignatureTimestampByIpAddress)) {
+    delete latestSignatureTimestampByIpAddress[ipAddress];
+  }
 }, 1000 * 60 * 60 * 24); // reset every day
 
 class LetterController {
