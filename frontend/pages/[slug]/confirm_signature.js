@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import Notification from '../../components/Notification';
 import Router, { withRouter } from 'next/router';
 import { withIntl } from '../../lib/i18n';
+import { fetchJson } from '../../lib/api';
 import DonorsList from '../../components/DonorsList';
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -102,14 +103,12 @@ class ConfirmSignaturePage extends Component {
 export async function getServerSideProps({ params, req }) {
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
   console.log('>>> apiCall', apiCall);
-  const res = await fetch(apiCall);
-
-  try {
-    const letter = await res.json();
-    return { props: { letter } };
-  } catch (e) {
-    console.error('Unable to parse JSON returned by the API', e);
+  const { data: letter, error } = await fetchJson(apiCall);
+  if (error) {
+    return { props: { error } };
   }
+
+  return { props: { letter } };
 }
 
 export default withIntl(withRouter(ConfirmSignaturePage));

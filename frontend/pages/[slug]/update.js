@@ -8,6 +8,7 @@ import { typography, space } from 'styled-system';
 import LetterForm from '../../components/LetterForm';
 import Faq from '../../components/LetterForm-Faq';
 import Notification from '../../components/Notification';
+import { fetchJson } from '../../lib/api';
 import Router from 'next/router';
 import { withIntl } from '../../lib/i18n';
 
@@ -88,6 +89,20 @@ class CreateLetterPage extends Component {
     const { status } = this.state;
     const { t, parentLetter } = this.props;
 
+    // parentLetter is missing whenever the API could not be reached — render a
+    // message instead of dereferencing undefined and blowing up the render.
+    if (!parentLetter) {
+      return (
+        <Page>
+          <div>
+            <h1>Not found</h1>
+            <p>This open letter cannot be found in the database.</p>
+          </div>
+          <Footer />
+        </Page>
+      );
+    }
+
     return (
       <>
         <TopBanner>
@@ -115,19 +130,17 @@ class CreateLetterPage extends Component {
 export async function getServerSideProps({ params, req, query }) {
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  const res = await fetch(apiCall);
-  try {
-    const response = await res.json();
-    if (response.error) {
-      props.error = response.error;
-    } else {
-      props.parentLetter = response;
-      props.token = query.token;
-    }
-    return { props };
-  } catch (e) {
-    console.error('Unable to parse JSON returned by the API', e);
+  const { data: response, error } = await fetchJson(apiCall);
+  if (error) {
+    props.error = error;
+  } else if (response.error) {
+    props.error = response.error;
+  } else {
+    props.parentLetter = response;
+    props.token = query.token;
   }
+
+  return { props };
 }
 
 export default withIntl(CreateLetterPage);
