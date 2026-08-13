@@ -29,8 +29,13 @@ async function updateLatestLetters() {
 }
 
 function updateData() {
-  computeStats();
-  updateLatestLetters();
+  // Both of these are async, and their promises are not awaited. Without a
+  // catch, a single failed query (a connection blip, a pool timeout) becomes an
+  // unhandled rejection — which terminates the process on Node >= 15 and takes
+  // the API down with every request in flight. Stale stats for five minutes is
+  // the better failure mode.
+  computeStats().catch((e) => console.error('>>> failed to compute stats:', e.message));
+  updateLatestLetters().catch((e) => console.error('>>> failed to update latest letters:', e.message));
 }
 updateData();
 setInterval(updateData, 1000 * 60 * 5); // we recompute stats and latest letters every 5 minutes
