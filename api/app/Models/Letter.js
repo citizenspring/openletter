@@ -89,6 +89,10 @@ class Letter extends Model {
   signatures() {
     return this.hasMany('App/Models/Signature', 'id', 'letter_id');
   }
+
+  invitations() {
+    return this.hasMany('App/Models/Invitation', 'id', 'letter_id');
+  }
 }
 
 /**
@@ -131,6 +135,14 @@ Letter.createWithLocales = async (letters, defaultValues = {}) => {
       image: letter.image,
       slug,
     };
+    // Invite-only fields (applied to all locale versions from the first letter's settings)
+    if (letters[0].letter_type) {
+      sanitizedValues.letter_type = letters[0].letter_type;
+      sanitizedValues.restriction_mode = letters[0].restriction_mode || null;
+      sanitizedValues.allowed_domains = letters[0].allowed_domains || null;
+      sanitizedValues.invites_per_person = letters[0].invites_per_person || 5;
+      sanitizedValues.allow_chain_invites = letters[0].allow_chain_invites || false;
+    }
     if (!sanitizedValues.text) {
       console.log('>>> empty text for locale', letter.locale, 'skipping');
       return;
