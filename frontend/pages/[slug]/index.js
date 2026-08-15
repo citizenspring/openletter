@@ -12,7 +12,6 @@ import SignaturesCount from '../../components/SignaturesCount';
 import Updates from '../../components/Updates';
 import LocaleSelector from '../../components/LocaleSelector';
 import { withIntl } from '../../lib/i18n';
-import { fetchJson } from '../../lib/api';
 import { replaceURLsWithMarkdownAnchors } from '../../lib/utils';
 import { registerPasskey } from '../../lib/passkey';
 import moment from 'moment';
@@ -234,28 +233,48 @@ export async function getServerSideProps({ params, req, res, locale }) {
   const apiCall = `${process.env.API_URL}/letters/${params.slug}?locale=${locale}&limit=${limit}`;
   console.log('>>> apiCall', apiCall);
 
-  const { data: letter, error } = await fetchJson(apiCall);
-  if (error) {
-    props.error = error;
-  } else if (letter.error) {
-    props.error = letter.error;
-  } else {
-    props.letter = letter;
-  }
+  // Create AbortController for timeout handling
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
-  if (token) {
-    const { data: signature, error: signatureError } = await fetchJson(`${process.env.API_URL}/signatures/${token}`);
-    if (signatureError) {
-      props.error = signatureError;
-    } else if (signature.error) {
-      props.error = signature.error;
-    } else {
-      signature.token = token;
-      props.signature = signature;
+  try {
+    const result = await fetch(apiCall, { signal: controller.signal });
+    clearTimeout(timeoutId); // Clear timeout if request succeeds
+
+    if (token) {
+      const signatureApiCall = `${process.env.API_URL}/signatures/${token}`;
+      const signatureResult = await fetch(signatureApiCall);
+      const signature = await signatureResult.json();
+      if (signature.error) {
+        props.error = signature.error;
+      } else {
+        signature.token = token;
+        props.signature = signature;
+      }
     }
-  }
 
-  return { props };
+    try {
+      const response = await result.json();
+      if (response.error) {
+        props.error = response.error;
+      } else {
+        props.letter = response;
+      }
+      return { props };
+    } catch (e) {
+      console.error('Unable to parse JSON returned by the API', e);
+    }
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      console.error('API request timed out after 5 seconds');
+      props.error = { message: 'Request timeout' };
+    } else {
+      console.error('API request failed:', error);
+      props.error = { message: 'Request failed' };
+    }
+    return { props };
+  }
 }
 
 export default withIntl(Letter);

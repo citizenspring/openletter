@@ -9,7 +9,6 @@ import { typography, space } from 'styled-system';
 import LetterForm from '../../components/LetterForm';
 import Faq from '../../components/LetterForm-Faq';
 import Notification from '../../components/Notification';
-import { fetchJson } from '../../lib/api';
 import Router from 'next/router';
 import { withIntl } from '../../lib/i18n';
 
@@ -158,17 +157,19 @@ class DeleteLetterPage extends Component {
 export async function getServerSideProps({ params, req, query }) {
   const props = { headers: req.headers };
   const apiCall = `${process.env.API_URL}/letters/${params.slug}`;
-  const { data: response, error } = await fetchJson(apiCall);
-  if (error) {
-    props.error = error;
-  } else if (response.error) {
-    props.error = response.error;
-  } else {
-    props.parentLetter = response;
-    props.token = query.token;
+  const res = await fetch(apiCall);
+  try {
+    const response = await res.json();
+    if (response.error) {
+      props.error = response.error;
+    } else {
+      props.parentLetter = response;
+      props.token = query.token;
+    }
+    return { props };
+  } catch (e) {
+    console.error('Unable to parse JSON returned by the API', e);
   }
-
-  return { props };
 }
 
 export default withIntl(DeleteLetterPage);
