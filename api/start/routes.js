@@ -34,3 +34,13 @@ Route.post('letters/:slug/:locale/sign', 'LetterController.sign');
 Route.post('signatures/confirm', 'SignatureController.confirm');
 Route.post('passkey/register-options', 'PasskeyController.registerOptions');
 Route.post('passkey/register-verify', 'PasskeyController.registerVerify');
+
+// Invitation-only letters
+Route.post('letters/:slug/invitations', 'InvitationController.create');
+Route.get('letters/:slug/invitations', 'InvitationController.list');
+Route.get('invitations/:token', 'InvitationController.validate');
+
+// Stripe payments
+Route.post('letters/:slug/checkout', 'StripeController.createCheckout');
+Route.post('letters/:slug/verify-payment', 'StripeController.verifyPayment');
+Route.post('webhooks/stripe', 'StripeController.webhook');
