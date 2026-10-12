@@ -21,7 +21,11 @@ const next = require('next');
 const accept = require('@hapi/accept'); // Next 10's own dependency
 
 const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== 'production';
+// Production unless explicitly asked otherwise: `npm start` runs this file
+// without NODE_ENV, and `next start` (which this replaced) always meant prod.
+// Defaulting to dev put the on-demand dev compiler in production, where a
+// failed compile left the server hung (outage of 2026-10-12).
+const dev = process.env.NODE_ENV === 'development';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
