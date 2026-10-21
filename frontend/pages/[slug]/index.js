@@ -141,7 +141,7 @@ class Letter extends Component {
           <Flex flexWrap="wrap">
             <Box width={[1, 2 / 3]} p={3}>
               <LocaleSelector slug={letter.slug} locales={letter.locales} currentLocale={letter.locale} />
-              <strong>{moment(letter.created_at).format('D MMMM YYYY')}</strong>
+              <strong>{moment.utc(letter.created_at).format('D MMMM YYYY')}</strong>
               <Title>{letter.title}</Title>
               {letter.image && letter.image.src && (
                 <div className="w-full">

@@ -108,7 +108,7 @@ class CreateLetterPage extends Component {
         <TopBanner>
           Posting an update to{' '}
           <Link href={`/${parentLetter.slug}`}>
-            <a>{parentLetter.title}</a>
+            {parentLetter.title}
           </Link>
         </TopBanner>
         <Page>

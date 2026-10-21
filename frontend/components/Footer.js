@@ -49,9 +49,9 @@ function Footer({ t }) {
           {t('footer.andsignit')}
         </div>
         <div className="mt-4 flex justify-center gap-3 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="/tos"><a className="hover:text-gray-800 dark:hover:text-gray-200">Terms of Service</a></Link>
+          <Link href="/tos" className="hover:text-gray-800 dark:hover:text-gray-200">Terms of Service</Link>
           <span>·</span>
-          <Link href="/donate"><a className="hover:text-gray-800 dark:hover:text-gray-200">{t('notification.signed.donate.button')}</a></Link>
+          <Link href="/donate" className="hover:text-gray-800 dark:hover:text-gray-200">{t('notification.signed.donate.button')}</Link>
           <span>·</span>
           <a href="https://github.com/citizenspring/openletter" className="hover:text-gray-800 dark:hover:text-gray-200">GitHub</a>
         </div>

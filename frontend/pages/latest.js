@@ -22,9 +22,9 @@ function Index({ letters, error }) {
       <ul>
         {letters.map((letter) => (
           <li className="my-2">
-            <div className="text-sm text-gray-500">{moment(letter.created_at).format('D MMMM YYYY')}</div>
+            <div className="text-sm text-gray-500">{moment.utc(letter.created_at).format('D MMMM YYYY')}</div>
             <Link href={letter.slug}>
-              <a>{letter.title}</a>
+              {letter.title}
             </Link>
             <Badge>
               <NumberFormat value={letter.total_signatures} displayType={'text'} thousandSeparator={true} />

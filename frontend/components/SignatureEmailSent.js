@@ -31,10 +31,11 @@ export default withIntl(({ t }) => (
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {t('notification.sent.donate.note')}
         </p>
-        <Link href="/donate">
-          <a className="inline-block mt-2 text-center transition-all duration-200 text-white text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 py-2 px-4 rounded-lg shadow hover:shadow-md hover:text-white">
-            {t('notification.signed.donate.button')}
-          </a>
+        <Link
+          href="/donate"
+          className="inline-block mt-2 text-center transition-all duration-200 text-white text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 py-2 px-4 rounded-lg shadow hover:shadow-md hover:text-white"
+        >
+          {t('notification.signed.donate.button')}
         </Link>
       </Box>
     </Box>

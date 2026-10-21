@@ -25,7 +25,7 @@ function Card({ t, letter }) {
     <div className="rounded-lg border shadow-sm dark:bg-gray-800 dark:text-white">
       <CardHeader>
         <div className="flex items-left flex-col">
-          <span className="text-sm text-gray-500">{moment(letter.created_at).format('D MMMM YYYY')}</span>
+          <span className="text-sm text-gray-500">{moment.utc(letter.created_at).format('D MMMM YYYY')}</span>
           {letter.title && (
             <h3 className="text-xl font-bold">
               <Link href={`/${letter.slug}`}>{letter.title}</Link>
@@ -40,8 +40,8 @@ function Card({ t, letter }) {
               letter.locales.length > 2 &&
               letter.locales.split(',').map((locale) => (
                 <div className="inline-flex items-center text-xs ml-1 py-0">
-                  <Link href={`/${letter.slug}`} locale={locale}>
-                    <a title={locale}>{getEmoji(locale)}</a>
+                  <Link href={`/${letter.slug}`} locale={locale} title={locale}>
+                    {getEmoji(locale)}
                   </Link>
                 </div>
               ))}
