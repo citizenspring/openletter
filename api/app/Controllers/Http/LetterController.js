@@ -22,6 +22,9 @@ function containsURL(str) {
   return patterns.some((pattern) => pattern.test(str));
 }
 
+// must match the column sizes of the signatures table
+const signatureMaxLengths = { name: 128, occupation: 64, city: 64, organization: 64 };
+
 const latestSignatureTimestampByIpAddress = {};
 console.log('>>> Setting up latestSignatureTimestampByIpAddress');
 setInterval(() => {
@@ -288,6 +291,19 @@ class LetterController {
       };
     }
 
+    for (const field in signatureMaxLengths) {
+      const value = signatureData[field];
+      if (typeof value === 'string' && value.length > signatureMaxLengths[field]) {
+        console.log('>>> field too long', field, value.length);
+        return {
+          error: {
+            code: 400,
+            message: `Invalid signature: ${field} should be at most ${signatureMaxLengths[field]} characters`,
+          },
+        };
+      }
+    }
+
     if (signatureData.id && signatureData.token) {
       const existingSignature = await Signature.query()
         .where('id', signatureData.id)
@@ -347,6 +363,7 @@ class LetterController {
         }
       } else {
         console.error('error', e);
+        return { error: { code: 500, message: 'Unable to save your signature, please try again later' } };
       }
     }
 

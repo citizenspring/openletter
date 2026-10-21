@@ -86,6 +86,7 @@ class SignatureForm extends Component {
               type="text"
               id="name"
               placeholder={t('sign.name')}
+              maxLength={128}
               defaultValue={this.props.signature && this.props.signature.name}
               onChange={(e) => this.handleChange('name', e.target.value)}
             />
@@ -95,6 +96,7 @@ class SignatureForm extends Component {
               <Input
                 name="occupation"
                 placeholder={t('sign.occupation')}
+                maxLength={64}
                 onChange={this.handleChange}
                 defaultValue={this.props.signature && this.props.signature.occupation}
               />
@@ -103,6 +105,7 @@ class SignatureForm extends Component {
               <Input
                 name="city"
                 placeholder={t('sign.city')}
+                maxLength={64}
                 onChange={this.handleChange}
                 defaultValue={this.props.signature && this.props.signature.city}
               />
@@ -112,6 +115,7 @@ class SignatureForm extends Component {
             <Input
               name="organization"
               placeholder={t('sign.organization')}
+              maxLength={64}
               onChange={this.handleChange}
               defaultValue={this.props.signature && this.props.signature.organization}
             />

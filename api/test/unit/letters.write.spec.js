@@ -80,6 +80,25 @@ async function cleandb() {
     });
   });
 
+  test('POST /letters/:slug/:locale/sign with a field that is too long', async ({ client, assert }) => {
+    const signatureData = {
+      name: 'Xavier',
+      organization: 'A'.repeat(65),
+      email: 'toolong@gmail.com',
+    };
+
+    const response = await client.post(`/letters/${letter.slug}/${letter.locale}/sign`).send(signatureData).end();
+    response.assertStatus(200);
+    response.assertJSONSubset({
+      error: {
+        code: 400,
+        message: 'Invalid signature: organization should be at most 64 characters',
+      },
+    });
+    const count = await Signature.query().where('letter_id', letter.id).getCount();
+    assert.equal(count, 0);
+  });
+
   test('POST /letters/:slug/:locale/sign and share email', async ({ client, assert }) => {
     const signatureData = {
       name: 'Xavier',
