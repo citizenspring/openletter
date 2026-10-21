@@ -159,7 +159,7 @@ function Homepage({ t, letters, stats, error }) {
           <ol className="list-decimal list-inside space-y-2">
             <li>
               <Link href="/create">
-                <a>{t('home.howitworks.1')}</a>
+                {t('home.howitworks.1')}
               </Link>
             </li>
             <li>{t('home.howitworks.2')}</li>

@@ -105,7 +105,7 @@ class DeleteLetterPage extends Component {
         <TopBanner>
           Deleting{' '}
           <Link href={`/${parentLetter.slug}`}>
-            <a>{parentLetter.title}</a>
+            {parentLetter.title}
           </Link>
         </TopBanner>
         <Page>
@@ -117,7 +117,7 @@ class DeleteLetterPage extends Component {
                   <p>
                     Are you sure you'd like to delete this open letter (
                     <Link href={`/${parentLetter.slug}`}>
-                      <a>{parentLetter.title}</a>
+                      {parentLetter.title}
                     </Link>
                     ) that has {parentLetter.signatures.length} {pluralize('signature', parentLetter.signatures.length)}
                     ?{' '}

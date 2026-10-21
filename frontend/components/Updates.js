@@ -16,7 +16,7 @@ export default withIntl(({ t, updates }) => {
       {updates.map((update, i) => (
         <div className="my-8" id={`update${i + 1}`} key={`update${i + 1}`}>
           <strong>
-            {t('letter.update')} {moment(update.created_at).format('DD MMMM YYYY')}
+            {t('letter.update')} {moment.utc(update.created_at).format('DD MMMM YYYY')}
           </strong>
           <h2 className="mt-0 text-3xl">{update.title}</h2>
           <div className="max-w-fit">

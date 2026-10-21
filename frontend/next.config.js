@@ -29,6 +29,12 @@ module.exports = {
     // This is a list of locale domains and the default locale they
     // should handle (these are only required when setting up domain routing)
     // Note: subdomains must be included in the domain value to be matched e.g. "fr.example.com".
-    localeDetection: true,
+    // Locale detection from Accept-Language is on by default (Next 13+ only
+    // accepts `localeDetection: false`).
+  },
+  compiler: {
+    // SWC replacement for babel-plugin-styled-components: stable class names
+    // between server and client render (avoids hydration mismatches).
+    styledComponents: true,
   },
 };
