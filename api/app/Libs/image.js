@@ -15,7 +15,10 @@ async function getImageSize(src) {
 }
 
 async function fetchImage(src) {
-  const response = await fetch(src);
+  // compress: false so we never run zlib decoders on attacker-chosen URLs
+  // (CVE-2026-111497, Brotli RCE; the API is on Node 16 which won't get the fix).
+  // Images are not sent content-encoded in practice.
+  const response = await fetch(src, { compress: false });
   if (response.status !== 200) {
     console.error('!!! fetchImage: fetch error', src, response.status, response);
     return {};
