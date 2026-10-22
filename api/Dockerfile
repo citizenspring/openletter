@@ -1,5 +1,5 @@
-# Use Node.js 16 as the base image
-FROM node:16-alpine
+# Use Node.js 22 (LTS) as the base image
+FROM node:22-alpine
 
 # Install curl
 RUN apk add --no-cache curl
