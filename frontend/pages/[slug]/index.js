@@ -27,7 +27,9 @@ const Page = ({ children, className }) => <div className={`max-w-4xl mx-auto ${c
 const Title = ({ children, className }) => (
   <div className={`text-3xl md:text-4xl mt-0 mb-3 leading-tight ${className}`}>{children}</div>
 );
-const Text = ({ children }) => <div className=" font-sans max-w-2xl dark:text-gray-300">{children}</div>;
+const Text = ({ children, className = "" }) => (
+  <div className={`font-sans max-w-2xl dark:text-gray-300 ${className}`}>{children}</div>
+);
 const ViewMore = ({ children }) => <div className="text-center">{children}</div>;
 
 class Letter extends Component {
