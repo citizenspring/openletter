@@ -31,6 +31,11 @@ body {
   max-width: 400px; /* default size */
 }
 
+.letterBody > ol, .letterBody > ul {
+    list-style: revert;
+    padding: revert;
+}
+
 @media screen and (max-width: 400px) {
   .letter a {
     max-width: 350px;
