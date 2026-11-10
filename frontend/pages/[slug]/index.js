@@ -152,7 +152,7 @@ class Letter extends Component {
                   />
                 </div>
               )}
-              <Text>
+              <Text className="letterBody">
                 <ReactMarkdown plugins={[gfm]} allowedElements={['a', 'br', 'p', 'b', 'i', 'strong', 'em', 'img', 'ul', 'ol', 'li']}>
                   {text}
                 </ReactMarkdown>
